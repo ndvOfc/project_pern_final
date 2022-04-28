@@ -1,3 +1,4 @@
+/* eslint-disable consistent-return */
 /* eslint-disable class-methods-use-this */
 const bcrypt = require('bcrypt');
 const { User } = require('../db/models/models');
@@ -6,7 +7,7 @@ class UserController {
   async registration(req, res) {
     try {
       const { name, email, password } = req.body;
-      console.log(email);
+      // console.log(email);
       if (!email || !password) {
         return res.status(400).json({ message: 'Поля почты и пароля не должны быть пустыми' });
       }
