@@ -49,7 +49,9 @@ class UserController {
 
   async logout(req, res) {
     req.session.destroy();
-    res.redirect('http://localhost:3000/login');
+    // req.sessionStorage.clear();
+    // res.redirect('http://localhost:3000/login');
+    res.status(200).json({ message: 'Вы вышли из системы' });
   }
 }
 
