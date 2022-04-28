@@ -2,9 +2,15 @@
   "name": "server",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node app.js",
+    "dev": "nodemon app.js",
+    "db-sync": "node db/db_controller/dbController.js syncDb",
+    "db-sync-f": "node db/db_controller/dbController.js syncDbForce",
+    "db-seed": "node db/db_controller/dbController.js seedDb 10",
+    "db-drop": "node db/db_controller/dbController.js dropDb"
   },
   "keywords": [],
   "author": "",
@@ -30,3 +36,4 @@
     "nodemon": "^2.0.15"
   }
 }
+
