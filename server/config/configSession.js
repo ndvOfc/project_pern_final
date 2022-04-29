@@ -4,7 +4,7 @@ const FileStore = require('session-file-store')(session);
 const sessionConfig = {
   store: new FileStore(),
   name: 'user_sid',
-  secret: process.env.SESSION_SECRET ?? 'jaga',
+  secret: process.env.SESSION_KEY ?? 'jaga',
   resave: false,
   saveUninitialized: false,
   cookie: {
