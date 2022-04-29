@@ -4,6 +4,7 @@
 import React from 'react';
 import { Grid, Paper, Button, TextField, Typography, Link } from '@material-ui/core';
 import { useForm } from 'react-hook-form';
+import { fetchLogin } from '../../redux/thunk/userAsyncAction';
 
 // import FormControlLabel from '@material-ui/core/FormControlLabel';
 // import Checkbox from '@material-ui/core/Checkbox';
@@ -13,7 +14,9 @@ function Login() {
   const btnstyle = { margin: '8px 0' };
 
   const { register, handleSubmit } = useForm();
-  const onSubmit = (data) => console.log(data);
+  function onSubmit(data) {
+    fetchLogin(data);
+  }
 
   return (
     <Grid>

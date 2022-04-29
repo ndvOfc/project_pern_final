@@ -3,6 +3,7 @@
 import React from 'react';
 import { Grid, Paper, Typography, TextField, Button, Link } from '@material-ui/core';
 import { useForm } from 'react-hook-form';
+import { fetchRegistration } from '../../redux/thunk/userAsyncAction';
 
 function Registration() {
   const paperStyle = { padding: '30px 20px', width: 300, margin: '20px auto' };
@@ -13,7 +14,7 @@ function Registration() {
   const { register, handleSubmit } = useForm();
 
   function onSubmit(data) {
-    console.log(data);
+    fetchRegistration(data);
   }
 
   return (
@@ -27,7 +28,7 @@ function Registration() {
             fullWidth
             label="Имя"
             placeholder="Имя пользователя"
-            {...register('username', { required: true })}
+            {...register('name', { required: true })}
             type="text"
           />
           <TextField
