@@ -1,7 +1,7 @@
 const cors = require('cors');
 
 const corsConfig = {
-  origin: ['http://localhost:5000'],
+  origin: process.env.CLIENT_URL,
   credential: true,
   optionsSuccessStatus: 200,
 };

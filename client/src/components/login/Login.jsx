@@ -14,7 +14,9 @@ function Login() {
   const btnstyle = { margin: '8px 0' };
 
   const { register, handleSubmit } = useForm();
+
   function onSubmit(data) {
+    // console.log(data);
     fetchLogin(data);
   }
 
@@ -26,9 +28,9 @@ function Login() {
         </Grid>
         <form onSubmit={handleSubmit(onSubmit)}>
           <TextField
-            {...register('username', { required: true })}
-            label="Имя пользователя"
-            placeholder="Имя пользователя"
+            {...register('email', { required: true })}
+            label="Почта"
+            placeholder="Введите почту"
             type="text"
             fullWidth
           />
