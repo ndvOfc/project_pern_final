@@ -1,16 +1,19 @@
 /* eslint-disable consistent-return */
 /* eslint-disable class-methods-use-this */
 const bcrypt = require('bcrypt');
+const { validationResult } = require('express-validator');
 const { User } = require('../db/models/models');
 
 class UserController {
   async registration(req, res) {
     try {
-      const { name, email, password } = req.body;
-      // console.log(email);
-      if (!email || !password) {
-        return res.status(400).json({ message: 'Поля почты и пароля не должны быть пустыми' });
+      const errors = validationResult(req); // <--- автоматически достанет тело и провалидируется
+      if (!errors.isEmpty()) {
+        return res.status(401).json({ message: 'Упс! Что-то пошло не так! Поля почты и пароля не должны быть пустыми! Пароль должен быть от 3 до 30 символов, а почта должна содержать "@" и доменную зону (ru, com и т.д.)', errors });
       }
+
+      const { name, email, password } = req.body;
+
       const candidate = await User.findOne({ where: { email } });
 
       if (candidate) {
@@ -29,12 +32,15 @@ class UserController {
 
   async login(req, res) {
     try {
+      const errors = validationResult(req);
+      if (!errors.isEmpty()) {
+        return res.status(401).json({ message: 'Упс! Что-то пошло не так! Поля почты и пароля не должны быть пустыми! Пароль должен быть от 3 до 30 символов, а почта должна содержать "@" и доменную зону (ru, com и т.д.)', errors });
+      }
+
       const { email, password } = req.body;
       const candidate = await User.findOne({ where: { email } });
 
-      if (!email || !password) {
-        return res.status(400).json({ message: 'Поля почты и пароля не должны быть пустыми' });
-      }
+
       if (!candidate) {
         return res.status(400).json({ message: 'Пароль или почта указаны неверно' });
       }
