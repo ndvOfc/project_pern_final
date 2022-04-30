@@ -9,7 +9,7 @@
     "dev": "nodemon app.js",
     "db-sync": "node db/db_controllers/dbController.js syncDb",
     "db-sync-f": "node db/db_controllers/dbController.js syncDbForce",
-    "db-seed": "node db/db_controllers/dbController.js seedDb",
+    "db-seed": "node db/db_controllers/dbSeedController.js seedDb",
     "db-drop": "node db/db_controllers/dbController.js dropDb",
     "db-seed-js-b": "node db/db_controllers/dbSeedController.js seedJSBasic",
     "db-seed-modules": "node db/db_controllers/dbSeedController.js seedModules"

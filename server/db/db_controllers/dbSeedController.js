@@ -53,35 +53,10 @@ module.exports = {
   },
 
   // seeder (you can choose quantity in script)
-  seedDb: async () => {
-    // jsBasicQuestions seeder
-
-    for (const key in jsBasicAnswersObject) {
-      console.log(
-        `           Ответ                       : ${key}
-           Является ли верным          : ${jsBasicAnswersObject[key][0]}
-           Относится к вопросу c id    : ${jsBasicAnswersObject[key][1]}
-          `,
-      );
-    }
-    // jsBasicAnswers seeder
-    // for (const key in jsBasicAnswersObject) {
-    //   await JSbasicAnswer.create({
-    //     answer: key,
-    //     isCorrect: jsBasicAnswersObject[key],
-    //     JSbasicQuestionsId: 1,
-    //   });
+  seedDb: async function seed() {
+    await this.seedModules();
+    await this.seedJSBasic();
   },
-
-  // await Worker.create({
-  //   name: randFullName(),
-  //   email: randEmail(),
-  //   phone: randPhoneNumber(),
-  //   isCandidate: true,
-  //   isHired: false,
-  // });
-  // },
 };
 // !necessary for running functions separately
 require('make-runnable');
-const modules = require('../globalSeeders/modules/modules');
