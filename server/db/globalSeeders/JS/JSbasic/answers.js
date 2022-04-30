@@ -16,6 +16,9 @@ const jsBasicAnswersObject = {
   'string': [false, 3],
   'true': [true, 4],
   'false': [false, 4],
+  'not a number': [true, 5],
+  'number ': [false, 5],
+  'SyntaxError': [false, 5],
 
 };
 

@@ -29,15 +29,17 @@ module.exports = {
   seedDb: async () => {
 
     // jsBasicQuestions seeder
-
-    for (const key in jsBasicAnswersObject) {
-      console.log(
-          `           Ответ                       : ${key}
-           Является ли верным          : ${jsBasicAnswersObject[key][0]}
-           Относится к вопросу c id    : ${jsBasicAnswersObject[key][1]}
-          `
-      )
-    }
+  for (const key in jsBasicQuestionsArray){
+    console.log(jsBasicQuestionsArray[key])
+  }
+    // for (const key in jsBasicAnswersObject) {
+    //   console.log(
+    //       `           Ответ                       : ${key}
+    //        Является ли верным          : ${jsBasicAnswersObject[key][0]}
+    //        Относится к вопросу c id    : ${jsBasicAnswersObject[key][1]}
+    //       `
+    //   )
+    // }
     // jsBasicAnswers seeder
     // for (const key in jsBasicAnswersObject) {
     //   await JSbasicAnswer.create({
