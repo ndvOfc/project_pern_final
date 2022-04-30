@@ -8,7 +8,7 @@
     "start": "node app.js",
     "dev": "nodemon app.js",
     "db-sync": "node db/db_controller/dbController.js syncDb",
-    "db-sync-f": "node db/db_controller/dbController.js syncDbForce",
+    "db-sync-f": "node db/db_controllers/dbController.js syncDbForce",
     "db-seed": "node db/db_controller/dbController.js seedDb 10",
     "db-drop": "node db/db_controller/dbController.js dropDb"
   },
