@@ -7,10 +7,12 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node app.js",
     "dev": "nodemon app.js",
-    "db-sync": "node db/db_controller/dbController.js syncDb",
-    "db-sync-f": "node db/db_controller/dbController.js syncDbForce",
-    "db-seed": "node db/db_controller/dbController.js seedDb 10",
-    "db-drop": "node db/db_controller/dbController.js dropDb"
+    "db-sync": "node db/db_controllers/dbController.js syncDb",
+    "db-sync-f": "node db/db_controllers/dbController.js syncDbForce",
+    "db-seed": "node db/db_controllers/dbSeedController.js seedDb",
+    "db-drop": "node db/db_controllers/dbController.js dropDb",
+    "db-seed-js-b": "node db/db_controllers/dbSeedController.js seedJSBasic",
+    "db-seed-modules": "node db/db_controllers/dbSeedController.js seedModules"
   },
   "keywords": [],
   "author": "",
