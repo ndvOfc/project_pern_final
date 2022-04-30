@@ -1,6 +1,17 @@
-import { Box, Grid, Paper } from '@mui/material';
+import {
+  Box,
+  CardMedia,
+  Grid,
+  Paper,
+  Card,
+  CardContent,
+  IconButton,
+  CardActions,
+  Typography,
+} from '@mui/material';
 import { styled } from '@mui/material/styles';
 import React from 'react';
+import LogoutIcon from '@mui/icons-material/Logout';
 
 function Profile() {
   const Item = styled(Paper)(({ theme }) => ({
@@ -18,15 +29,32 @@ function Profile() {
         <Grid container spacing={1}>
           <Grid item xs={4}>
             <Item>
-              <Box>sdsdsd</Box>
-              <Box>sdsds</Box>
+              <Card>
+                <CardMedia
+                  src="https://deti-online.com/img/audioskazki/russkie-narodnye-skazki--vasilisa-prekrasnaja.jpg"
+                  alt="name"
+                  title="name"
+                  sx={{ height: '120px', width: 'auto' }}
+                  component="img"
+                />
+                <CardContent sx={{ textAlign: 'left' }}>
+                  <Typography>Имя: </Typography>
+                  <Typography>Рост: </Typography>
+                  <Typography>Вес: </Typography>
+                </CardContent>
+                <CardActions>
+                  <IconButton>
+                    <LogoutIcon />
+                  </IconButton>
+                </CardActions>
+              </Card>
             </Item>
           </Grid>
           <Grid item xs={8}>
-            <Item>xs=4</Item>
+            <Item> Statistic</Item>
           </Grid>
           <Grid item xs={12}>
-            <Item>xs=4</Item>
+            <Item>Gadosti</Item>
           </Grid>
         </Grid>
       </Box>
