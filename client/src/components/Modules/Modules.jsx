@@ -7,12 +7,13 @@ import { getModules } from '../../redux/thunk/moduleAsyncAction';
 
 function Modules() {
   const dispatch = useDispatch();
-  const { modules } = useSelector((state) => state.modules);
-  console.log(modules);
+  // console.log(modules);
+
   useEffect(() => {
-    return dispatch(getModules());
-    // console.log(modules);
+    dispatch(getModules());
   }, [dispatch]);
+  const { modules } = useSelector((state) => state.modulesReducer);
+  console.log('=======>', modules);
   return (
     <Container>
       <ModuleItem />

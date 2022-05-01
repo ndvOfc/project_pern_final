@@ -4,5 +4,5 @@ import { modulesReducer } from './modulesReducer';
 
 export const rootReducer = combineReducers({
   initReducer,
-  modules: modulesReducer,
+  modulesReducer,
 });

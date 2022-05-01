@@ -8,7 +8,7 @@ import css from './TopicsItem.module.css';
 function TopicsItem() {
   const params = useParams();
   const [topicItems, setTopicItems] = useState([]);
-  console.log(params);
+  // console.log(params);
 
   const getTopicsItemList = () => {
     setTopicItems(JSmoduleTopics);
@@ -16,7 +16,7 @@ function TopicsItem() {
 
   useEffect(() => {
     getTopicsItemList(params.topic);
-    console.log(topicItems);
+    // console.log(topicItems);
   }, []);
   // const navigate = useNavigate();
 

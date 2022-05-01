@@ -1,4 +1,4 @@
-// import { Provider } from 'react-redux';
+// import { Provider } from 'react-redux'; // переехал в индекс пока не разберемся кто добавил
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 // import { store } from '../../store';
 import Login from '../login/Login';
