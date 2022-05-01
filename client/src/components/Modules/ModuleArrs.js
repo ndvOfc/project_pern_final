@@ -16,14 +16,22 @@ export const modulesArr = [
   },
 ];
 
-export const moduleTopics = [
+export const JSmoduleTopics = [
   { id: 1, topic: 'JS основы' },
   { id: 2, topic: 'функции и объекты' },
   { id: 3, topic: 'ООП' },
   { id: 4, topic: 'Классы' },
   { id: 5, topic: 'Асинхронность' },
   { id: 6, topic: 'Прототипы' },
-  { id: 6, topic: 'ES6 стандарт' },
+  { id: 7, topic: 'ES6 стандарт' },
+];
+
+export const nodeModuleTopics = [
+  { id: 1, topic: 'NPM start' },
+  { id: 2, topic: 'Path' },
+  { id: 3, topic: 'FS' },
+  { id: 4, topic: 'Классы' },
+  { id: 5, topic: 'Асинхронность' },
 ];
 
 export const questionsAndAnswers = [
