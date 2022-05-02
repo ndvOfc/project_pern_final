@@ -40,7 +40,6 @@ class UserController {
       const { email, password } = req.body;
       const candidate = await User.findOne({ where: { email } });
 
-
       if (!candidate) {
         return res.status(400).json({ message: 'Пароль или почта указаны неверно' });
       }
@@ -56,6 +55,7 @@ class UserController {
 
   async logout(req, res) {
     req.session.destroy();
+    req.cookies.clear();
     // req.sessionStorage.clear();
     // res.redirect('http://localhost:3000/login');
     res.status(200).json({ message: 'Вы вышли из системы' });

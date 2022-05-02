@@ -1,0 +1,10 @@
+.topicItem {
+  cursor: pointer;
+  width: 300px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+  /* margin: 1vh 5vw; */
+  margin: 1vh auto;
+}
