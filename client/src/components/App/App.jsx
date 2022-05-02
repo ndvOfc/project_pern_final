@@ -13,7 +13,7 @@ function App() {
         <Route path="/" element={<Registration />} />
         <Route path="/login" element={<Login />} />
         <Route path="/modules" element={<Modules />} />
-        <Route path="/modules/:id" element={<Modules />} />
+        <Route path="/modules/:moduleTopics" element={<Modules />} />
       </Routes>
       {/* </Provider> */}
     </BrowserRouter>
