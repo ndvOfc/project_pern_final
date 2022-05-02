@@ -3,14 +3,16 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 // import { store } from '../../store';
 import Login from '../login/Login';
 import Modules from '../Modules/Modules';
-import Registration from '../Registration/Registration';
+// import Registration from '../Registration/Registration';
+import BasicAssessment from '../BasicAssessment/BasicAssessment';
 
 function App() {
   return (
     <BrowserRouter>
       {/* <Provider store={store}> */}
       <Routes>
-        <Route path="/" element={<Registration />} />
+        {/* <Route path="/" element={<Registration />} /> */}
+        <Route path="/" element={<BasicAssessment />} />
         <Route path="/login" element={<Login />} />
         <Route path="/modules" element={<Modules />} />
         <Route path="/modules/:id" element={<Modules />} />
