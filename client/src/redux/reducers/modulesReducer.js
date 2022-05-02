@@ -1,6 +1,6 @@
 import { INIT_MODULES, INIT_TOPIC } from '../actionTypes/modulesAT';
 
-const initialState = { modules: [] };
+const initialState = { modules: [], topics: [] };
 // eslint-disable-next-line default-param-last
 export function modulesReducer(state = initialState, action) {
   // console.log(action);
