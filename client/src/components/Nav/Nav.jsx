@@ -107,7 +107,10 @@ function Nav() {
           <Box sx={{ flexGrow: 0 }}>
             <Tooltip title="Open settings">
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
+                <Avatar
+                  alt="Remy Sharp"
+                  src="https://deti-online.com/img/audioskazki/russkie-narodnye-skazki--vasilisa-prekrasnaja.jpg"
+                />
               </IconButton>
             </Tooltip>
             <Menu

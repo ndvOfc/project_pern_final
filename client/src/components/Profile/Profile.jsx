@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import {
   Box,
   CardMedia,
@@ -12,6 +13,7 @@ import {
 import { styled } from '@mui/material/styles';
 import React from 'react';
 import LogoutIcon from '@mui/icons-material/Logout';
+import style from './Profile.module.css';
 
 function Profile() {
   const Item = styled(Paper)(({ theme }) => ({
@@ -20,7 +22,7 @@ function Profile() {
     padding: theme.spacing(),
     textAlign: 'center',
     color: theme.palette.text.secondary,
-    height: '300px',
+    height: '500px',
   }));
 
   return (
@@ -29,25 +31,31 @@ function Profile() {
         <Grid container spacing={1}>
           <Grid item xs={4}>
             <Item>
-              <Card>
-                <CardMedia
-                  src="https://deti-online.com/img/audioskazki/russkie-narodnye-skazki--vasilisa-prekrasnaja.jpg"
-                  alt="name"
-                  title="name"
-                  sx={{ height: '120px', width: 'auto' }}
-                  component="img"
-                />
-                <CardContent sx={{ textAlign: 'left' }}>
-                  <Typography>Имя: </Typography>
-                  <Typography>Рост: </Typography>
-                  <Typography>Вес: </Typography>
-                </CardContent>
-                <CardActions>
-                  <IconButton>
-                    <LogoutIcon />
-                  </IconButton>
-                </CardActions>
-              </Card>
+              <CardMedia
+                src="https://www.letoile.ru/upload/iblock/4f8/79892443_176515583534170_9209346605343478288_n.jpg"
+                alt="name"
+                title="name"
+                // sx={{ height: '120px', width: 'auto' }} //ЧТО ДЕЛАТЬ С РАЗМЕРАМИ ? как зафиксировать низ?
+                component="img"
+              />
+              <CardContent sx={{ textAlign: 'left' }}>
+                <Typography className={style.profile_text}>Имя: </Typography>
+                <Typography className={style.profile_text}>Рост: </Typography>
+                <Typography className={style.profile_text}>Вес: </Typography>
+              </CardContent>
+              <CardActions>
+                <IconButton>
+                  <LogoutIcon />
+                </IconButton>
+              </CardActions>
+            </Item>
+          </Grid>
+          <Grid item xs={8}>
+            <Item> Statistic</Item>
+          </Grid>
+          <Grid item xs={4}>
+            <Item>
+              <Box />
             </Item>
           </Grid>
           <Grid item xs={8}>
