@@ -12,7 +12,7 @@ function Modules() {
   const dispatch = useDispatch();
 
   const { modules } = useSelector((state) => state.modulesReducer);
-  console.log('=======>', modules);
+  // console.log('=======>', modules);
   // console.log(modules);
 
   useEffect(() => {
