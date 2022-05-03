@@ -25,6 +25,16 @@ class ModuleController {
     });
     return res.status(200).json(module);
   }
+
+  async getOneModule(req, res) {
+    const { moduleTopics } = req.params;
+    const module = await Modules.findAll({
+      raw: true,
+      where: { titleModules: moduleTopics },
+      include: [{ model: JSmodule }],
+    });
+    return res.status(200).json(module);
+  }
 }
 
 module.exports = new ModuleController();

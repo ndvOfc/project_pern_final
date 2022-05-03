@@ -15,7 +15,7 @@ function App() {
         <Route path="/" element={<BasicAssessment />} />
         <Route path="/login" element={<Login />} />
         <Route path="/modules" element={<Modules />} />
-        <Route path="/modules/:id" element={<Modules />} />
+        <Route path="/modules/:moduleTopics" element={<Modules />} />
       </Routes>
       {/* </Provider> */}
     </BrowserRouter>
