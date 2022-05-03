@@ -15,7 +15,7 @@ function TopicsItem() {
 
   useEffect(() => {
     dispatch(getTopics(params.moduleTopics));
-  }, [dispatch]);
+  }, [dispatch, params]);
 
   const style = {
     width: '40rem',
