@@ -3,18 +3,21 @@
 import React from 'react';
 import { Grid, Paper, Typography, TextField, Button, Link } from '@material-ui/core';
 import { useForm } from 'react-hook-form';
+import { useDispatch } from 'react-redux';
 import { fetchRegistration } from '../../redux/thunk/userAsyncAction';
 
 function Registration() {
   const paperStyle = { padding: '30px 20px', width: 300, margin: '20px auto' };
   const headerStyle = { margin: 0 };
   const btnstyle = { margin: '8px 0' };
+
+  const dispatch = useDispatch();
   // const marginTop = { marginTop: 5 };
 
   const { register, handleSubmit } = useForm();
 
   function onSubmit(data) {
-    fetchRegistration(data);
+    dispatch(fetchRegistration(data));
   }
 
   return (
