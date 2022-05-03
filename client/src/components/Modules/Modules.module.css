@@ -1,12 +1,55 @@
-/* .Box {
-  background-color: aquamarine;
-  margin: 15px;
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-  width: 250;
-  height: 120;
-} */
+
+.Container {
+    display: flex;
+    flex-direction: column;
+    /*justify-content: center;*/
+    margin: 0 auto;
+    /*width: 450px;*/
+
+}
+
+.Slider {
+    background-color: aquamarine;
+    margin: 15px;
+    display: flex;
+    justify-content: center;
+    flex-wrap: nowrap;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+.Box {
+    width: 90vw;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+}
+
+
+.ModuleItem {
+    min-width: 100%;
+    min-height: 100%;
+}
+
+.Btn {
+    position: absolute;
+    width: 3rem;
+    height: 2rem;
+    align-items: center;
+}
+
+.Right {
+    right: 10px;
+}
+.MoveRight{
+    transform: translateX(300px);
+}
+.Left {
+    left: 10px;
+}
 
 
 

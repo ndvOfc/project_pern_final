@@ -18,8 +18,8 @@ function TopicsItem() {
   }, [dispatch, params]);
 
   const style = {
-    width: '40rem',
-    height: '2rem',
+    width: '100%',
+    height: '2%',
   };
   return (
     <Box sx={{ margin: '0 auto' }}>
