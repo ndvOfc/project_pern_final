@@ -1,12 +1,13 @@
 .paper {
-  margin: 15px;
+  /*margin: 15px;*/
   cursor: pointer;
+  width: inherit;
   /* width: 90px; */
 }
 
-.paper img{
+.Img{
   width: 100%;
-  height: 100%;
+  height: 20vh;
   object-fit: fill;
   border-radius: 4px;
   /* width: 90px; */

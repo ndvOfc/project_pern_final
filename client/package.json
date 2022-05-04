@@ -18,7 +18,8 @@
     "react-scripts": "5.0.1",
     "redux": "^4.2.0",
     "redux-logger": "^3.0.6",
-    "styled-components": "^5.3.5"
+    "styled-components": "^5.3.5",
+    "swiper": "^8.1.4"
   },
   "scripts": {
     "start": "react-scripts start",

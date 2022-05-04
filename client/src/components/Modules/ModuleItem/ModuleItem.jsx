@@ -9,7 +9,7 @@ import css from './ModuleItem.module.css';
 
 // eslint-disable-next-line react/prop-types
 function ModulleItem({ titleModules, img }) {
-  console.log(titleModules);
+  // console.log(titleModules);
   const navigate = useNavigate();
   return (
     <Paper
@@ -18,7 +18,7 @@ function ModulleItem({ titleModules, img }) {
       key={module.id}
       modulename={titleModules}
     >
-      <img src={img} alt="some" />
+      <img className={css.Img} src={img} alt="some" />
     </Paper>
   );
 }
