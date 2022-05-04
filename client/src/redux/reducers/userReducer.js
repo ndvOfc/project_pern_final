@@ -1,16 +1,14 @@
 import { INIT_USER, LOGOUT_USER } from '../actionTypes/userAT';
 
-const userState = { user: [], message: '', isAuthentificate: false };
+const userState = { user: [], message: '', isAuthenticated: false };
 // eslint-disable-next-line default-param-last
 export function userReducer(state = userState, action) {
-  // console.log(action);
   switch (action.type) {
     case INIT_USER:
-      return { ...state, message: action.payload.message, isAuthentificate: true };
+      return { ...state, message: action.payload.message, isAuthenticated: true };
 
     case LOGOUT_USER:
-      console.log(action.payload);
-      return { ...state, user: [], isAuthentificate: false };
+      return { ...state, user: [], isAuthenticated: false };
     default:
       return state;
   }

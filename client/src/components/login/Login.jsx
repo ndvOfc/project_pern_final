@@ -17,7 +17,6 @@ function Login() {
 
   const dispatch = useDispatch();
   const { message } = useSelector((state) => state.userReducer);
-  console.log(message);
 
   const { register, handleSubmit } = useForm();
 
