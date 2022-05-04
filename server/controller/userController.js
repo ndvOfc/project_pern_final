@@ -40,14 +40,13 @@ class UserController {
       const { email, password } = req.body;
       const candidate = await User.findOne({ where: { email } });
 
-
       if (!candidate) {
         return res.status(400).json({ message: 'Пароль или почта указаны неверно' });
       }
       const isPassword = await bcrypt.compare(password, candidate.password);
       if (isPassword && candidate) {
         req.session.user = candidate;
-        return res.status(200).json({ message: 'Вы успешно авторизовались' });
+        return res.status(200).json({ message: 'Вы успешно авторизовались', status: 200 });
       }
     } catch (e) {
       return res.status(404).json({ message: 'Я не знаю как ты это сделал' });
@@ -56,6 +55,7 @@ class UserController {
 
   async logout(req, res) {
     req.session.destroy();
+    req.cookies.clear();
     // req.sessionStorage.clear();
     // res.redirect('http://localhost:3000/login');
     res.status(200).json({ message: 'Вы вышли из системы' });

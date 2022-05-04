@@ -1,0 +1,14 @@
+.paper {
+  /*margin: 15px;*/
+  cursor: pointer;
+  width: inherit;
+  /* width: 90px; */
+}
+
+.Img{
+  width: 100%;
+  height: 20vh;
+  object-fit: fill;
+  border-radius: 4px;
+  /* width: 90px; */
+}

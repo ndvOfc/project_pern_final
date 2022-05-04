@@ -1,9 +1,11 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable react/jsx-props-no-spreading */
 /* eslint-disable no-console */
 /* eslint-disable jsx-a11y/anchor-is-valid */
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Grid, Paper, Button, TextField, Typography, Link } from '@material-ui/core';
 import { useForm } from 'react-hook-form';
+import { useDispatch, useSelector } from 'react-redux';
 import { fetchLogin } from '../../redux/thunk/userAsyncAction';
 
 // import FormControlLabel from '@material-ui/core/FormControlLabel';
@@ -13,9 +15,13 @@ function Login() {
   const paperStyle = { padding: 20, width: 300, margin: '20px auto' };
   const btnstyle = { margin: '8px 0' };
 
+  const dispatch = useDispatch();
+  const { message } = useSelector((state) => state.userReducer);
+
   const { register, handleSubmit } = useForm();
+
   function onSubmit(data) {
-    fetchLogin(data);
+    dispatch(fetchLogin(data));
   }
 
   return (
@@ -26,9 +32,9 @@ function Login() {
         </Grid>
         <form onSubmit={handleSubmit(onSubmit)}>
           <TextField
-            {...register('username', { required: true })}
-            label="Имя пользователя"
-            placeholder="Имя пользователя"
+            {...register('email', { required: true })}
+            label="Почта"
+            placeholder="Введите почту"
             type="text"
             fullWidth
           />
@@ -43,6 +49,8 @@ function Login() {
             Войти
           </Button>
         </form>
+
+        <Typography>{message}</Typography>
 
         <Typography>
           <Link href="#">Забыли пароль ?</Link>
