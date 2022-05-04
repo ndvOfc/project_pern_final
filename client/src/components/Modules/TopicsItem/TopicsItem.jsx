@@ -17,10 +17,10 @@ function TopicsItem() {
     dispatch(getTopics(params.moduleTopics));
   }, [dispatch, params]);
 
-  const style = {
-    width: '100%',
-    height: '2%',
-  };
+  // const style = {
+  //   width: '100%',
+  //   height: '2%',
+  // };
   return (
     <Box sx={{ margin: '0 auto' }}>
       {!topics.length ? (
@@ -30,7 +30,7 @@ function TopicsItem() {
           <Paper
             // onClick={()=> navigate('')}
             className={css.topicItem}
-            style={style}
+            // style={style}
             key={elem.topicTitle}
             // topicname={elem.topicId}
           >

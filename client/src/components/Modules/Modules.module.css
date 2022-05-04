@@ -2,54 +2,43 @@
 .Container {
     display: flex;
     flex-direction: column;
-    /*justify-content: center;*/
+    justify-content: center;
     margin: 0 auto;
     /*width: 450px;*/
 
 }
 
 .Slider {
-    background-color: aquamarine;
-    margin: 15px;
-    display: flex;
-    justify-content: center;
-    flex-wrap: nowrap;
+    /*background-color: aquamarine;*/
+    /*margin: 15px;*/
+    /*display: flex;*/
+    /*justify-content: center;*/
+    /*flex-wrap: nowrap;*/
     width: 100%;
     height: 100%;
-    overflow: hidden;
+    /*overflow: hidden;*/
 }
 
 .Box {
-    width: 90vw;
-    position: relative;
+    width: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
-
 }
 
 
-.ModuleItem {
-    min-width: 100%;
-    min-height: 100%;
-}
+/*.ModuleItem {*/
+/*    width: 100%;*/
+/*    height: 100%;*/
+/*}*/
 
-.Btn {
-    position: absolute;
-    width: 3rem;
-    height: 2rem;
-    align-items: center;
-}
+/*.ModuleItem img{*/
+/*    width: 100%;*/
+/*    height: 100%;*/
+/*}*/
 
-.Right {
-    right: 10px;
-}
-.MoveRight{
-    transform: translateX(300px);
-}
-.Left {
-    left: 10px;
-}
+
+
 
 
 

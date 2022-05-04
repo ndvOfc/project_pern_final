@@ -18,7 +18,7 @@ function ModulleItem({ titleModules, img }) {
       key={module.id}
       modulename={titleModules}
     >
-      <img src={img} alt="some" />
+      <img className={css.Img} src={img} alt="some" />
     </Paper>
   );
 }
