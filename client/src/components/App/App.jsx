@@ -1,11 +1,15 @@
-// import { Provider } from 'react-redux'; // переехал в индекс пока не разберемся кто добавил
+/* eslint-disable no-unused-vars */
+import { Provider } from 'react-redux'; // переехал в индекс пока не разберемся кто добавил
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-// import { store } from '../../store';
+import React from 'react';
+import { store } from '../../store';
 import Login from '../login/Login';
 import Modules from '../Modules/Modules';
 import Registration from '../Registration/Registration';
+import Snack from '../Snack/Snack';
 
 function App() {
+  const [isSnackOpen, setSnackOpen] = React.useState(false);
   return (
     <BrowserRouter>
       {/* <Provider store={store}> */}
