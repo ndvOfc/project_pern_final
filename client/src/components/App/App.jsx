@@ -16,6 +16,7 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/modules" element={<Modules />} />
         <Route path="/modules/:moduleTopics" element={<Modules />} />
+        <Route path="/modules/:moduleTopics/:topic" element={<BasicAssessment />} />
       </Routes>
       {/* </Provider> */}
     </BrowserRouter>
