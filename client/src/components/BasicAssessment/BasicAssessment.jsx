@@ -1,5 +1,5 @@
 /* eslint-disable no-unused-vars */
-import React from 'react';
+import React, { useEffect } from 'react';
 import {
   Box,
   Button,
@@ -12,7 +12,9 @@ import {
   Stack,
 } from '@mui/material';
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { getQuestions } from '../../redux/thunk/assesmentAsyncAction';
 
 function BasicAssessment() {
   // const [progress, setProgress] = React.useState(0);
@@ -43,6 +45,15 @@ function BasicAssessment() {
   //   };
   // }, []);
 
+  const params = useParams();
+  const dispatch = useDispatch();
+  const { moduleTopics, topic } = params;
+  const { questions } = useSelector((state) => state.questionsReducer);
+
+  useEffect(() => {
+    dispatch(getQuestions(moduleTopics, topic));
+  }, [dispatch]);
+  console.log(questions);
   return (
     <Box sx={{ color: 'black', margin: '0 auto', p: '3rem' }}>
       <Container>
