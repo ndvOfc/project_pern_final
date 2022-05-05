@@ -7,19 +7,19 @@ import Login from '../login/Login';
 import Modules from '../Modules/Modules';
 import Registration from '../Registration/Registration';
 import Snack from '../Snack/Snack';
+import BasicAssessment from '../BasicAssessment/BasicAssessment';
 
 function App() {
   const [isSnackOpen, setSnackOpen] = React.useState(false);
   return (
     <BrowserRouter>
-      {/* <Provider store={store}> */}
       <Routes>
         <Route path="/" element={<Registration />} />
         <Route path="/login" element={<Login />} />
         <Route path="/modules" element={<Modules />} />
         <Route path="/modules/:moduleTopics" element={<Modules />} />
+        <Route path="/modules/:moduleTopics/:topic" element={<BasicAssessment />} />
       </Routes>
-      {/* </Provider> */}
     </BrowserRouter>
   );
 }
