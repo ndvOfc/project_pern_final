@@ -16,7 +16,6 @@ app.use('/api', router);
 const startServer = async () => {
   try {
     await sequelize.authenticate(); // Проверяем подключение к БД
-    await sequelize.sync();
     app.listen(PORT, () => console.log(`>>>> Server started at ${PORT} port <<<<`));
   } catch (e) {
     console.log(e);

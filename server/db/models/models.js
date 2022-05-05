@@ -18,9 +18,10 @@ const Modules = sequelize.define('module', {
 const JSmodule = sequelize.define('JSmodule', {
   id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
   titleThemes: { type: DataTypes.STRING },
+  paramData: { type: DataTypes.STRING },
 });
 
-const JSbasicQuestions = sequelize.define('JSbasicQuestions', {
+const JSbasicQuestion = sequelize.define('JSbasicQuestion', {
   id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
   question: { type: DataTypes.STRING },
 });
@@ -31,19 +32,38 @@ const JSbasicAnswer = sequelize.define('JSbasicAnswer', {
   isCorrect: { type: DataTypes.BOOLEAN },
 });
 
+const JSfunctionQuestion = sequelize.define('JSfunctionQuestion', {
+  id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
+  question: { type: DataTypes.STRING },
+});
+
+const JSfunctionAnswer = sequelize.define('JSfunctionAnswer', {
+  id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
+  answer: { type: DataTypes.STRING },
+  isCorrect: { type: DataTypes.BOOLEAN },
+});
+
 Modules.hasOne(JSmodule);
 JSmodule.belongsTo(Modules);
 
-JSmodule.hasOne(JSbasicQuestions);
-JSbasicQuestions.belongsTo(JSmodule);
+JSmodule.hasOne(JSbasicQuestion);
+JSbasicQuestion.belongsTo(JSmodule);
 
-JSbasicQuestions.hasMany(JSbasicAnswer);
-JSbasicAnswer.belongsTo(JSbasicQuestions);
+JSmodule.hasOne(JSfunctionQuestion);
+JSfunctionQuestion.belongsTo(JSmodule);
+
+JSbasicQuestion.hasMany(JSbasicAnswer);
+JSbasicAnswer.belongsTo(JSbasicQuestion);
+
+JSfunctionQuestion.hasMany(JSfunctionAnswer);
+JSfunctionAnswer.belongsTo(JSfunctionQuestion);
 
 module.exports = {
   User,
   Modules,
   JSmodule,
-  JSbasicQuestions,
+  JSbasicQuestion,
   JSbasicAnswer,
+  JSfunctionQuestion,
+  JSfunctionAnswer,
 };

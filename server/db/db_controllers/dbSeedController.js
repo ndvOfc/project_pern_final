@@ -5,17 +5,21 @@
 
 require('dotenv').config();
 const modulesSeedArray = require('../globalSeeders/modules/modules');
-const jsModuleSeedArray = require('../globalSeeders/JS/JSmodule');
+const jsModuleSeedObject = require('../globalSeeders/JS/JSmodule');
 const jsBasicQuestionsArray = require('../globalSeeders/JS/JSbasic/questions');
 const jsBasicAnswersObject = require('../globalSeeders/JS/JSbasic/answers');
+const jsFunctionQuestionsArray = require('../globalSeeders/JS/JSfunction/questions');
+const jsFunctionAnswersObject = require('../globalSeeders/JS/JSfunction/answers');
 const sequelize = require('../db');
 
 const {
   User,
   Modules,
   JSmodule,
-  JSbasicQuestions,
+  JSbasicQuestion,
   JSbasicAnswer,
+  JSfunctionQuestion,
+  JSfunctionAnswer,
 } = require('../models/models');
 
 module.exports = {
@@ -24,12 +28,14 @@ module.exports = {
     for (const i in modulesSeedArray) {
       await Modules.create({
         titleModules: modulesSeedArray[i],
+
       });
     }
 
-    for (const i in jsModuleSeedArray) {
+    for (const key in jsModuleSeedObject) {
       await JSmodule.create({
-        titleThemes: jsModuleSeedArray[i],
+        titleThemes: key,
+        paramData: jsModuleSeedObject[key],
         moduleId: 1,
       });
     }
@@ -37,7 +43,7 @@ module.exports = {
   // seed JSBasicTheme
   seedJSBasic: async () => {
     for (const key in jsBasicQuestionsArray) {
-      await JSbasicQuestions.create({
+      await JSbasicQuestion.create({
         question: jsBasicQuestionsArray[key],
         JSmoduleId: 1,
       });
@@ -52,10 +58,34 @@ module.exports = {
     }
   },
 
+  seedJSFunction: async () => {
+    for (const key in jsFunctionQuestionsArray) {
+      await JSfunctionQuestion.create({
+        question: jsFunctionQuestionsArray[key],
+        JSmoduleId: 2,
+      });
+    }
+
+    for (const key in jsFunctionAnswersObject) {
+      await JSfunctionAnswer.create({
+        answer: key,
+        isCorrect: jsFunctionAnswersObject[key][0],
+        JSfunctionQuestionId: jsFunctionAnswersObject[key][1],
+      });
+    }
+  },
+
+  test: async () => {
+    console.log('FOR TESTING');
+    for (const key in jsModuleSeedObject) {
+      console.log(jsModuleSeedObject[key]);
+    }
+  },
   // seeder (you can choose quantity in script)
   seedDb: async function seed() {
     await this.seedModules();
     await this.seedJSBasic();
+    await this.seedJSFunction();
   },
 };
 // !necessary for running functions separately
