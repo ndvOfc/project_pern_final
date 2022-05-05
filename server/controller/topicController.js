@@ -1,8 +1,5 @@
 const {
-  Modules,
-  JSmodule,
-  JSbasicQuestions,
-  JSbasicAnswer,
+
 } = require('../db/models/models');
 const sequelize = require('../db/db');
 

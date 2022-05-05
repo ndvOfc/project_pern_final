@@ -28,7 +28,7 @@ function TopicsItem() {
       ) : (
         topics.map((elem) => (
           <Paper
-            // onClick={()=> navigate('')}
+            // onClick={()=> navigate('/modules/${params.titlemodules/$}')}
             className={css.topicItem}
             // style={style}
             key={elem.topicTitle}
