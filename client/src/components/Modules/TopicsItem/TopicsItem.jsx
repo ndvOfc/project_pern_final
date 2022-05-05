@@ -15,17 +15,12 @@ function TopicsItem() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { moduleTopics } = params;
-  console.log(params);
   const { topics } = useSelector((state) => state.modulesReducer);
 
   useEffect(() => {
     dispatch(getTopics(params.moduleTopics));
   }, [dispatch, params]);
 
-  // const style = {
-  //   width: '100%',
-  //   height: '2%',
-  // };
   return (
     <Box sx={{ margin: '0 auto' }}>
       {!topics.length ? (

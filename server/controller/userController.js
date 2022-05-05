@@ -48,6 +48,7 @@ class UserController {
         req.session.user = candidate;
         return res.status(200).json({ message: 'Вы успешно авторизовались', status: 200 });
       }
+      return res.status(401).json({ message: 'Неправильный пароль', status: 401 });
     } catch (e) {
       return res.status(404).json({ message: 'Я не знаю как ты это сделал' });
     }
