@@ -9,7 +9,7 @@ import { Box } from '@mui/material';
 import { Navigation } from 'swiper';
 import ModuleItem from './ModuleItem/ModuleItem';
 import TopicsItem from './TopicsItem/TopicsItem';
-import { getModules } from '../../redux/thunk/moduleAsyncAction';
+import { getModules, getTopics } from '../../redux/thunk/moduleAsyncAction';
 // import Loader from '../UI/Loader/Loader';
 import { modulesArr } from './ModuleArrs';
 import css from './Modules.module.css';
@@ -30,6 +30,7 @@ function Modules() {
 
   useEffect(() => {
     dispatch(getModules());
+    dispatch(getTopics('JavaScript'));
   }, [dispatch]);
 
   return (
@@ -48,7 +49,7 @@ function Modules() {
           >
             {modules.length &&
               modules.map((module, index) => (
-                <SwiperSlide>
+                <SwiperSlide key={module.id}>
                   <ModuleItem
                     className={css.ModuleItem}
                     key={module.id}

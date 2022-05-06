@@ -2,7 +2,7 @@ import { initModulesAC, initTopicAC } from '../actionCreators/modulesAC';
 
 export const getModules = () => {
   return (dispatch) => {
-    fetch('http://localhost:5001/api/modules')
+    fetch('http://localhost:5001/api/modules/')
       .then((res) => res.json())
       // .then((res) => console.log(res))
       .then((data) => dispatch(initModulesAC(data)))
@@ -17,7 +17,11 @@ export const getTopics = (moduleTopics) => {
       .then((res) => {
         const arr = [];
         res.map((el) =>
-          arr.push({ topicTitle: el['JSmodule.titleThemes'], topicId: el['JSmodule.id'] })
+          arr.push({
+            topicTitle: el['JSmodule.titleThemes'],
+            topicId: el['JSmodule.id'],
+            paramData: el['JSmodule.paramData'],
+          })
         );
         return arr;
       })
