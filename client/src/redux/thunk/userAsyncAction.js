@@ -21,7 +21,7 @@ export const fetchLogin = (body) => {
       body: JSON.stringify(body),
     })
       .then((res) => res.json())
-      // .then((data) => console.log(data))
+      // .then((data) => console.log(data.status));
       .then((data) => dispatch(initUserAC(data)))
       .catch((err) => dispatch(initUserAC(err.message)));
   };
@@ -35,3 +35,5 @@ export const fetchLogout = () => {
       .catch((err) => dispatch(logoutUserAC(err.message)));
   };
 };
+
+// Метка

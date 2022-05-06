@@ -12,6 +12,7 @@ import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import { Link } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
 import { fetchLogout } from '../../redux/thunk/userAsyncAction';
 
 const pages = ['Products', 'Pricing', 'Blog'];
@@ -19,6 +20,7 @@ const pages = ['Products', 'Pricing', 'Blog'];
 function Nav() {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
+  const dispatch = useDispatch();
 
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
@@ -33,6 +35,9 @@ function Nav() {
 
   const handleCloseUserMenu = () => {
     setAnchorElUser(null);
+  };
+  const functionLogout = () => {
+    dispatch(fetchLogout());
   };
 
   return (
@@ -135,7 +140,7 @@ function Nav() {
                 </Typography>
               </MenuItem>
               <MenuItem>
-                <Typography textAlign="center" onClick={fetchLogout}>
+                <Typography textAlign="center" onClick={functionLogout}>
                   Logout
                 </Typography>
               </MenuItem>
