@@ -1,9 +1,10 @@
 /* eslint-disable react/jsx-props-no-spreading */
 /* eslint-disable jsx-a11y/anchor-is-valid */
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Grid, Paper, Typography, TextField, Button, Link } from '@material-ui/core';
 import { useForm } from 'react-hook-form';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 import { fetchRegistration } from '../../redux/thunk/userAsyncAction';
 
 function Registration() {
@@ -12,6 +13,8 @@ function Registration() {
   const btnstyle = { margin: '8px 0' };
 
   const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const { message, status } = useSelector((state) => state.userReducer);
   // const marginTop = { marginTop: 5 };
 
   const { register, handleSubmit } = useForm();
@@ -19,6 +22,10 @@ function Registration() {
   function onSubmit(data) {
     dispatch(fetchRegistration(data));
   }
+
+  useEffect(() => {
+    if (status === 200) navigate('/');
+  }, [status, navigate]);
 
   return (
     <Grid>
@@ -48,6 +55,7 @@ function Registration() {
             placeholder="Введите пароль"
             {...register('password', { required: true })}
           />
+          <Typography>{message}</Typography>
           <Typography variant="caption">
             Для зарегистрированных пользователей ?<Link href="/login">Войти</Link>
           </Typography>
