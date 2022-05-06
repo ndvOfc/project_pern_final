@@ -1,20 +1,27 @@
 /* eslint-disable no-unused-vars */
-import React, { useEffect } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
+import Parser from 'html-react-parser';
 import {
   Box,
   Button,
   Checkbox,
+  CircularProgress,
   Container,
   FormControlLabel,
   FormGroup,
   LinearProgress,
   ListItemText,
   Stack,
+  TextField,
+  Typography,
 } from '@mui/material';
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 import { Link, useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
+import style from './BasicAssessment.module.css';
 import { getQuestions } from '../../redux/thunk/assesmentAsyncAction';
+import { getTopics } from '../../redux/thunk/moduleAsyncAction';
+import { nextQuestionAC } from '../../redux/actionCreators/assessmentAC';
 
 function BasicAssessment() {
   // const [progress, setProgress] = React.useState(0);
@@ -48,39 +55,51 @@ function BasicAssessment() {
   const params = useParams();
   const dispatch = useDispatch();
   const { moduleTopics, topic } = params;
-  const { questions } = useSelector((state) => state.questionsReducer);
+  const { questions, currentQuestionIdx } = useSelector((state) => state.questionsReducer);
+  const { topics } = useSelector((state) => state.modulesReducer);
+
+  const [questionIdx, setQuestionIdx] = useState(0);
+
+  useEffect(() => {
+    dispatch(getTopics(params.moduleTopics));
+    // eslint-disable-next-line
+  }, [dispatch]);
 
   useEffect(() => {
     dispatch(getQuestions(moduleTopics, topic));
-  }, [dispatch]);
-  console.log(questions);
-  return (
-    <Box sx={{ color: 'black', margin: '0 auto', p: '3rem' }}>
-      <Container>
-        {/* <LinearProgress variant="buffer" value={progress} valueBuffer={buffer} /> */}
-        <Stack direction="row" spacing={1}>
-          <Link to="/login">
-            <ArrowBackIosIcon />
-          </Link>
+    // eslint-disable-next-line
+  }, [dispatch, currentQuestionIdx]);
 
-          <ListItemText>THEME PARTIAL</ListItemText>
-        </Stack>
-        <Box>
-          Что выведет консоль?
-          <br />
-          <code>console.log(typeof NaN);</code>
-        </Box>
-        <FormGroup>
-          <FormControlLabel control={<Checkbox />} label={<div>123</div>} />
-          <FormControlLabel control={<Checkbox />} label="Ответ 2" />
-          <FormControlLabel control={<Checkbox />} label="Ответ 3" />
-          <FormControlLabel control={<Checkbox />} label="Ответ 4" />
-        </FormGroup>
-        <Stack spacing={2}>
-          <Button variant="outlined">Ответить</Button>
-          <Button variant="outlined">Следующий вопрос</Button>
-        </Stack>
-      </Container>
+  console.log(questions);
+  console.log(`TOPICS >>>>>>>> ${topic}`);
+
+  console.log(questions.currentQuestionIdx);
+  if (questions.length === 0 || topics.length === 0) {
+    return (
+      <Box>
+        <CircularProgress />
+      </Box>
+    );
+  }
+  return (
+    <Box className={style.bassicAssesment}>
+      <Typography variant="h4">
+        {topics.filter((obj) => obj.paramData === topic)[0].topicTitle}
+      </Typography>
+      <Typography mt={5}>{Parser(questions[0].questions[questionIdx].question)}</Typography>
+      {questions[0].answers
+        .filter((el) => Object.entries(el)[3][1] === questions[0].questions[questionIdx].id)
+        .map((el) => (
+          <Box key={el.answer.id} mt={2}>
+            <Button variant="contained">{el.answer}</Button>
+          </Box>
+        ))}
+      <Box mt={4}>
+        <Button variant="outlined">Ответить</Button>
+      </Box>
+      <Box mt={2}>
+        <Button variant="outlined">Следующий вопрос</Button>
+      </Box>
     </Box>
   );
 }

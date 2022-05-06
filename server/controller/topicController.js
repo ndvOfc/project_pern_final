@@ -1,9 +1,10 @@
 const {
-
 } = require('../db/models/models');
+
 const sequelize = require('../db/db');
 
 class TopicController {
+  // eslint-disable-next-line class-methods-use-this
   async getQuestions(req, res) {
     try {
       const { topics } = req.params;
@@ -12,7 +13,7 @@ class TopicController {
 
       const questions = await sequelize.query(`SELECT id, question FROM "${topics}"`);
       const answers = await sequelize.query(`SELECT id, answer, "isCorrect", "${questionId}"  FROM "${answerParams}"`);
-      res.json({ questions: questions[0], answers: answers[0] });
+      res.json({ topic: module[0], questions: questions[0], answers: answers[0] });
     } catch (e) {
       console.log(e);
     }
