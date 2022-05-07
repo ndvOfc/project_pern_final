@@ -1,4 +1,4 @@
-const cors = require('cors');
+// const cors = require('cors');
 
 const corsConfig = {
   origin: process.env.CLIENT_URL,

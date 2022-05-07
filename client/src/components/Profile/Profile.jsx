@@ -9,11 +9,15 @@ import {
   IconButton,
   CardActions,
   Typography,
+  Tab,
+  Tabs,
 } from '@mui/material';
 import { styled } from '@mui/material/styles';
-import React from 'react';
+import React, { useState } from 'react';
 import LogoutIcon from '@mui/icons-material/Logout';
 import style from './Profile.module.css';
+import { staticProfile } from './static';
+import CardAchivment from '../CardAchivment/CardAchivment';
 
 function Profile() {
   const Item = styled(Paper)(({ theme }) => ({
@@ -24,6 +28,7 @@ function Profile() {
     color: theme.palette.text.secondary,
     height: '500px',
   }));
+  const [stat, setStat] = useState(staticProfile);
 
   return (
     <>
@@ -51,7 +56,28 @@ function Profile() {
             </Item>
           </Grid>
           <Grid item xs={8}>
-            <Item> Statistic</Item>
+            <Item>
+              {/* {' '} */}
+              <Tabs>
+                <Tab label="Статистика" />
+                <Tab label="Достижения" />
+                <Tab label="Унижения" />
+              </Tabs>
+              <Box
+                sx={{
+                  display: 'flex',
+                  flexWrap: 'wrap',
+                  margin: 'auto',
+                  width: 'auto',
+                  justifyContent: 'center',
+                }}
+                centered
+              >
+                {stat.map((el) => (
+                  <CardAchivment key={el.name} stat={el} />
+                ))}
+              </Box>
+            </Item>
           </Grid>
           <Grid item xs={4}>
             <Item>
