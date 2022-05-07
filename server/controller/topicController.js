@@ -40,7 +40,7 @@ class TopicController {
         questionList.push({ question: el.question, answerList: sortedAnswers[idx] });
       });
 
-      res.json({ questionList });
+      res.json(questionList);
     } catch (e) {
       console.log(e);
     }

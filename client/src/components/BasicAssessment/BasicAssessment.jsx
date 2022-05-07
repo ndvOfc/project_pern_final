@@ -18,10 +18,10 @@ import {
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 import { Link, useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
+import { v4 } from 'uuid';
 import style from './BasicAssessment.module.css';
 import { getQuestions } from '../../redux/thunk/assesmentAsyncAction';
 import { getTopics } from '../../redux/thunk/moduleAsyncAction';
-import { nextQuestionAC } from '../../redux/actionCreators/assessmentAC';
 
 function BasicAssessment() {
   // const [progress, setProgress] = React.useState(0);
@@ -55,32 +55,25 @@ function BasicAssessment() {
   const params = useParams();
   const dispatch = useDispatch();
   const { moduleTopics, topic } = params;
-  const { questions, currentQuestionIdx } = useSelector((state) => state.questionsReducer);
-  const { topics } = useSelector((state) => state.modulesReducer);
+  const { questionList } = useSelector((state) => state.questionsReducer);
 
-  const [questionIdx, setQuestionIdx] = useState(0);
-  const [choiceAnswer, setChoiceAnswer] = useState(false);
-  const [answers1, setAnswers1] = useState();
-  const [current, setCurrent] = useState(1);
-
-  useEffect(() => {
-    setAnswers1(questions[0]?.answers.filter((el) => el.JSbasicQuestionId === current));
-    console.log(answers1);
-    console.log(current);
-  }, [questions, current]);
-
-  useEffect(() => {
-    dispatch(getTopics(params.moduleTopics));
-    // eslint-disable-next-line
-  }, [dispatch]);
+  const [currentQuestion, setCurrentQuestion] = useState(0);
+  const [score, setScore] = useState(0);
 
   useEffect(() => {
     dispatch(getQuestions(moduleTopics, topic));
     // eslint-disable-next-line
-  }, [dispatch, currentQuestionIdx]);
+  }, [dispatch]);
 
-  console.log(questions.currentQuestionIdx);
-  if (questions.length === 0 || topics.length === 0) {
+  const handleCorrectAnswer = (isCorrect) => {
+    if (isCorrect) {
+      setScore(score + 1);
+    }
+  };
+  console.log(questionList.length);
+
+  // eslint-disable-next-line no-cond-assign
+  if (questionList.length === 0) {
     return (
       <Box>
         <CircularProgress />
@@ -88,49 +81,38 @@ function BasicAssessment() {
     );
   }
 
-  // console.log(questions[0].questions.length);
-  // console.log(`TOPICS >>>>>>>> ${topic}`);
-
-  const handleNextQuestion = () => {
-    if (questionIdx + 1 < questions[0].questions.length) {
-      setQuestionIdx(questionIdx + 1);
-    }
-  };
-
-  const handleChoiceAnswer = () => {
-    if (choiceAnswer === true) {
-      setChoiceAnswer(false);
-    } else {
-      setChoiceAnswer(true);
-    }
-  };
-  console.log(choiceAnswer);
   return (
     <Box className={style.bassicAssesment}>
       <Typography variant="h4">
-        {topics.filter((obj) => obj.paramData === topic)[0].topicTitle}
+        Question {currentQuestion + 1} of {questionList.length}
       </Typography>
-      <Typography mt={5}>{Parser(questions[0].questions[questionIdx].question)}</Typography>
-      {questions[0].answers
-        .filter((el) => Object.entries(el)[3][1] === questions[0].questions[questionIdx].id)
-        .map((el) => (
-          <Box key={Math.random(Date.now())} mt={2}>
-            <Button
-              key={Date.now()}
-              variant={choiceAnswer ? 'outlined' : 'contained'}
-              onClick={handleChoiceAnswer}
-            >
-              {el.answer}
-            </Button>
-          </Box>
-        ))}
-      <Box mt={4}>
-        <Button variant="outlined">Ответить</Button>
+      <Box mt={3} mb={2}>
+        <Typography variant="h6">
+          {' '}
+          {Parser(`${questionList[currentQuestion].question}`)}{' '}
+        </Typography>
       </Box>
+      {questionList[currentQuestion].answerList.map((list) => (
+        <Box key={v4()} mt={2}>
+          <Button
+            // onClick={handleCorrectAnswer(list.isCorrect)}
+            key={v4()}
+            mt={2}
+            variant="outlined"
+          >
+            {list.answer}
+          </Button>
+        </Box>
+      ))}
       <Box mt={2}>
-        <Button key={Date.now()} variant="outlined" onClick={handleNextQuestion}>
-          Следующий вопрос
+        <Button mt={2} variant="outlined">
+          Ответить
         </Button>
+        <Box mt={2}>
+          <Button mt={2} variant="outlined">
+            Следующий вопрос
+          </Button>
+        </Box>
       </Box>
     </Box>
   );
