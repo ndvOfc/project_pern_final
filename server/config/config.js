@@ -5,7 +5,8 @@ const path = require('path');
 const cookieParser = require('cookie-parser');
 const session = require('express-session');
 const passport = require('passport');
-const passportSetup = require('../passport');
+// const passportConfig = require('../passport');
+require('../passport');
 const configSession = require('./configSession');
 // const corsConfig = require('./corsConfig');
 

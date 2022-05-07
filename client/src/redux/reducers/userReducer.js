@@ -13,7 +13,7 @@ export function userReducer(state = userState, action) {
           isAuthenticated: true,
         };
       }
-      return { ...state, message: action.payload.message, isAuthenticated: false };
+      return { ...state, message: action.payload.message, isAuthenticated: true };
 
     case LOGOUT_USER:
       return { ...state, user: [], message: [], isAuthenticated: false };
