@@ -38,7 +38,7 @@ function Login() {
         </Grid>
         <form onSubmit={handleSubmit(onSubmit)}>
           <TextField
-            {...register('email', { required: 'Пожалуйста введите emil' })}
+            {...register('email', { required: 'Пожалуйста введите email' })}
             label="Почта"
             placeholder="Введите почту"
             type="text"

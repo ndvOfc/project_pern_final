@@ -9,6 +9,8 @@ import {
   IconButton,
   CardActions,
   Typography,
+  Tab,
+  Tabs,
 } from '@mui/material';
 import { styled } from '@mui/material/styles';
 import React from 'react';
@@ -24,6 +26,36 @@ function Profile() {
     color: theme.palette.text.secondary,
     height: '500px',
   }));
+
+  const staticProfile = [
+    {
+      name: 'nodeBasic',
+      image: '/imagePNG/nodejs.png',
+      passTask: 15,
+      allTask: 50,
+      progress: function prog() {
+        return `${((this.passTask / this.allTask) * 100).toFixed()}%`;
+      },
+    },
+    {
+      name: 'Postgres',
+      image: '/imagePNG/postgre.png',
+      passTask: 10,
+      allTask: 40,
+      progress: function prog() {
+        return `${((this.passTask / this.allTask) * 100).toFixed()}%`;
+      },
+    },
+    {
+      name: 'React',
+      image: '/imagePNG/react.png',
+      passTask: 15,
+      allTask: 30,
+      progress: function prog() {
+        return `${((this.passTask / this.allTask) * 100).toFixed()}%`;
+      },
+    },
+  ];
 
   return (
     <>
@@ -51,7 +83,93 @@ function Profile() {
             </Item>
           </Grid>
           <Grid item xs={8}>
-            <Item> Statistic</Item>
+            <Item>
+              {' '}
+              <Tabs>
+                <Tab label="Статистика" />
+                <Tab label="Достижения" />
+                <Tab label="Унижения" />
+              </Tabs>
+              <Box
+                sx={{ display: 'flex', flexWrap: 'wrap', margin: 'auto', width: 'auto' }}
+                centered
+              >
+                <Box
+                  sx={{
+                    padding: '30px 20px',
+                    width: '50px',
+                    height: '50px',
+                    margin: '20px 20px',
+                    border: 'dashed red',
+                  }}
+                >
+                  dasdasd
+                </Box>
+                <Box
+                  sx={{
+                    padding: '30px 20px',
+                    width: '50px',
+                    height: '50px',
+                    margin: '20px 20px',
+                    border: 'dashed red',
+                  }}
+                >
+                  dasdasd
+                </Box>
+                <Box
+                  sx={{
+                    padding: '30px 20px',
+                    width: '50px',
+                    height: '50px',
+                    margin: '20px 20px',
+                    border: 'dashed red',
+                  }}
+                >
+                  <CardMedia
+                    src={staticProfile.image}
+                    alt="node"
+                    title="Achivment"
+                    component="img"
+                  />
+                  <Typography sx={{ fontSize: 10 }}>
+                    Прогресс: {staticProfile.progress()}{' '}
+                  </Typography>
+                </Box>
+                <Box
+                  sx={{
+                    padding: '30px 20px',
+                    width: '50px',
+                    height: '50px',
+                    margin: '20px 20px',
+                    border: 'dashed red',
+                  }}
+                >
+                  dasdasd
+                </Box>
+                <Box
+                  sx={{
+                    padding: '30px 20px',
+                    width: '50px',
+                    height: '50px',
+                    margin: '20px 20px',
+                    border: 'dashed red',
+                  }}
+                >
+                  dasdasd
+                </Box>
+                <Box
+                  sx={{
+                    padding: '30px 20px',
+                    width: '50px',
+                    height: '50px',
+                    margin: '20px 20px',
+                    border: 'dashed red',
+                  }}
+                >
+                  dasdasd
+                </Box>
+              </Box>
+            </Item>
           </Grid>
           <Grid item xs={4}>
             <Item>
