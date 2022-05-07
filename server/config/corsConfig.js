@@ -7,3 +7,4 @@ const corsConfig = {
 };
 
 module.exports = corsConfig;
+console.log(corsConfig.origin);
