@@ -30,6 +30,12 @@ function Login() {
     if (status === 200) navigate('/');
   }, [status, navigate]);
 
+  // testing passport js
+  const toGoogle = () => {
+    // после это должно быть в санке наверное - пока тут
+    window.open('http://localhost:5001/api/auth/google', '_self');
+  };
+
   return (
     <Grid>
       <Paper elevation={10} style={paperStyle}>
@@ -55,7 +61,16 @@ function Login() {
             Войти
           </Button>
         </form>
-
+        <Button
+          onClick={toGoogle}
+          type="submit"
+          color="primary"
+          variant="contained"
+          style={btnstyle}
+          fullWidth
+        >
+          GOOGLE
+        </Button>
         <Typography>{message}</Typography>
 
         <Typography>
