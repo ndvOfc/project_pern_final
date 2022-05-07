@@ -59,6 +59,15 @@ function BasicAssessment() {
   const { topics } = useSelector((state) => state.modulesReducer);
 
   const [questionIdx, setQuestionIdx] = useState(0);
+  const [choiceAnswer, setChoiceAnswer] = useState(false);
+  const [answers1, setAnswers1] = useState();
+  const [current, setCurrent] = useState(1);
+
+  useEffect(() => {
+    setAnswers1(questions[0]?.answers.filter((el) => el.JSbasicQuestionId === current));
+    console.log(answers1);
+    console.log(current);
+  }, [questions, current]);
 
   useEffect(() => {
     dispatch(getTopics(params.moduleTopics));
@@ -70,9 +79,6 @@ function BasicAssessment() {
     // eslint-disable-next-line
   }, [dispatch, currentQuestionIdx]);
 
-  console.log(questions);
-  console.log(`TOPICS >>>>>>>> ${topic}`);
-
   console.log(questions.currentQuestionIdx);
   if (questions.length === 0 || topics.length === 0) {
     return (
@@ -81,6 +87,24 @@ function BasicAssessment() {
       </Box>
     );
   }
+
+  // console.log(questions[0].questions.length);
+  // console.log(`TOPICS >>>>>>>> ${topic}`);
+
+  const handleNextQuestion = () => {
+    if (questionIdx + 1 < questions[0].questions.length) {
+      setQuestionIdx(questionIdx + 1);
+    }
+  };
+
+  const handleChoiceAnswer = () => {
+    if (choiceAnswer === true) {
+      setChoiceAnswer(false);
+    } else {
+      setChoiceAnswer(true);
+    }
+  };
+  console.log(choiceAnswer);
   return (
     <Box className={style.bassicAssesment}>
       <Typography variant="h4">
@@ -90,15 +114,23 @@ function BasicAssessment() {
       {questions[0].answers
         .filter((el) => Object.entries(el)[3][1] === questions[0].questions[questionIdx].id)
         .map((el) => (
-          <Box key={el.answer.id} mt={2}>
-            <Button variant="contained">{el.answer}</Button>
+          <Box key={Math.random(Date.now())} mt={2}>
+            <Button
+              key={Date.now()}
+              variant={choiceAnswer ? 'outlined' : 'contained'}
+              onClick={handleChoiceAnswer}
+            >
+              {el.answer}
+            </Button>
           </Box>
         ))}
       <Box mt={4}>
         <Button variant="outlined">Ответить</Button>
       </Box>
       <Box mt={2}>
-        <Button variant="outlined">Следующий вопрос</Button>
+        <Button key={Date.now()} variant="outlined" onClick={handleNextQuestion}>
+          Следующий вопрос
+        </Button>
       </Box>
     </Box>
   );
