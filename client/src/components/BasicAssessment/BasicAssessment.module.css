@@ -5,3 +5,33 @@
     min-height: 100vh;
     flex-direction: column;
 }
+
+.btn {
+    width: 20rem;
+    height: 5rem;
+}
+
+.selected-answer {
+    background-color: teal;
+}
+
+.rightAnswer {
+    background-color: aquamarine;
+    font-size: 17px;
+    font-weight: bold;
+    color: teal;
+}
+
+.wrongAnswer {
+    background-color: indianred;
+    font-size: 17px;
+    font-weight: bold;
+    color: teal;
+}
+
+.test {
+    background-color: aquamarine;
+    font-size: 17px;
+    font-weight: bold;
+    color: teal;
+}

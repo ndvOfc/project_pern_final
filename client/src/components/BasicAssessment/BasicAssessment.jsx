@@ -59,17 +59,38 @@ function BasicAssessment() {
 
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [score, setScore] = useState(0);
+  const [incorrectAnswers, setIncorrectAnswers] = useState(0);
+  const [selected, setSelected] = useState(false);
 
   useEffect(() => {
     dispatch(getQuestions(moduleTopics, topic));
     // eslint-disable-next-line
   }, [dispatch]);
 
-  const handleCorrectAnswer = (isCorrect) => {
-    if (isCorrect) {
-      setScore(score + 1);
-    }
+  const nextQuestion = useCallback(() => {
+    setCurrentQuestion(currentQuestion + 1);
+  }, [currentQuestion]);
+
+  const selectOption = (e) => {
+    e.preventDefault();
+    console.log(e.target);
+    e.target.style.backgroundColor = 'tomato';
   };
+
+  const handleCorrectAnswer = useCallback(
+    (event) => {
+      event.preventDefault();
+      console.log(event.target.dataset.data);
+      console.log(`score >>>>> ${score}`);
+      console.log(`incorect >>>>> ${incorrectAnswers}`);
+      if (event.target.dataset.check === 'true') {
+        setScore(score + 1);
+        setSelected(true);
+      }
+      setIncorrectAnswers(incorrectAnswers + 1);
+    },
+    [score, incorrectAnswers]
+  );
   console.log(questionList.length);
 
   // eslint-disable-next-line no-cond-assign
@@ -80,7 +101,7 @@ function BasicAssessment() {
       </Box>
     );
   }
-
+  console.log(score);
   return (
     <Box className={style.bassicAssesment}>
       <Typography variant="h4">
@@ -95,10 +116,16 @@ function BasicAssessment() {
       {questionList[currentQuestion].answerList.map((list) => (
         <Box key={v4()} mt={2}>
           <Button
-            // onClick={handleCorrectAnswer(list.isCorrect)}
+            variant="outlined"
+            className={style.btn}
+            size="large"
+            onClick={(e) => {
+              handleCorrectAnswer(e);
+              selectOption(e);
+            }}
+            data-check={list.isCorrect.toString()}
             key={v4()}
             mt={2}
-            variant="outlined"
           >
             {list.answer}
           </Button>
@@ -109,7 +136,7 @@ function BasicAssessment() {
           Ответить
         </Button>
         <Box mt={2}>
-          <Button mt={2} variant="outlined">
+          <Button onClick={nextQuestion} mt={2} variant="outlined">
             Следующий вопрос
           </Button>
         </Box>
