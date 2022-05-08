@@ -1,17 +1,31 @@
 // eslint-disable-next-line import/order
 const { User } = require('./db/models/models');
 const GoogleStrategy = require('passport-google-oauth20').Strategy;
+const GithubStrategy = require('passport-github2').Strategy;
 const passport = require('passport');
+
+passport.serializeUser((user, done) => {
+  // user.email = user.emails[0].value;
+  done(null, user);
+});
+passport.deserializeUser((user, done) => {
+  console.log(user.emails[0].value);
+  User.findOne({ where: { email: user.emails[0].value } });
+  done(null, user);
+});
 
 passport.use(new GoogleStrategy(
   {
     clientID: process.env.GOOGLE_CLIENT_ID,
     clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-    callbackURL: 'http://localhost:5001/api/auth/google/callback',
+    // пока не понятно нужен ли тут апи прописывать
+    callbackURL: 'http://localhost:5001/auth/google/callback',
   },
-  ((accessToken, refreshToken, profile, done) => {
+  (async (accessToken, refreshToken, profile, done) => {
+    // console.log(profile);
     // пока тест - после занос в дб Поменять done на cb
-    const user = User.findOrCreate({
+
+    const user = await User.findOrCreate({
       where: {
         name: profile.displayName,
         email:
@@ -20,9 +34,31 @@ passport.use(new GoogleStrategy(
       profile.id,
       },
     });
-    done(null, user);
+    console.log('fdsjajfdjsahfkjdshfkjshadfjkhsafjkhdsjkfhkjsdahfjkdsa');
+    done(null, profile);
   }),
 ));
 
-passport.serializeUser((user, done) => done(null, user));
-passport.deserializeUser((user, done) => done(null, user));
+// github
+passport.use(new GithubStrategy(
+  {
+    clientID: process.env.GITHUB_CLIENT_ID,
+    clientSecret: process.env.GITHUB_CLIENT_SECRET,
+    // пока не понятно нужен ли тут апи прописывать
+    callbackURL: '/auth/github/callback',
+  },
+  (async (accessToken, refreshToken, profile, done) => {
+    console.log(profile);
+    // пока тест - после занос в дб Поменять done на cb
+    const user = await User.findOrCreate({
+      where: {
+        name: profile.displayName,
+        email:
+        profile.username,
+        password:
+        profile.id,
+      },
+    });
+    done(null, user);
+  }),
+));

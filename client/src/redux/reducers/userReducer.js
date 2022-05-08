@@ -10,10 +10,10 @@ export function userReducer(state = userState, action) {
           ...state,
           message: action.payload.message,
           status: action.payload.status,
-          isAuthenticated: true,
+          isAuthenticated: false,
         };
       }
-      return { ...state, message: action.payload.message, isAuthenticated: true };
+      return { ...state, message: action.payload.message, isAuthenticated: false };
 
     case LOGOUT_USER:
       return { ...state, user: [], message: [], isAuthenticated: false };
