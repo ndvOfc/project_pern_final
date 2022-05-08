@@ -8,9 +8,13 @@ passport.serializeUser((user, done) => {
   // user.email = user.emails[0].value;
   done(null, user);
 });
-passport.deserializeUser((user, done) => {
-  console.log(user.emails[0].value);
-  User.findOne({ where: { email: user.emails[0].value } });
+passport.deserializeUser(async (user, done) => {
+  console.log(user);
+  try {
+    await User.findOne({ where: { email: user.emails[0].value } });
+  } catch (err) {
+    console.log(err);
+  }
   done(null, user);
 });
 
@@ -18,7 +22,6 @@ passport.use(new GoogleStrategy(
   {
     clientID: process.env.GOOGLE_CLIENT_ID,
     clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-    // пока не понятно нужен ли тут апи прописывать
     callbackURL: 'http://localhost:5001/auth/google/callback',
   },
   (async (accessToken, refreshToken, profile, done) => {
@@ -34,7 +37,6 @@ passport.use(new GoogleStrategy(
       profile.id,
       },
     });
-    console.log('fdsjajfdjsahfkjdshfkjshadfjkhsafjkhdsjkfhkjsdahfjkdsa');
     done(null, profile);
   }),
 ));
@@ -45,10 +47,10 @@ passport.use(new GithubStrategy(
     clientID: process.env.GITHUB_CLIENT_ID,
     clientSecret: process.env.GITHUB_CLIENT_SECRET,
     // пока не понятно нужен ли тут апи прописывать
-    callbackURL: '/auth/github/callback',
+    callbackURL: 'http://localhost:5001/auth/github/callback',
   },
   (async (accessToken, refreshToken, profile, done) => {
-    console.log(profile);
+    // console.log(profile);
     // пока тест - после занос в дб Поменять done на cb
     const user = await User.findOrCreate({
       where: {
@@ -59,6 +61,6 @@ passport.use(new GithubStrategy(
         profile.id,
       },
     });
-    done(null, user);
+    done(null, profile);
   }),
 ));
