@@ -56,7 +56,7 @@ passport.use(new GithubStrategy(
     callbackURL: 'http://localhost:5001/auth/github/callback',
   },
   (async (accessToken, refreshToken, profile, done) => {
-    // console.log(profile);
+    console.log(profile.photos[0].value);
     // пока тест - после занос в дб Поменять done на cb
     const user = await User.findOrCreate({
       where: {
@@ -65,6 +65,7 @@ passport.use(new GithubStrategy(
         profile.username,
         password:
         profile.id,
+        image: profile.photos[0].value,
       },
     });
     done(null, profile);
