@@ -73,94 +73,76 @@ function Profile() {
   };
 
   return (
-    <>
-      <Box sx={{ padding: '30px 20px', width: 800, margin: '20px auto' }}>
-        <Grid container spacing={1}>
-          <Grid item xs={4}>
-            <Item>
-              <CardMedia
-                src="https://www.letoile.ru/upload/iblock/4f8/79892443_176515583534170_9209346605343478288_n.jpg"
-                alt="name"
-                title="name"
-                // sx={{ height: '120px', width: 'auto' }} //ЧТО ДЕЛАТЬ С РАЗМЕРАМИ ? как зафиксировать низ?
-                component="img"
-              />
-              <CardContent sx={{ textAlign: 'left' }}>
-                <Typography className={style.profile_text}>Имя: </Typography>
-                <Typography className={style.profile_text}>Рост: </Typography>
-                <Typography className={style.profile_text}>Вес: </Typography>
-              </CardContent>
-              <CardActions>
-                <IconButton>
-                  <LogoutIcon />
-                </IconButton>
-              </CardActions>
-            </Item>
-          </Grid>
-          <Grid item xs={8}>
-            <Item>
-              <Tabs
-                sx={{ justifyContent: 'center' }}
-                value={value}
-                onChange={handleChange}
-                aria-label="basic tabs example"
-              >
-                <Tab label="Статистика" {...a11yProps(0)} />
-                <Tab label="Достижения" {...a11yProps(1)} />
-                <Tab label="Унижения" {...a11yProps(2)} />
-              </Tabs>
-              <TabPanel value={value} index={0}>
-                <Box
-                  sx={{
-                    display: 'flex',
-                    flexWrap: 'wrap',
-                    margin: 'auto',
-                    width: 'auto',
-                    justifyContent: 'center',
-                  }}
-                  centered
-                >
-                  {stat.map((el) => (
-                    <CardAchivment key={el.name} stat={el} />
-                  ))}
-                </Box>
-              </TabPanel>
-              <TabPanel value={value} index={1}>
-                <Box
-                  sx={{
-                    display: 'flex',
-                    flexWrap: 'wrap',
-                    margin: 'auto',
-                    width: 'auto',
-                    justifyContent: 'center',
-                  }}
-                >
-                  {getAchivment.map((el) => (
-                    <CardAchiv key={el.name} value={el} />
-                  ))}
-                </Box>
-              </TabPanel>
-            </Item>
-          </Grid>
-          <Grid item xs={4}>
-            <Item>
-              <Box />
-            </Item>
-          </Grid>
-          <Grid item xs={8}>
-            <Item> Statistic</Item>
-          </Grid>
-          <Grid item xs={12}>
-            <Item>Gadosti</Item>
-          </Grid>
+    <Box sx={{ padding: '30px 20px', width: 800, margin: '20px auto' }}>
+      <Grid container spacing={1}>
+        <Grid item xs={4}>
+          <Item>
+            <CardMedia
+              src="https://www.letoile.ru/upload/iblock/4f8/79892443_176515583534170_9209346605343478288_n.jpg"
+              alt="name"
+              title="name"
+              // sx={{ height: '120px', width: 'auto' }} //ЧТО ДЕЛАТЬ С РАЗМЕРАМИ ? как зафиксировать низ?
+              component="img"
+            />
+            <CardContent sx={{ textAlign: 'left' }}>
+              <Typography className={style.profile_text}>Имя: </Typography>
+              <Typography className={style.profile_text}>Рост: </Typography>
+              <Typography className={style.profile_text}>Вес: </Typography>
+            </CardContent>
+            <CardActions>
+              <IconButton>
+                <LogoutIcon />
+              </IconButton>
+            </CardActions>
+          </Item>
         </Grid>
-      </Box>
-      <Box sx={{ display: 'flex' }}>
-        <Paper elevation={10} sx={{ width: 300, margin: '20px 0' }} />
-        <Paper elevation={10} sx={{ padding: '30px 20px', width: 300, margin: '20px auto' }} />
-        <Paper elevation={10} sx={{ padding: '30px 20px', width: 300, margin: '20px' }} />
-      </Box>
-    </>
+        <Grid item xs={8}>
+          <Item>
+            <Tabs
+              sx={{ justifyContent: 'center' }}
+              value={value}
+              onChange={handleChange}
+              aria-label="basic tabs example"
+            >
+              <Tab label="Статистика" {...a11yProps(0)} />
+              <Tab label="Достижения" {...a11yProps(1)} />
+              <Tab label="Унижения" {...a11yProps(2)} />
+            </Tabs>
+            <TabPanel value={value} index={0}>
+              <Box
+                sx={{
+                  display: 'flex',
+                  flexWrap: 'wrap',
+                  margin: 'auto',
+                  width: 'auto',
+                  justifyContent: 'center',
+                }}
+                centered
+              >
+                {stat.map((el) => (
+                  <CardAchivment key={el.name} stat={el} />
+                ))}
+              </Box>
+            </TabPanel>
+            <TabPanel value={value} index={1}>
+              <Box
+                sx={{
+                  display: 'flex',
+                  flexWrap: 'wrap',
+                  margin: 'auto',
+                  width: 'auto',
+                  justifyContent: 'center',
+                }}
+              >
+                {getAchivment.map((el) => (
+                  <CardAchiv key={el.name} value={el} />
+                ))}
+              </Box>
+            </TabPanel>
+          </Item>
+        </Grid>
+      </Grid>
+    </Box>
   );
 }
 
