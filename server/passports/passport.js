@@ -32,7 +32,7 @@ passport.use(new GoogleStrategy(
     callbackURL: 'http://localhost:5001/auth/google/callback',
   },
   (async (accessToken, refreshToken, profile, done) => {
-    // console.log(profile);
+    console.log(profile);
     // пока тест - после занос в дб Поменять done на cb
 
     const user = await User.findOrCreate({
@@ -42,6 +42,7 @@ passport.use(new GoogleStrategy(
       profile.emails[0].value,
         password:
       profile.id,
+        image: profile.photos[0].value,
       },
     });
     done(null, profile);
