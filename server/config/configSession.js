@@ -8,6 +8,8 @@ const sessionConfig = {
   resave: false,
   saveUninitialized: false,
   cookie: {
+    // вариант с путем
+    path: '/',
     maxAge: 1000 * 60 * 60 * 12,
     httpOnly: true,
   },

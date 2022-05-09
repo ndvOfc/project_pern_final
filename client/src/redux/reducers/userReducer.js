@@ -16,7 +16,7 @@ export function userReducer(state = userState, action) {
           ...state,
           message: action.payload.message,
           status: action.payload.status,
-          isAuthenticated: true,
+          isAuthenticated: false,
         };
       }
       return { ...state, message: action.payload.message, isAuthenticated: false };
