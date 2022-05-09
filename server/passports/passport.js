@@ -1,5 +1,5 @@
 // eslint-disable-next-line import/order
-const { User } = require('./db/models/models');
+const { User } = require('../db/models/models');
 const GoogleStrategy = require('passport-google-oauth20').Strategy;
 const GithubStrategy = require('passport-github2').Strategy;
 const passport = require('passport');
@@ -11,7 +11,14 @@ passport.serializeUser((user, done) => {
 passport.deserializeUser(async (user, done) => {
   console.log(user);
   try {
-    await User.findOne({ where: { email: user.emails[0].value } });
+    if (user.emails) {
+      console.log('gooooogle here>>>>>>>>>>>>>>>>>>>>>');
+      await User.findOne({ where: { email: user.emails[0].value } });
+    }
+    if (user.username) {
+      console.log('github here<<<<<<<<<<<<<<<<<<<<<<<<');
+      await User.findOne({ where: { email: user.username } });
+    }
   } catch (err) {
     console.log(err);
   }
@@ -46,7 +53,6 @@ passport.use(new GithubStrategy(
   {
     clientID: process.env.GITHUB_CLIENT_ID,
     clientSecret: process.env.GITHUB_CLIENT_SECRET,
-    // пока не понятно нужен ли тут апи прописывать
     callbackURL: 'http://localhost:5001/auth/github/callback',
   },
   (async (accessToken, refreshToken, profile, done) => {

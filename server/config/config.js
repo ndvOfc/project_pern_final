@@ -1,18 +1,18 @@
 const express = require('express');
-// const cors = require('cors');
+const cors = require('cors');
 const path = require('path');
 const cookieSession = require('cookie-session');
 // const cookieParser = require('cookie-parser');
 // const session = require('express-session');
 const passport = require('passport');
-require('../passport');
-// const configSession = require('./configSession');
-// const corsConfig = require('./corsConfig');
+require('../passports/passport');
+const configSession = require('./configSession');
+const corsConfig = require('./corsConfig');
 
 const config = (app) => {
   // app.use(session(configSession));
   // app.use(cookieParser(configSession.secret));
-  // app.use(cors(corsConfig));
+  app.use(cors(corsConfig));
   app.use(
     cookieSession({ name: 'session', keys: ['lama'], maxAge: 24 * 60 * 60 * 100 }),
   );

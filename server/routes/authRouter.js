@@ -1,23 +1,34 @@
 const router = require('express').Router();
 const passport = require('passport');
-const authGoogleController = require('../controller/authGoogleController');
+const authController = require('../controller/authController');
 
-const { CLIENT_URL } = process.env;
+router.get('/login/success', authController.authSuccess);
 
-router.get('/login/success', authGoogleController.authSuccess);
+router.get('/login/failed', authController.authFailed);
 
-router.get('/login/failed', authGoogleController.authFailed);
-
-router.get('/logout', authGoogleController.authLogout);
+router.get('/logout', authController.authLogout);
 
 router.get('/google', passport.authenticate('google', { scope: ['profile', 'email'] }));
 
+/* GOOGLE */
 router.get(
   '/google/callback',
   passport.authenticate('google', {
     // по дефолту стояло без модулей
     // successRedirect: '/auth/login/success',
-    successRedirect: `${CLIENT_URL}/modules/JavaScript`,
+    successRedirect: `${process.env.CLIENT_URL}/modules/JavaScript`,
+    failureRedirect: '/login/failed',
+  }),
+);
+
+/* GITHUB */
+router.get('/github', passport.authenticate('github', { scope: ['profile', 'user:email'] }));
+
+router.get(
+  '/github/callback',
+  passport.authenticate('github', {
+    // по дефолту стояло без модулей
+    successRedirect: `${process.env.CLIENT_URL}/modules/JavaScript`,
     failureRedirect: '/login/failed',
   }),
 );
