@@ -2,8 +2,8 @@
 import { Box, CardMedia, Typography } from '@mui/material';
 import React from 'react';
 
-function CardAchivment({ stat }) {
-  console.log(stat);
+function CardAchivment({ el }) {
+  // console.log(el);
   return (
     <Box
       sx={{
@@ -14,8 +14,8 @@ function CardAchivment({ stat }) {
         border: 'dashed red',
       }}
     >
-      <CardMedia src={stat.image} alt={stat.name} title="Achivment" component="img" />
-      <Typography sx={{ fontSize: 10 }}>Прогресс: {stat.progress()}</Typography>
+      <CardMedia src={el.image} alt={el.name} title="Achivment" component="img" />
+      <Typography sx={{ fontSize: 10 }}>Прогресс: {el.progress()}</Typography>
     </Box>
   );
 }

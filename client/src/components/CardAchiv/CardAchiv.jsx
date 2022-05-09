@@ -4,7 +4,7 @@ import { Box, CardMedia, Typography } from '@mui/material';
 import React from 'react';
 
 function CardAchiv({ value }) {
-  console.log(value);
+  // console.log(value);
   return (
     <Box
       sx={{
@@ -15,7 +15,7 @@ function CardAchiv({ value }) {
         border: 'dashed red',
       }}
     >
-      <CardMedia src={value.image} alt={value.name} title="Achiv" component="img" />
+      <CardMedia src={value.image} alt={value.name} title={value.name} component="img" />
       {/* <Typography sx={{ fontSize: 10 }}>Прогресс: {stat.progress()}</Typography> */}
     </Box>
   );

@@ -26,7 +26,7 @@ function TabPanel(props) {
   const { children, value, index, ...other } = props;
 
   return (
-    <div
+    <Box
       role="tabpanel"
       hidden={value !== index}
       id={`simple-tabpanel-${index}`}
@@ -38,7 +38,7 @@ function TabPanel(props) {
           <Typography>{children}</Typography>
         </Box>
       )}
-    </div>
+    </Box>
   );
 }
 
@@ -65,7 +65,7 @@ function Profile() {
   }));
 
   const [stat, setStat] = useState(staticProfile);
-  // const [stat, setStat] = useState(getAchivment);
+  // const [  , setStat] = useState(getAchivment);
   const [value, setValue] = React.useState(0);
 
   const handleChange = (event, newValue) => {
@@ -119,9 +119,9 @@ function Profile() {
                 }}
                 centered
               >
-                {stat.map((el) => (
-                  <CardAchivment key={el.name} stat={el} />
-                ))}
+                {stat.map((el) => {
+                  return <CardAchivment key={el.name} el={el} />;
+                })}
               </Box>
             </TabPanel>
             <TabPanel value={value} index={1}>

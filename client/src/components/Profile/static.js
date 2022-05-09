@@ -70,3 +70,9 @@ export const getAchivment = [
     image: '/imagePNG/achivment/master.png',
   },
 ];
+
+/* export const getProfile =[
+
+] */
+
+// аватар профиля
