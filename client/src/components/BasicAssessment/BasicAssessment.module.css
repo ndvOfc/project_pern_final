@@ -7,8 +7,14 @@
 }
 
 .btn {
-    width: 20rem;
+    width: 35rem;
     height: 5rem;
+    font-size: 30px;
+}
+
+.btn .textInButton {
+    font-size: 30px;
+    color: tomato;
 }
 
 .selected-answer {

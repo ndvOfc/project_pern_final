@@ -22,6 +22,7 @@ import { v4 } from 'uuid';
 import style from './BasicAssessment.module.css';
 import { getQuestions } from '../../redux/thunk/assesmentAsyncAction';
 import { getTopics } from '../../redux/thunk/moduleAsyncAction';
+import AnswerButton from '../UI/AnswerButton/AnswerButton';
 
 function BasicAssessment() {
   // const [progress, setProgress] = React.useState(0);
@@ -60,22 +61,17 @@ function BasicAssessment() {
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [score, setScore] = useState(0);
   const [incorrectAnswers, setIncorrectAnswers] = useState(0);
-  const [selected, setSelected] = useState(false);
 
   useEffect(() => {
     dispatch(getQuestions(moduleTopics, topic));
     // eslint-disable-next-line
-  }, [dispatch]);
+  }, [dispatch, score]);
+
+  const checkOptions = useCallback(() => {});
 
   const nextQuestion = useCallback(() => {
     setCurrentQuestion(currentQuestion + 1);
   }, [currentQuestion]);
-
-  const selectOption = (e) => {
-    e.preventDefault();
-    console.log(e.target);
-    e.target.style.backgroundColor = 'tomato';
-  };
 
   const handleCorrectAnswer = useCallback(
     (event) => {
@@ -85,7 +81,6 @@ function BasicAssessment() {
       console.log(`incorect >>>>> ${incorrectAnswers}`);
       if (event.target.dataset.check === 'true') {
         setScore(score + 1);
-        setSelected(true);
       }
       setIncorrectAnswers(incorrectAnswers + 1);
     },
@@ -114,25 +109,10 @@ function BasicAssessment() {
         </Typography>
       </Box>
       {questionList[currentQuestion].answerList.map((list) => (
-        <Box key={v4()} mt={2}>
-          <Button
-            variant="outlined"
-            className={style.btn}
-            size="large"
-            onClick={(e) => {
-              handleCorrectAnswer(e);
-              selectOption(e);
-            }}
-            data-check={list.isCorrect.toString()}
-            key={v4()}
-            mt={2}
-          >
-            {list.answer}
-          </Button>
-        </Box>
+        <AnswerButton key={v4()} list={list} />
       ))}
       <Box mt={2}>
-        <Button mt={2} variant="outlined">
+        <Button mt={2} onClick={checkOptions} variant="outlined">
           Ответить
         </Button>
         <Box mt={2}>
