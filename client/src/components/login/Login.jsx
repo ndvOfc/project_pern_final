@@ -7,6 +7,7 @@ import { Grid, Paper, Button, TextField, Typography, Link } from '@material-ui/c
 import { useForm } from 'react-hook-form';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
+import { purple } from '@mui/material/colors';
 import { fetchLogin } from '../../redux/thunk/userAsyncAction';
 
 // import FormControlLabel from '@material-ui/core/FormControlLabel';
@@ -29,6 +30,15 @@ function Login() {
   useEffect(() => {
     if (status === 200) navigate('/');
   }, [status, navigate]);
+
+  // testing passport js
+  const toGoogle = () => {
+    // после это должно быть в санке наверное - пока тут
+    window.open('http://localhost:5001/auth/google', '_self');
+  };
+  const toGitHub = () => {
+    window.open('http://localhost:5001/auth/github', '_self');
+  };
 
   return (
     <Grid>
@@ -55,7 +65,26 @@ function Login() {
             Войти
           </Button>
         </form>
-
+        <Button
+          onClick={toGoogle}
+          type="submit"
+          color="secondary"
+          variant="contained"
+          style={btnstyle}
+          fullWidth
+        >
+          GOOGLE
+        </Button>
+        <Button
+          onClick={toGitHub}
+          type="submit"
+          color="default"
+          variant="contained"
+          style={btnstyle}
+          fullWidth
+        >
+          GitHub
+        </Button>
         <Typography>{message}</Typography>
 
         <Typography>
