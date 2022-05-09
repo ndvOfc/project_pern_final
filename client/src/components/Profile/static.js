@@ -54,3 +54,19 @@ export const staticProfile = [
     },
   },
 ];
+
+// картинки не отображаются почему ?
+export const getAchivment = [
+  {
+    name: 'baby',
+    image: '/imagePNG/achivment/baby-boy.png',
+  },
+  {
+    name: 'student',
+    image: '/imagePNG/achivment/teacher.png',
+  },
+  {
+    name: 'master',
+    image: '/imagePNG/achivment/master.png',
+  },
+];
