@@ -6,27 +6,28 @@ import { store } from '../../store';
 import Login from '../login/Login';
 import Modules from '../Modules/Modules';
 import Registration from '../Registration/Registration';
-import Snack from '../Snack/Snack';
 import Nav from '../Nav/Nav';
 import Profile from '../Profile/Profile';
 import BasicAssessment from '../BasicAssessment/BasicAssessment';
 import Private from '../Private/Private';
-// import { fetchAuthPassportJs, fetchLogin } from '../../redux/thunk/userAsyncAction';
+import BasicAssessment2 from '../BasicAssessment/BasicAssessment2';
+import { fetchAuthPassportJs } from '../../redux/thunk/userAsyncAction';
 
 function App() {
-  const userDispatch = useDispatch();
-  // const [isSnackOpen, setSnackOpen] = React.useState(false);
+  const dispatch = useDispatch();
+
   const { isAuthenticated } = useSelector((state) => state.userReducer);
+  const selector = useSelector((state) => state.userReducer);
+  console.log(selector);
   console.log(isAuthenticated);
 
-  // useEffect(() => {
-  //   userDispatch(fetchLogin());
-  //   userDispatch(fetchAuthPassportJs());
-  // }, [userDispatch]);
+  useEffect(() => {
+    dispatch(fetchAuthPassportJs());
+  }, []);
 
   return (
     <BrowserRouter>
-      {isAuthenticated && <Nav />}
+      {/* <Nav /> */}
       <Routes>
         {/* {isAuthenticated ? (
           <>
@@ -70,6 +71,7 @@ function App() {
         <Route path="/modules/" element={<Navigate to="/modules/JavaScript" replace />} />
         <Route path="/modules/:moduleTopics" element={<Modules />} />
         <Route path="/modules/:moduleTopics/:topic" element={<BasicAssessment />} />
+        <Route path="/modules2/:moduleTopics/:topic" element={<BasicAssessment2 />} />
       </Routes>
     </BrowserRouter>
   );
