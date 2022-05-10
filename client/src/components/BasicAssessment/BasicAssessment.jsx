@@ -1,5 +1,5 @@
-/* eslint-disable no-unused-vars */
-import React, { useCallback, useEffect, useState } from 'react';
+/* eslint-disable no-unused-vars,no-shadow */
+import React, { useCallback, useEffect, useRef, useState } from 'react';
 import Parser from 'html-react-parser';
 import {
   Box,
@@ -57,36 +57,64 @@ function BasicAssessment() {
   const dispatch = useDispatch();
   const { moduleTopics, topic } = params;
   const { questionList } = useSelector((state) => state.questionsReducer);
-
+  console.log(questionList);
   const [currentQuestion, setCurrentQuestion] = useState(0);
+
+  // Подсчет очков и правильных ответов
   const [score, setScore] = useState(0);
   const [incorrectAnswers, setIncorrectAnswers] = useState(0);
+
+  const [showAnswer, setShowAnswer] = useState(false);
+  const [userAnswer, setUserAnswer] = useState(0);
+  const [correctAnswer, setCorrect] = useState(0);
+  const [confirmed, setConfirmed] = useState(false);
+  const [checked, setChecked] = useState(false);
+
+  const handleCorrectAnswer = (id) => {
+    setCorrect(id);
+  };
+
+  const handleConfirmAnswer = () => {
+    setConfirmed(true);
+  };
+
+  const handleShowAnswer = useCallback(() => {
+    setShowAnswer(true);
+  }, []);
+
+  const handleUserAnswer = (id) => {
+    setUserAnswer(id);
+  };
+  // Функция выбора цвета
 
   useEffect(() => {
     dispatch(getQuestions(moduleTopics, topic));
     // eslint-disable-next-line
   }, [dispatch, score]);
 
-  const checkOptions = useCallback(() => {});
+  // const nextQuestion = useCallback(() => {
+  //   setCurrentQuestion(currentQuestion + 1);
+  //   setChecked(false);
+  // }, [currentQuestion]);
 
-  const nextQuestion = useCallback(() => {
-    setCurrentQuestion(currentQuestion + 1);
-  }, [currentQuestion]);
-
-  const handleCorrectAnswer = useCallback(
-    (event) => {
-      event.preventDefault();
-      console.log(event.target.dataset.data);
-      console.log(`score >>>>> ${score}`);
-      console.log(`incorect >>>>> ${incorrectAnswers}`);
-      if (event.target.dataset.check === 'true') {
-        setScore(score + 1);
-      }
-      setIncorrectAnswers(incorrectAnswers + 1);
-    },
-    [score, incorrectAnswers]
-  );
+  // const handleCorrectAnswer = useCallback(
+  //   (event) => {
+  //     event.preventDefault();
+  //     console.log(event.target.dataset.data);
+  //     console.log(`score >>>>> ${score}`);
+  //     console.log(`incorect >>>>> ${incorrectAnswers}`);
+  //     if (event.target.dataset.check === 'true') {
+  //       setScore(score + 1);
+  //     }
+  //     setIncorrectAnswers(incorrectAnswers + 1);
+  //   },
+  //   [score, incorrectAnswers]
+  // );
   console.log(questionList.length);
+
+  const check = () => {
+    setChecked(true);
+  };
 
   // eslint-disable-next-line no-cond-assign
   if (questionList.length === 0) {
@@ -97,6 +125,7 @@ function BasicAssessment() {
     );
   }
   console.log(score);
+
   return (
     <Box className={style.bassicAssesment}>
       <Typography variant="h4">
@@ -109,14 +138,27 @@ function BasicAssessment() {
         </Typography>
       </Box>
       {questionList[currentQuestion].answerList.map((list) => (
-        <AnswerButton key={v4()} list={list} />
+        <AnswerButton
+          confirmed={confirmed}
+          correctAnswer={correctAnswer}
+          handleCorrectAnswer={handleCorrectAnswer}
+          showAnswer={showAnswer}
+          handleShowAnswer={handleShowAnswer}
+          userAnswer={userAnswer}
+          handleUserAnswer={handleUserAnswer}
+          key={list.id}
+          list={list}
+          checked={checked}
+        />
       ))}
       <Box mt={2}>
-        <Button mt={2} onClick={checkOptions} variant="outlined">
-          Ответить
-        </Button>
         <Box mt={2}>
-          <Button onClick={nextQuestion} mt={2} variant="outlined">
+          <Button mt={2} variant="contained" onClick={check}>
+            ЧЕКНУТЬ
+          </Button>
+        </Box>
+        <Box mt={2}>
+          <Button mt={2} variant="outlined">
             Следующий вопрос
           </Button>
         </Box>
