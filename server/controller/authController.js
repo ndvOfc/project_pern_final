@@ -9,6 +9,7 @@ class AuthController {
           success: true,
           message: 'successfull',
           user: userDto,
+          status: 200,
           // cookies: req.cookies,
         });
       }
@@ -18,6 +19,7 @@ class AuthController {
           success: true,
           message: 'successfull',
           user: userDto,
+          status: 200,
           // cookies: req.cookies,
         });
       }
