@@ -1,7 +1,7 @@
 /* eslint-disable no-unused-vars */
 // noinspection ES6CheckImport
 
-import { Box, Paper, Typography } from '@material-ui/core';
+import { Box, Paper, Typography } from '@mui/material';
 import React, { useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';

@@ -22,12 +22,12 @@ function Profile() {
     padding: theme.spacing(),
     textAlign: 'center',
     color: theme.palette.text.secondary,
-    height: '500px',
+    minHeight: '20vh',
   }));
 
   return (
     <>
-      <Box sx={{ padding: '30px 20px', width: 800, margin: '20px auto' }}>
+      <Box sx={{ minWidth: '90vw', margin: '20px 8px' }}>
         <Grid container spacing={1}>
           <Grid item xs={4}>
             <Item>
@@ -35,13 +35,19 @@ function Profile() {
                 src="https://www.letoile.ru/upload/iblock/4f8/79892443_176515583534170_9209346605343478288_n.jpg"
                 alt="name"
                 title="name"
-                // sx={{ height: '120px', width: 'auto' }} //ЧТО ДЕЛАТЬ С РАЗМЕРАМИ ? как зафиксировать низ?
+                sx={{ maxWidth: '40vw', objectFit: 'fill' }}
                 component="img"
               />
-              <CardContent sx={{ textAlign: 'left' }}>
-                <Typography className={style.profile_text}>Имя: </Typography>
-                <Typography className={style.profile_text}>Рост: </Typography>
-                <Typography className={style.profile_text}>Вес: </Typography>
+              <CardContent sx={{ textAlign: 'left', display: 'flex', flexDirection: 'column' }}>
+                <Paper elevation={4} className={style.profile_text}>
+                  Имя:{' '}
+                </Paper>
+                <Paper elevation={4} className={style.profile_text}>
+                  Рост:{' '}
+                </Paper>
+                <Paper elevation={4} className={style.profile_text}>
+                  Вес:{' '}
+                </Paper>
               </CardContent>
               <CardActions>
                 <IconButton>

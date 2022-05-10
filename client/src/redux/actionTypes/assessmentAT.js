@@ -1,1 +1,2 @@
 export const INIT_QUESTION = 'INIT_QUESTION';
+export const NEXT_QUESTION = 'NEXT_QUESTION';

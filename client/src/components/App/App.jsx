@@ -2,7 +2,6 @@
 import { Provider, useDispatch, useSelector } from 'react-redux'; // переехал в индекс пока не разберемся кто добавил
 import { BrowserRouter, Route, Routes, Navigate } from 'react-router-dom';
 import React, { useEffect, useState } from 'react';
-import { Button } from '@material-ui/core';
 import { store } from '../../store';
 import Login from '../login/Login';
 import Modules from '../Modules/Modules';
@@ -29,7 +28,7 @@ function App() {
 
   return (
     <BrowserRouter>
-      {/* <Nav /> */}
+      <Nav />
       <Routes>
         <Route path="/" element={isAuthenticated ? <Nav /> : <Registration />} />
         <Route path="/login" element={<Login />} />

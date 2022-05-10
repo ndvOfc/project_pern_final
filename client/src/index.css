@@ -5,7 +5,8 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-image: url('../public/assets/bg.jpg');
+  /*background-image: url('../public/assets/bg.jpg');*/
+  background-image: url('https://catherineasquithgallery.com/uploads/posts/2021-02/1612774108_135-p-temno-goluboi-fon-minimalizm-oboi-na-aifon-214.jpg');
 
   min-height: 100vh;
   background-position: center;
