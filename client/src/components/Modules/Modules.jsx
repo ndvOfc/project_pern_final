@@ -3,9 +3,8 @@
 import React, { useEffect, useRef, useState } from 'react';
 // eslint-disable-next-line import/no-unresolved
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { Container } from '@material-ui/core';
+import { Container, Box } from '@mui/material';
 import { useDispatch, useSelector } from 'react-redux';
-import { Box } from '@mui/material';
 import { Navigation } from 'swiper';
 import ModuleItem from './ModuleItem/ModuleItem';
 import TopicsItem from './TopicsItem/TopicsItem';

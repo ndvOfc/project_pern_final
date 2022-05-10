@@ -23,7 +23,7 @@ function App() {
 
   useEffect(() => {
     dispatch(fetchAuthPassportJs());
-  }, []);
+  }, [dispatch]);
 
   return (
     <BrowserRouter>
