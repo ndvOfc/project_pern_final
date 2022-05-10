@@ -12,11 +12,9 @@ passport.deserializeUser(async (user, done) => {
   console.log(user);
   try {
     if (user.emails) {
-      console.log('gooooogle here>>>>>>>>>>>>>>>>>>>>>');
       await User.findOne({ where: { email: user.emails[0].value } });
     }
     if (user.username) {
-      console.log('github here<<<<<<<<<<<<<<<<<<<<<<<<');
       await User.findOne({ where: { email: user.username } });
     }
   } catch (err) {

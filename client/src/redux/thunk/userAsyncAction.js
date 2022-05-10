@@ -55,5 +55,3 @@ export const fetchLogout = () => {
       .catch((err) => dispatch(logoutUserAC(err.message)));
   };
 };
-
-// Метка
