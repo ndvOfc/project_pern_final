@@ -57,34 +57,15 @@ function BasicAssessment() {
   const dispatch = useDispatch();
   const { moduleTopics, topic } = params;
   const { questionList } = useSelector((state) => state.questionsReducer);
-  console.log(questionList);
   const [currentQuestion, setCurrentQuestion] = useState(0);
 
   // Подсчет очков и правильных ответов
   const [score, setScore] = useState(0);
   const [incorrectAnswers, setIncorrectAnswers] = useState(0);
 
-  const [showAnswer, setShowAnswer] = useState(false);
-  const [userAnswer, setUserAnswer] = useState(0);
-  const [correctAnswer, setCorrect] = useState(0);
-  const [confirmed, setConfirmed] = useState(false);
+  // Проверка на правильный ответ
   const [checked, setChecked] = useState(false);
 
-  const handleCorrectAnswer = (id) => {
-    setCorrect(id);
-  };
-
-  const handleConfirmAnswer = () => {
-    setConfirmed(true);
-  };
-
-  const handleShowAnswer = useCallback(() => {
-    setShowAnswer(true);
-  }, []);
-
-  const handleUserAnswer = (id) => {
-    setUserAnswer(id);
-  };
   // Функция выбора цвета
 
   useEffect(() => {
@@ -92,10 +73,10 @@ function BasicAssessment() {
     // eslint-disable-next-line
   }, [dispatch, score]);
 
-  // const nextQuestion = useCallback(() => {
-  //   setCurrentQuestion(currentQuestion + 1);
-  //   setChecked(false);
-  // }, [currentQuestion]);
+  const nextQuestion = useCallback(() => {
+    setCurrentQuestion(currentQuestion + 1);
+    setChecked(false);
+  }, [currentQuestion]);
 
   // const handleCorrectAnswer = useCallback(
   //   (event) => {
@@ -138,18 +119,7 @@ function BasicAssessment() {
         </Typography>
       </Box>
       {questionList[currentQuestion].answerList.map((list) => (
-        <AnswerButton
-          confirmed={confirmed}
-          correctAnswer={correctAnswer}
-          handleCorrectAnswer={handleCorrectAnswer}
-          showAnswer={showAnswer}
-          handleShowAnswer={handleShowAnswer}
-          userAnswer={userAnswer}
-          handleUserAnswer={handleUserAnswer}
-          key={list.id}
-          list={list}
-          checked={checked}
-        />
+        <AnswerButton key={list.id} list={list} checked={checked} />
       ))}
       <Box mt={2}>
         <Box mt={2}>
@@ -158,7 +128,7 @@ function BasicAssessment() {
           </Button>
         </Box>
         <Box mt={2}>
-          <Button mt={2} variant="outlined">
+          <Button mt={2} onClick={nextQuestion} variant="outlined">
             Следующий вопрос
           </Button>
         </Box>
