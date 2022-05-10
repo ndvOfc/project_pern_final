@@ -3,11 +3,13 @@
 /* eslint-disable no-console */
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import React, { useEffect } from 'react';
-import { Grid, Paper, Button, TextField, Typography, Link } from '@material-ui/core';
+import { Grid, Paper, Button, TextField, Typography, Link, Box } from '@mui/material';
 import { useForm } from 'react-hook-form';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { purple } from '@mui/material/colors';
+import GoogleIcon from '@mui/icons-material/Google';
+import GitHubIcon from '@mui/icons-material/GitHub';
 import { fetchLogin } from '../../redux/thunk/userAsyncAction';
 import GoogleButton from '../UI/SocialButtons/GoogleButton';
 
@@ -56,6 +58,7 @@ function Login() {
             fullWidth
           />
           <TextField
+            sx={{ mt: 1 }}
             {...register('password', { required: 'Пожалуйста введите свой пароль' })}
             label="Пароль"
             placeholder="Введите пароль"
@@ -66,29 +69,20 @@ function Login() {
             Войти
           </Button>
         </form>
-        <Button
-          onClick={toGoogle}
-          type="submit"
-          color="secondary"
-          variant="contained"
-          style={btnstyle}
-          fullWidth
+        <Box
+          sx={{
+            display: 'flex',
+            justifyContent: 'start',
+          }}
         >
-          GOOGLE
-        </Button>
-        <GoogleButton />
-        <Button
-          onClick={toGitHub}
-          type="submit"
-          color="default"
-          variant="contained"
-          style={btnstyle}
-          fullWidth
-        >
-          GitHub
-        </Button>
+          <Button onClick={toGoogle} type="submit" color="secondary" variant="contained">
+            <GoogleIcon />
+          </Button>
+          <Button sx={{ ml: 1 }} onClick={toGitHub} type="submit" color="dark" variant="contained">
+            <GitHubIcon />
+          </Button>
+        </Box>
         <Typography>{message}</Typography>
-
         <Typography>
           <Link href="#">Забыли пароль ? </Link>
         </Typography>

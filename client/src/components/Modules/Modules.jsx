@@ -22,8 +22,6 @@ import 'swiper/css/pagination';
 // eslint-disable-next-line import/no-unresolved
 import 'swiper/css/navigation';
 import './styles.css';
-// import { fetchAuthPassportJs } from '../../redux/thunk/userAsyncAction';
-// import required modules
 
 function Modules() {
   const dispatch = useDispatch();

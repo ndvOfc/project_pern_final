@@ -2,6 +2,7 @@
 import { Provider, useDispatch, useSelector } from 'react-redux'; // переехал в индекс пока не разберемся кто добавил
 import { BrowserRouter, Route, Routes, Navigate } from 'react-router-dom';
 import React, { useEffect, useState } from 'react';
+import { Button } from '@material-ui/core';
 import { store } from '../../store';
 import Login from '../login/Login';
 import Modules from '../Modules/Modules';
@@ -10,6 +11,7 @@ import Snack from '../Snack/Snack';
 import Nav from '../Nav/Nav';
 import Profile from '../Profile/Profile';
 import BasicAssessment from '../BasicAssessment/BasicAssessment';
+import BasicAssessment2 from '../BasicAssessment/BasicAssessment2';
 import { fetchAuthPassportJs } from '../../redux/thunk/userAsyncAction';
 
 function App() {
@@ -25,8 +27,6 @@ function App() {
     dispatch(fetchAuthPassportJs());
   }, []);
 
-  /*  Color theme  */
-
   return (
     <BrowserRouter>
       {/* <Nav /> */}
@@ -39,6 +39,7 @@ function App() {
         <Route path="/modules/" element={<Navigate to="/modules/JavaScript" replace />} />
         <Route path="/modules/:moduleTopics" element={<Modules />} />
         <Route path="/modules/:moduleTopics/:topic" element={<BasicAssessment />} />
+        <Route path="/modules2/:moduleTopics/:topic" element={<BasicAssessment2 />} />
       </Routes>
     </BrowserRouter>
   );
