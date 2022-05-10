@@ -78,6 +78,7 @@ function BasicAssessment() {
     setChecked(false);
   }, [currentQuestion]);
 
+  //  Подсчет очков
   // const handleCorrectAnswer = useCallback(
   //   (event) => {
   //     event.preventDefault();
