@@ -10,6 +10,7 @@
     "@mui/material": "^5.6.3",
     "@mui/styled-engine-sc": "^5.6.1",
     "@reduxjs/toolkit": "^1.8.1",
+    "html-react-parser": "^1.4.12",
     "react": "^18.1.0",
     "react-dom": "^18.1.0",
     "react-hook-form": "^7.30.0",
@@ -19,7 +20,8 @@
     "redux": "^4.2.0",
     "redux-logger": "^3.0.6",
     "styled-components": "^5.3.5",
-    "swiper": "^8.1.4"
+    "swiper": "^8.1.4",
+    "uuid": "^8.3.2"
   },
   "scripts": {
     "start": "react-scripts start",
