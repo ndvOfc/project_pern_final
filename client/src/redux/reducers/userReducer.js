@@ -10,7 +10,7 @@ export function userReducer(state = userState, action) {
           ...state,
           message: action.payload.message,
           status: action.payload.status,
-          isAuthenticated: false,
+          isAuthenticated: true,
         };
       }
       return { ...state, message: action.payload.message, isAuthenticated: false };

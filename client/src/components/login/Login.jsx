@@ -9,6 +9,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { purple } from '@mui/material/colors';
 import { fetchLogin } from '../../redux/thunk/userAsyncAction';
+import GoogleButton from '../UI/SocialButtons/GoogleButton';
 
 // import FormControlLabel from '@material-ui/core/FormControlLabel';
 // import Checkbox from '@material-ui/core/Checkbox';
@@ -75,6 +76,7 @@ function Login() {
         >
           GOOGLE
         </Button>
+        <GoogleButton />
         <Button
           onClick={toGitHub}
           type="submit"
@@ -88,7 +90,7 @@ function Login() {
         <Typography>{message}</Typography>
 
         <Typography>
-          <Link href="#">Забыли пароль ?</Link>
+          <Link href="#">Забыли пароль ? </Link>
         </Typography>
         <Typography variant="caption">
           <Link href="/">Зарегистрироваться</Link>

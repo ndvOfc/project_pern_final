@@ -22,7 +22,7 @@ import 'swiper/css/pagination';
 // eslint-disable-next-line import/no-unresolved
 import 'swiper/css/navigation';
 import './styles.css';
-import { fetchAuthPassportJs } from '../../redux/thunk/userAsyncAction';
+// import { fetchAuthPassportJs } from '../../redux/thunk/userAsyncAction';
 // import required modules
 
 function Modules() {
@@ -30,39 +30,10 @@ function Modules() {
   const { modules } = useSelector((state) => state.modulesReducer);
 
   useEffect(() => {
-    dispatch(fetchAuthPassportJs());
+    // dispatch(fetchAuthPassportJs());
     dispatch(getModules());
     dispatch(getTopics('JavaScript'));
   }, [dispatch]);
-
-  // после того как получится нужно перенести в санку
-  // const [user, setUser] = useState(null);
-  // useEffect(() => {
-  //   const getUser = () => {
-  //     fetch('http://localhost:5001/auth/login/success', {
-  //       method: 'GET',
-  //       credentials: 'include',
-  //       headers: {
-  //         Accept: 'application/json',
-  //         'Content-Type': 'application/json',
-  //         'Access-Control-Allow-Credentials': true,
-  //       },
-  //     })
-  //       .then((res) => {
-  //         if (res.status === 200) return res.json();
-  //         throw new Error('authentication has been failed!');
-  //       })
-  //       .then((data) => {
-  //         setUser(data.user);
-  //       })
-  //       .catch((err) => {
-  //         console.log(err);
-  //       });
-  //   };
-  //   getUser();
-  // }, []);
-  //
-  // console.log(user);
 
   return (
     <Container className={css.Container} maxWidth="sm">

@@ -1,5 +1,5 @@
 /* eslint-disable no-unused-vars */
-import { Provider, useSelector } from 'react-redux'; // переехал в индекс пока не разберемся кто добавил
+import { Provider, useDispatch, useSelector } from 'react-redux'; // переехал в индекс пока не разберемся кто добавил
 import { BrowserRouter, Route, Routes, Navigate } from 'react-router-dom';
 import React, { useEffect, useState } from 'react';
 import { store } from '../../store';
@@ -10,42 +10,26 @@ import Snack from '../Snack/Snack';
 import Nav from '../Nav/Nav';
 import Profile from '../Profile/Profile';
 import BasicAssessment from '../BasicAssessment/BasicAssessment';
+import { fetchAuthPassportJs } from '../../redux/thunk/userAsyncAction';
 
 function App() {
+  const dispatch = useDispatch();
+
   const [isSnackOpen, setSnackOpen] = React.useState(false);
   const { isAuthenticated } = useSelector((state) => state.userReducer);
+  const selector = useSelector((state) => state.userReducer);
+  console.log(selector);
   console.log(isAuthenticated);
 
-  // после того как получится нужно перенести в санку
-  // const [user, setUser] = useState(null);
-  // useEffect(() => {
-  //   console.log('<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< GETUSER FUNC');
-  //   fetch('http://localhost:5001/auth/login/success', {
-  //     method: 'GET',
-  //     credentials: 'include',
-  //     headers: {
-  //       Accept: 'application/json',
-  //       'Content-Type': 'application/json',
-  //       // 'Access-Control-Allow-Origin': 'http://localhost:3000',
-  //       'Access-Control-Allow-Credentials': true,
-  //     },
-  //   })
-  //     .then((res) => {
-  //       if (res.status === 200) return res.json();
-  //       throw new Error('authentication has been failed!');
-  //     })
-  //     .then((data) => {
-  //       setUser(data.user);
-  //     })
-  //     .catch((err) => {
-  //       console.log(err);
-  //     });
-  // }, []);
-  //
-  // console.log(user);
+  useEffect(() => {
+    dispatch(fetchAuthPassportJs());
+  }, []);
+
+  /*  Color theme  */
+
   return (
     <BrowserRouter>
-      <Nav />
+      {/* <Nav /> */}
       <Routes>
         <Route path="/" element={isAuthenticated ? <Nav /> : <Registration />} />
         <Route path="/login" element={<Login />} />
