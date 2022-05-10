@@ -22,13 +22,13 @@ import 'swiper/css/pagination';
 // eslint-disable-next-line import/no-unresolved
 import 'swiper/css/navigation';
 import './styles.css';
-// import required modules
 
 function Modules() {
   const dispatch = useDispatch();
   const { modules } = useSelector((state) => state.modulesReducer);
 
   useEffect(() => {
+    // dispatch(fetchAuthPassportJs());
     dispatch(getModules());
     dispatch(getTopics('JavaScript'));
   }, [dispatch]);

@@ -21,8 +21,28 @@ export const fetchLogin = (body) => {
       body: JSON.stringify(body),
     })
       .then((res) => res.json())
-      // .then((data) => console.log(data))
+      // .then((data) => console.log(data.status));
       .then((data) => dispatch(initUserAC(data)))
+      .catch((err) => dispatch(initUserAC(err.message)));
+  };
+};
+
+export const fetchAuthPassportJs = () => {
+  return (dispatch) => {
+    fetch('http://localhost:5001/auth/login/success', {
+      method: 'GET',
+      credentials: 'include',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+        'Access-Control-Allow-Credentials': true,
+      },
+    })
+      .then((res) => {
+        if (res.status === 200) return res.json();
+        throw new Error('authentication has been failed!');
+      })
+      .then((data) => dispatch(initUserAC(data.user)))
       .catch((err) => dispatch(initUserAC(err.message)));
   };
 };

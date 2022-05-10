@@ -5,10 +5,18 @@ const userState = { user: [], message: '', isAuthenticated: false };
 export function userReducer(state = userState, action) {
   switch (action.type) {
     case INIT_USER:
-      return { ...state, message: action.payload.message, isAuthenticated: true };
+      if (action.payload.status === 200) {
+        return {
+          ...state,
+          message: action.payload.message,
+          status: action.payload.status,
+          isAuthenticated: true,
+        };
+      }
+      return { ...state, message: action.payload.message, isAuthenticated: false };
 
     case LOGOUT_USER:
-      return { ...state, user: [], isAuthenticated: false };
+      return { ...state, user: [], message: [], isAuthenticated: false };
     default:
       return state;
   }
