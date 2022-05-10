@@ -51,7 +51,7 @@ export const fetchAuthPassportJs = () => {
         if (res.status === 200) return res.json();
         throw new Error('authentication has been failed!');
       })
-      .then((data) => dispatch(initUserAC(data.user)))
+      .then((data) => dispatch(initUserAC(data)))
       .catch((err) => dispatch(initUserAC(err.message)));
   };
 };

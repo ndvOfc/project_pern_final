@@ -24,7 +24,7 @@ class UserController {
       const hashPassword = await bcrypt.hash(password, 4);
 
       const user = await User.create({ name, email, password: hashPassword });
-      console.log('new user ', user);
+      // console.log('new user ', user);
       req.session.user = user.email; // <--- обговорить логику, быть может редирект на главную а не логин?
       return res.status(200).json({ message: 'Пользователь успешно зарегистрирован', status: 200 });
     } catch (e) {
@@ -72,9 +72,9 @@ class UserController {
     // req.logout();
     // res.redirect(process.env.CLIENT_URL);
     // req.cookies.clear(); // такой команды наверное нет.
-    res.clearCookie('user_sid.sig').end(); // вызывает ошибку , не может обратиться к заголовкам, по этой же причине не создается кука в браузере. Возможно проблема с CORS
+    // res.clearCookie('user_sid').end(); // вызывает ошибку , не может обратиться к заголовкам, по этой же причине не создается кука в браузере. Возможно проблема с CORS
     // req.sessionStorage.clear();
-    // res.redirect('http://localhost:3000/login');
+    // res.redirect('http://localhost:3000/');
     // res.status(200).json({ message: 'Вы вышли из системы' });
   }
 }

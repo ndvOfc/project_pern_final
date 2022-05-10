@@ -28,7 +28,7 @@ function Login() {
     dispatch(fetchLogin(data));
   }
   useEffect(() => {
-    if (status === 200) navigate('/');
+    if (status === 200) navigate('/modules/JavaScript');
   }, [status, navigate]);
 
   // testing passport js

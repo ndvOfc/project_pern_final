@@ -10,7 +10,7 @@ const userState = {
 export function userReducer(state = userState, action) {
   switch (action.type) {
     case INIT_USER:
-      console.log(action.payload);
+      console.log(action.payload.status);
       if (action.payload.status === 200) {
         return {
           ...state,
