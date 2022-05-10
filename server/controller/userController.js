@@ -60,6 +60,17 @@ class UserController {
   async logout(req, res) {
     // console.log(req.session);
     req.session = null; // сессия не удаялется.
+    // req.session.destroy((err) => {
+    //   if (err) {
+    //     return res.send({ error: 'Logout error' });
+    //   }
+    //   res.clearCookie('user_sid', { path: '/' });
+    //   return res.send({ clearSession: 'success' });
+    // });
+    // req.session.destroy(); // сессия не удаялется.
+    // req.session = null;
+    // req.logout();
+    // res.redirect(process.env.CLIENT_URL);
     // req.cookies.clear(); // такой команды наверное нет.
     res.clearCookie('user_sid.sig').end(); // вызывает ошибку , не может обратиться к заголовкам, по этой же причине не создается кука в браузере. Возможно проблема с CORS
     // req.sessionStorage.clear();
