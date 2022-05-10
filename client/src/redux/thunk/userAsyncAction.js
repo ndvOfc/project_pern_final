@@ -4,7 +4,11 @@ export const fetchRegistration = (body) => {
   return (dispatch) => {
     fetch('http://localhost:5001/api/registration', {
       method: 'post',
-      headers: { 'Content-type': 'application/json' },
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+        'Access-Control-Allow-Credentials': true,
+      },
       body: JSON.stringify(body),
     })
       .then((res) => res.json())
@@ -17,7 +21,12 @@ export const fetchLogin = (body) => {
   return (dispatch) => {
     fetch('http://localhost:5001/api/login', {
       method: 'POST',
-      headers: { 'Content-type': 'application/json' },
+      credentials: 'include',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+        'Access-Control-Allow-Credentials': true,
+      },
       body: JSON.stringify(body),
     })
       .then((res) => res.json())

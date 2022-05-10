@@ -12,12 +12,14 @@ import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import { Link } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { fetchLogout } from '../../redux/thunk/userAsyncAction';
 
 const pages = ['Products', 'Pricing', 'Blog'];
 
 function Nav() {
+  const { user } = useSelector((state) => state.userReducer);
+  // console.log(user.image);
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
   const dispatch = useDispatch();
@@ -112,10 +114,7 @@ function Nav() {
           <Box sx={{ flexGrow: 0 }}>
             <Tooltip title="Open settings">
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                <Avatar
-                  alt="Remy Sharp"
-                  src="https://deti-online.com/img/audioskazki/russkie-narodnye-skazki--vasilisa-prekrasnaja.jpg"
-                />
+                <Avatar alt="Remy Sharp" src={user.image} />
               </IconButton>
             </Tooltip>
             <Menu

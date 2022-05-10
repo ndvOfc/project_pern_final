@@ -21,7 +21,7 @@ function Login() {
   const dispatch = useDispatch();
 
   const { message, status } = useSelector((state) => state.userReducer);
-  console.log(status);
+  // console.log(status);
   const { register, handleSubmit } = useForm({ shouldUseNativeValidation: true });
 
   function onSubmit(data) {

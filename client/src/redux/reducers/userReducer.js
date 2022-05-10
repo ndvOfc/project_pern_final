@@ -10,13 +10,14 @@ const userState = {
 export function userReducer(state = userState, action) {
   switch (action.type) {
     case INIT_USER:
-      // console.log(action.payload);
+      console.log(action.payload);
       if (action.payload.status === 200) {
         return {
           ...state,
           message: action.payload.message,
           status: action.payload.status,
-          isAuthenticated: false,
+          user: action.payload.user,
+          isAuthenticated: true,
         };
       }
       return { ...state, message: action.payload.message, isAuthenticated: false };

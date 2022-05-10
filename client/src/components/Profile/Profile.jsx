@@ -17,6 +17,7 @@ import { styled } from '@mui/material/styles';
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import LogoutIcon from '@mui/icons-material/Logout';
+import { useSelector } from 'react-redux';
 import style from './Profile.module.css';
 import { staticProfile, getAchivment } from './static';
 import CardAchivment from '../CardAchivment/CardAchivment';
@@ -63,7 +64,8 @@ function Profile() {
     color: theme.palette.text.secondary,
     height: '500px',
   }));
-
+  const { user } = useSelector((state) => state.userReducer); // начинаем отсуюда
+  console.log(user);
   const [stat, setStat] = useState(staticProfile);
   // const [  , setStat] = useState(getAchivment);
   const [value, setValue] = React.useState(0);
@@ -78,7 +80,7 @@ function Profile() {
         <Grid item xs={4}>
           <Item>
             <CardMedia
-              src="https://www.letoile.ru/upload/iblock/4f8/79892443_176515583534170_9209346605343478288_n.jpg"
+              src={user.image}
               alt="name"
               title="name"
               // sx={{ height: '120px', width: 'auto' }} //ЧТО ДЕЛАТЬ С РАЗМЕРАМИ ? как зафиксировать низ?
