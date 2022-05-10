@@ -1,5 +1,5 @@
 // eslint-disable-next-line import/no-import-module-exports
-import { Paper } from '@material-ui/core';
+import { Paper } from '@mui/material';
 // eslint-disable-next-line import/no-import-module-exports
 import { useNavigate } from 'react-router-dom';
 // import { modulesArr } from '../ModuleArrs';

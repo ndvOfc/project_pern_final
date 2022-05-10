@@ -1,4 +1,4 @@
-import { Box, Paper, Typography } from '@material-ui/core';
+import { Box, Paper, Typography } from '@mui/material';
 import React, { useEffect, useState } from 'react';
 // import { useNavigate } from 'react-router-dom';
 import { useParams } from 'react-router-dom';

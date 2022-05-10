@@ -1,7 +1,7 @@
 /* eslint-disable react/jsx-props-no-spreading */
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import React from 'react';
-import { Grid, Paper, Typography, TextField, Button, Link } from '@material-ui/core';
+import { Grid, Paper, Typography, TextField, Button, Link } from '@mui/material';
 import { useForm } from 'react-hook-form';
 import { fetchRegistration } from '../../redux/thunk/userAsyncAction';
 

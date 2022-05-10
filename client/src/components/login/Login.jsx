@@ -2,7 +2,7 @@
 /* eslint-disable no-console */
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import React from 'react';
-import { Grid, Paper, Button, TextField, Typography, Link } from '@material-ui/core';
+import { Grid, Paper, Button, TextField, Typography, Link } from '@mui/material';
 import { useForm } from 'react-hook-form';
 import { fetchLogin } from '../../redux/thunk/userAsyncAction';
 

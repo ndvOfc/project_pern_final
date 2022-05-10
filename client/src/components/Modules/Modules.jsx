@@ -1,7 +1,6 @@
 import React, { useEffect } from 'react';
-import { Container } from '@material-ui/core';
+import { Container, Box } from '@mui/material';
 import { useDispatch, useSelector } from 'react-redux';
-import { Box } from '@mui/material';
 import ModuleItem from './ModuleItem/ModuleItem';
 import TopicsItem from './TopicsItem/TopicsItem';
 import { getModules } from '../../redux/thunk/moduleAsyncAction';
