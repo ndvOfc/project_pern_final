@@ -48,7 +48,8 @@ class UserController {
       const isPassword = await bcrypt.compare(password, candidate.password);
       if (isPassword && candidate) {
         req.session.user = candidate;
-        return res.status(200).json({ message: 'Вы успешно авторизовались', status: 200 });
+        // console.log(req.session);
+        return res.status(200).json({ message: 'Вы успешно авторизовались', status: 200, user: candidate });
       }
       return res.status(401).json({ message: 'Неправильный пароль', status: 401 });
     } catch (e) {
@@ -57,13 +58,13 @@ class UserController {
   }
 
   async logout(req, res) {
-    req.session.destroy(); // сессия не удаялется.
+    // console.log(req.session);
+    req.session = null; // сессия не удаялется.
     // req.cookies.clear(); // такой команды наверное нет.
-    // res.clearCookie('user_sid'); // вызывает ошибку , не может обратиться к заголовкам, по этой же причине не создается кука в браузере. Возможно проблема с CORS
-    // res.end();
+    res.clearCookie('user_sid.sig').end(); // вызывает ошибку , не может обратиться к заголовкам, по этой же причине не создается кука в браузере. Возможно проблема с CORS
     // req.sessionStorage.clear();
     // res.redirect('http://localhost:3000/login');
-    res.status(200).json({ message: 'Вы вышли из системы' });
+    // res.status(200).json({ message: 'Вы вышли из системы' });
   }
 }
 
