@@ -76,84 +76,82 @@ function Profile() {
   };
 
   return (
-
-      <Box sx={{ minWidth: '90vw', margin: '20px 8px' }}>
-        <Grid container spacing={1}>
-          <Grid item xs={4}>
-            <Item>
-              <CardMedia
-                src={user.image}
-                alt="name"
-                title="name"
-                sx={{ maxWidth: '40vw', objectFit: 'fill' }}
-                component="img"
-              />
-              <CardContent sx={{ textAlign: 'left', display: 'flex', flexDirection: 'column' }}>
-                <Paper elevation={4} className={style.profile_text}>
-                  Имя:{' '}
-                </Paper>
-                <Paper elevation={4} className={style.profile_text}>
-                  Рост:{' '}
-                </Paper>
-                <Paper elevation={4} className={style.profile_text}>
-                  Вес:{' '}
-                </Paper>
-              </CardContent>
-              <CardActions>
-                <IconButton>
-                  <LogoutIcon />
-                </IconButton>
-              </CardActions>
-            </Item>
-          </Grid>
-          <Grid item xs={8}>
-            <Item>
-              <Tabs
-                sx={{ justifyContent: 'center' }}
-                value={value}
-                onChange={handleChange}
-                aria-label="basic tabs example"
-              >
-                <Tab label="Статистика" {...a11yProps(0)} />
-                <Tab label="Достижения" {...a11yProps(1)} />
-                <Tab label="Унижения" {...a11yProps(2)} />
-              </Tabs>
-              <TabPanel value={value} index={0}>
-                <Box
-                  sx={{
-                    display: 'flex',
-                    flexWrap: 'wrap',
-                    margin: 'auto',
-                    width: 'auto',
-                    justifyContent: 'center',
-                  }}
-                  centered
-                >
-                  {stat.map((el) => {
-                    return <CardAchivment key={el.name} el={el} />;
-                  })}
-                </Box>
-              </TabPanel>
-              <TabPanel value={value} index={1}>
-                <Box
-                  sx={{
-                    display: 'flex',
-                    flexWrap: 'wrap',
-                    margin: 'auto',
-                    width: 'auto',
-                    justifyContent: 'center',
-                  }}
-                >
-                  {getAchivment.map((el) => (
-                    <CardAchiv key={el.name} value={el} />
-                  ))}
-                </Box>
-              </TabPanel>
-            </Item>
-          </Grid>
+    <Box sx={{ minWidth: '90vw', margin: '20px 8px' }}>
+      <Grid container spacing={1}>
+        <Grid item xs={4}>
+          <Item>
+            <CardMedia
+              src={user.image}
+              alt="name"
+              title="name"
+              sx={{ maxWidth: '40vw', objectFit: 'fill' }}
+              component="img"
+            />
+            <CardContent sx={{ textAlign: 'left', display: 'flex', flexDirection: 'column' }}>
+              <Paper elevation={4} className={style.profile_text}>
+                Имя:{user.name}
+              </Paper>
+              <Paper elevation={4} className={style.profile_text}>
+                email:{user.email}
+              </Paper>
+              <Paper elevation={4} className={style.profile_text}>
+                Прогресс:{user.progress}
+              </Paper>
+            </CardContent>
+            <CardActions>
+              <IconButton>
+                <LogoutIcon />
+              </IconButton>
+            </CardActions>
+          </Item>
         </Grid>
-      </Box>
-
+        <Grid item xs={8}>
+          <Item>
+            <Tabs
+              sx={{ justifyContent: 'center' }}
+              value={value}
+              onChange={handleChange}
+              aria-label="basic tabs example"
+            >
+              <Tab label="Статистика" {...a11yProps(0)} />
+              <Tab label="Достижения" {...a11yProps(1)} />
+              <Tab label="Унижения" {...a11yProps(2)} />
+            </Tabs>
+            <TabPanel value={value} index={0}>
+              <Box
+                sx={{
+                  display: 'flex',
+                  flexWrap: 'wrap',
+                  margin: 'auto',
+                  width: 'auto',
+                  justifyContent: 'center',
+                }}
+                centered
+              >
+                {stat.map((el) => {
+                  return <CardAchivment key={el.name} el={el} />;
+                })}
+              </Box>
+            </TabPanel>
+            <TabPanel value={value} index={1}>
+              <Box
+                sx={{
+                  display: 'flex',
+                  flexWrap: 'wrap',
+                  margin: 'auto',
+                  width: 'auto',
+                  justifyContent: 'center',
+                }}
+              >
+                {getAchivment.map((el) => (
+                  <CardAchiv key={el.name} value={el} />
+                ))}
+              </Box>
+            </TabPanel>
+          </Item>
+        </Grid>
+      </Grid>
+    </Box>
   );
 }
 

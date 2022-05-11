@@ -8,14 +8,14 @@ import Menu from '@mui/material/Menu';
 import MenuIcon from '@mui/icons-material/Menu';
 import Container from '@mui/material/Container';
 import Avatar from '@mui/material/Avatar';
-import Button from '@mui/material/Button';
+// import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchLogout } from '../../redux/thunk/userAsyncAction';
 
-const pages = ['Products', 'Pricing', 'Blog'];
+// const pages = ['Products', 'Pricing', 'Blog'];
 
 function Nav() {
   const { user } = useSelector((state) => state.userReducer);
@@ -84,11 +84,11 @@ function Nav() {
                 display: { xs: 'block', md: 'none' },
               }}
             >
-              {pages.map((page) => (
-                <MenuItem key={page} onClick={handleCloseNavMenu}>
-                  <Typography textAlign="center">{page}</Typography>
-                </MenuItem>
-              ))}
+              {/* {pages.map((page) => ( */}
+              {/*  <MenuItem key={page} onClick={handleCloseNavMenu}> */}
+              {/*    <Typography textAlign="center">{page}</Typography> */}
+              {/*  </MenuItem> */}
+              {/* ))} */}
             </Menu>
           </Box>
           <Typography
@@ -99,17 +99,17 @@ function Nav() {
           >
             LOGO
           </Typography>
-          <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
-            {pages.map((page) => (
-              <Button
-                key={page}
-                onClick={handleCloseNavMenu}
-                sx={{ my: 2, color: 'white', display: 'block' }}
-              >
-                {page}
-              </Button>
-            ))}
-          </Box>
+          {/* <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}> */}
+          {/*  {pages.map((page) => ( */}
+          {/*    <Button */}
+          {/*      key={page} */}
+          {/*      onClick={handleCloseNavMenu} */}
+          {/*      sx={{ my: 2, color: 'white', display: 'block' }} */}
+          {/*    > */}
+          {/*      {page} */}
+          {/*    </Button> */}
+          {/*  ))} */}
+          {/* </Box> */}
 
           <Box sx={{ flexGrow: 0 }}>
             <Tooltip title="Open settings">
