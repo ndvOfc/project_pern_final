@@ -6,6 +6,7 @@ import {
   CardMedia,
   Grid,
   Paper,
+  Card,
   CardContent,
   IconButton,
   CardActions,
@@ -62,7 +63,7 @@ function Profile() {
     padding: theme.spacing(),
     textAlign: 'center',
     color: theme.palette.text.secondary,
-    height: '500px',
+    minHeight: '20vh',
   }));
   const { user } = useSelector((state) => state.userReducer); // начинаем отсуюда
   console.log(user);
@@ -75,7 +76,7 @@ function Profile() {
   };
 
   return (
-    <Box sx={{ padding: '30px 20px', width: 800, margin: '20px auto' }}>
+    <Box sx={{ minWidth: '90vw', margin: '20px 8px' }}>
       <Grid container spacing={1}>
         <Grid item xs={4}>
           <Item>
@@ -83,13 +84,19 @@ function Profile() {
               src={user.image}
               alt="name"
               title="name"
-              // sx={{ height: '120px', width: 'auto' }} //ЧТО ДЕЛАТЬ С РАЗМЕРАМИ ? как зафиксировать низ?
+              sx={{ maxWidth: '40vw', objectFit: 'fill' }}
               component="img"
             />
-            <CardContent sx={{ textAlign: 'left' }}>
-              <Typography className={style.profile_text}>Имя: </Typography>
-              <Typography className={style.profile_text}>Рост: </Typography>
-              <Typography className={style.profile_text}>Вес: </Typography>
+            <CardContent sx={{ textAlign: 'left', display: 'flex', flexDirection: 'column' }}>
+              <Paper elevation={4} className={style.profile_text}>
+                Имя:{user.name}
+              </Paper>
+              <Paper elevation={4} className={style.profile_text}>
+                email:{user.email}
+              </Paper>
+              <Paper elevation={4} className={style.profile_text}>
+                Прогресс:{user.progress}
+              </Paper>
             </CardContent>
             <CardActions>
               <IconButton>
@@ -98,7 +105,7 @@ function Profile() {
             </CardActions>
           </Item>
         </Grid>
-        <Grid item xs={8}>
+        <Grid item xs={12}>
           <Item>
             <Tabs
               sx={{ justifyContent: 'center' }}

@@ -129,7 +129,7 @@ function BasicAssessment() {
           </Button>
         </Box>
         <Box mt={2}>
-          <Button mt={2} onClick={nextQuestion} variant="outlined">
+          <Button mt={2} onClick={nextQuestion} variant="contained" disabled>
             Следующий вопрос
           </Button>
         </Box>

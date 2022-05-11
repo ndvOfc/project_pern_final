@@ -6,6 +6,7 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import { Container, Box } from '@mui/material';
 import { useDispatch, useSelector } from 'react-redux';
 import { Navigation } from 'swiper';
+// import { FaBeer } from 'react-icons/fa';
 import ModuleItem from './ModuleItem/ModuleItem';
 import TopicsItem from './TopicsItem/TopicsItem';
 import { getModules, getTopics } from '../../redux/thunk/moduleAsyncAction';
