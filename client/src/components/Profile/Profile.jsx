@@ -105,7 +105,7 @@ function Profile() {
             </CardActions>
           </Item>
         </Grid>
-        <Grid item xs={8}>
+        <Grid item xs={12}>
           <Item>
             <Tabs
               sx={{ justifyContent: 'center' }}
