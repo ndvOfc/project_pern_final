@@ -24,6 +24,7 @@ import { getQuestions } from '../../redux/thunk/assesmentAsyncAction';
 import { getTopics } from '../../redux/thunk/moduleAsyncAction';
 import AnswerButton from '../UI/AnswerButton/AnswerButton';
 import EndTestCard from '../UI/EndTestCard/EndTestCard';
+import AnswerModal from '../UI/AnswerModal/AnswerModal';
 
 function BasicAssessment() {
   // const [progress, setProgress] = React.useState(0);
@@ -62,7 +63,12 @@ function BasicAssessment() {
 
   // Подсчет очков и правильных ответов
   const [score, setScore] = useState(0);
-  const [incorrectAnswers, setIncorrectAnswers] = useState(0);
+
+  // Для модалки
+  const [open, setOpen] = useState(false);
+  const [correctAnswer, setCorrectAnswer] = useState('');
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
 
   // Проверка на правильный ответ
   const [checked, setChecked] = useState(false);
@@ -77,14 +83,13 @@ function BasicAssessment() {
   const nextQuestion = useCallback(() => {
     setCurrentQuestion(currentQuestion + 1);
     setChecked(false);
+    setCorrectAnswer('');
   }, [currentQuestion]);
 
   // Подсчет очков
   const handleCorrectAnswer = useCallback(
     (event) => {
       event.preventDefault();
-      console.log(event.target.dataset.data);
-      console.log(`score >>>>> ${score}`);
       if (event.target.dataset.answ === 'true') {
         setScore(score + 1);
       }
@@ -92,9 +97,11 @@ function BasicAssessment() {
     [score]
   );
   console.log(questionList.length);
-
+  console.log(`STATE CORRECT ANSWER>>>>>>>>> ${correctAnswer}`);
   const check = () => {
     setChecked(true);
+    // eslint-disable-next-line no-use-before-define
+    setCorrectAnswer(answerToModal[0].answer);
   };
   const questionsLength = questionList.length;
   // eslint-disable-next-line no-cond-assign
@@ -114,13 +121,17 @@ function BasicAssessment() {
       </Box>
     );
   }
-  console.log(score);
+
+  const answerToModal = questionList[currentQuestion].answerList.filter(
+    (answer) => answer.isCorrect
+  );
 
   return (
     <Box className={style.bassicAssesment}>
       <Button>
         <Link to="/modules">Назад</Link>
       </Button>
+      <Button onClick={handleOpen}>Не шарю узнать правильный ответ</Button>
       <Typography variant="h4">
         Question {currentQuestion + 1} of {questionList.length}
       </Typography>
@@ -159,6 +170,7 @@ function BasicAssessment() {
           <Box />
         )}
       </Box>
+      <AnswerModal correctAnswer={correctAnswer} open={open} handleClose={handleClose} />
     </Box>
   );
 }

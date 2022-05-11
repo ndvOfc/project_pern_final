@@ -19,7 +19,15 @@ function AnswerButton({
 
   // Здесь пишем логику отрисовки кнопок
   const getColor = () => {
-    return isCorrect ? 'success' : 'error';
+    if (isCorrect && selected === 'selected') {
+      return 'success'
+    }
+    if (!isCorrect && selected === 'selected') {
+      return 'error'
+    }
+
+      return 'primary'
+
   };
 
 
@@ -45,8 +53,9 @@ function AnswerButton({
         color={checked ? getColor() : 'primary'}
         variant={variant}
         data-answ={list.isCorrect}
+        data-selected={selected}
         mt={2}
-         // disabled={checked}
+        disabled={checked}
       >
         {list.answer}
       </Button>

@@ -41,7 +41,7 @@ function Nav() {
       <Container maxWidth="xl">
         <Toolbar disableGutters sx={{ display: 'flex', justifyContent: 'space-between' }}>
           <Box sx={{ display: 'flex', ml: 5 }}>
-            <Typography>Pern Stacker</Typography>
+            <Typography>P.E.R.N. Stacker</Typography>
             <DeveloperModeIcon />
           </Box>
 
