@@ -12,6 +12,7 @@ const User = sequelize.define('user', {
 
 const Modules = sequelize.define('module', {
   id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
+  img: { type: DataTypes.STRING, allowNull: true },
   titleModules: { type: DataTypes.STRING },
 });
 
