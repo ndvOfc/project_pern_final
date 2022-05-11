@@ -1,7 +1,7 @@
 export const staticProfile = [
   {
     name: 'nodeBasic',
-    image: '/imagePNG/nodejs.png',
+    image: '/imagePNG/node-js.png',
     passTask: 15,
     allTask: 50,
     progress: function prog() {

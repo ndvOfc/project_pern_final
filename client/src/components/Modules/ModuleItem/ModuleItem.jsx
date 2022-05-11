@@ -2,7 +2,7 @@
 import { useNavigate } from 'react-router-dom';
 // import { modulesArr } from '../ModuleArrs';
 // eslint-disable-next-line import/no-import-module-exports
-import { CardMedia, Paper } from '@mui/material';
+import { Box, CardMedia } from '@mui/material';
 // eslint-disable-next-line import/no-import-module-exports
 import React from 'react';
 // eslint-disable-next-line import/no-import-module-exports
@@ -11,10 +11,12 @@ import css from './ModuleItem.module.css';
 
 // eslint-disable-next-line react/prop-types
 function ModulleItem({ titleModules, img }) {
+  console.log(img);
   // console.log(titleModules);
   const navigate = useNavigate();
   return (
-    <Paper
+    <Box
+      sx={{ backgroundColor: 'rgba(0, 0, 0, 0%)' }}
       onClick={() => navigate(`/modules/${titleModules}`)}
       className={css.paper}
       key={module.id}
@@ -25,10 +27,10 @@ function ModulleItem({ titleModules, img }) {
         src={img}
         alt="name"
         title="name"
-        // sx={{ height: '120px', width: 'auto' }} //ЧТО ДЕЛАТЬ С РАЗМЕРАМИ ? как зафиксировать низ?
+        sx={{ objectFit: 'fill' }} // ЧТО ДЕЛАТЬ С РАЗМЕРАМИ ? как зафиксировать низ?
         component="img"
       />
-    </Paper>
+    </Box>
   );
 }
 
