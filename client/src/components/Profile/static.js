@@ -71,13 +71,6 @@ export const getAchivment = [
   },
 ];
 
-export const getImages = [
-  {
-    name: 'logo',
-    imageLogo: '/assets/logo2.png',
-  },
-];
-
 /* export const getProfile =[
 
 ] */
