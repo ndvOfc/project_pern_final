@@ -12,7 +12,6 @@ function CardAchiv({ value }) {
         width: '50px',
         height: '50px',
         margin: '20px 20px',
-        border: 'dashed red',
       }}
     >
       <CardMedia src={value.image} alt={value.name} title={value.name} component="img" />
