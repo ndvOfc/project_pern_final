@@ -26,7 +26,7 @@ function App() {
 
   return (
     <BrowserRouter>
-      {/* <Nav /> */}
+      <Nav />
       <Routes>
         {/* {isAuthenticated ? (
           <>

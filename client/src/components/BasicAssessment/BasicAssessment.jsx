@@ -62,6 +62,7 @@ function BasicAssessment() {
 
   // Подсчет очков и правильных ответов
   const [score, setScore] = useState(0);
+  const [incorrectAnswers, setIncorrectAnswers] = useState(0);
 
   // Проверка на правильный ответ
   const [checked, setChecked] = useState(false);

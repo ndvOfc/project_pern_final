@@ -1,8 +1,10 @@
 // eslint-disable-next-line import/no-import-module-exports
-import { Paper } from '@mui/material';
-// eslint-disable-next-line import/no-import-module-exports
 import { useNavigate } from 'react-router-dom';
 // import { modulesArr } from '../ModuleArrs';
+// eslint-disable-next-line import/no-import-module-exports
+import { CardMedia, Paper } from '@mui/material';
+// eslint-disable-next-line import/no-import-module-exports
+import React from 'react';
 // eslint-disable-next-line import/no-import-module-exports
 import css from './ModuleItem.module.css';
 // import TopicsItem from '../TopicsItem/TopicsItem';
@@ -18,7 +20,14 @@ function ModulleItem({ titleModules, img }) {
       key={module.id}
       modulename={titleModules}
     >
-      <img className={css.Img} src={img} alt="some" />
+      <CardMedia
+        className={css.Img}
+        src={img}
+        alt="name"
+        title="name"
+        // sx={{ height: '120px', width: 'auto' }} //ЧТО ДЕЛАТЬ С РАЗМЕРАМИ ? как зафиксировать низ?
+        component="img"
+      />
     </Paper>
   );
 }
