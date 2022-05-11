@@ -57,9 +57,22 @@ class UserController {
     }
   }
 
+  async auth(req, res) {
+    try {
+      if (req.session.user) {
+        console.log(req.session, 'SESSION AUTH');
+        return res.status(200).json({ user: req.session.user, status: 200 });
+      } return res.status(404).json({ user: req.session.user, status: '' });
+    } catch (e) {
+      return res.status(404).json({ message: 'Ошибка проверки сессии', status: 404 });
+    }
+  }
+
   async logout(req, res) {
-    // console.log(req.session);
+    // console.log(req.session, 'DELETE SESSION');
     req.session = null; // сессия не удаялется.
+    res.clearCookie('user_sid').end(); // вызывает ошибку , не может обратиться к заголовкам, по этой же причине не создается кука в браузере. Возможно проблема с CORS
+    // res.status(200).json({ message: 'Вы вышли' });
     // req.session.destroy((err) => {
     //   if (err) {
     //     return res.send({ error: 'Logout error' });
@@ -67,12 +80,10 @@ class UserController {
     //   res.clearCookie('user_sid', { path: '/' });
     //   return res.send({ clearSession: 'success' });
     // });
-    // req.session.destroy(); // сессия не удаялется.
     // req.session = null;
     // req.logout();
     // res.redirect(process.env.CLIENT_URL);
     // req.cookies.clear(); // такой команды наверное нет.
-    // res.clearCookie('user_sid').end(); // вызывает ошибку , не может обратиться к заголовкам, по этой же причине не создается кука в браузере. Возможно проблема с CORS
     // req.sessionStorage.clear();
     // res.redirect('http://localhost:3000/');
     // res.status(200).json({ message: 'Вы вышли из системы' });

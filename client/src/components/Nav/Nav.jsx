@@ -32,6 +32,7 @@ function Nav() {
   };
   const functionLogout = () => {
     dispatch(fetchLogout());
+    navigate('/');
   };
 
   return (
@@ -40,7 +41,7 @@ function Nav() {
         <Toolbar disableGutters sx={{ display: 'flex', justifyContent: 'space-between' }}>
           <Box
             sx={{ display: 'flex', ml: 5, cursor: 'pointer' }}
-            onClick={() => navigate('/modules')}
+            onClick={() => navigate('/modules/JavaScript')}
           >
             <Typography>Pern Stacker</Typography>
             <DeveloperModeIcon />
