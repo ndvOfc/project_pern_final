@@ -9,7 +9,7 @@ import Container from '@mui/material/Container';
 import Avatar from '@mui/material/Avatar';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 // import { CardMedia } from '@mui/material';
 import DeveloperModeIcon from '@mui/icons-material/DeveloperMode';
@@ -43,7 +43,7 @@ function Nav() {
             sx={{ display: 'flex', ml: 5, cursor: 'pointer' }}
             onClick={() => navigate('/modules/JavaScript')}
           >
-            <Typography>Pern Stacker</Typography>
+            <Typography>P.E.R.N. Stacker</Typography>
             <DeveloperModeIcon />
           </Box>
 
@@ -71,12 +71,12 @@ function Nav() {
             >
               <MenuItem>
                 <Typography textAlign="center">
-                  <Link to="/modules">На главную</Link>
+                  <Typography onClick={() => navigate('/modules')}>На главную</Typography>
                 </Typography>
               </MenuItem>
               <MenuItem>
                 <Typography textAlign="center">
-                  <Link to="/profile">Профиль</Link>
+                  <Typography onClick={() => navigate('/profile')}>Профиль</Typography>
                 </Typography>
               </MenuItem>
               <MenuItem>

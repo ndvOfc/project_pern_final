@@ -23,6 +23,8 @@ import style from './BasicAssessment.module.css';
 import { getQuestions } from '../../redux/thunk/assesmentAsyncAction';
 import { getTopics } from '../../redux/thunk/moduleAsyncAction';
 import AnswerButton from '../UI/AnswerButton/AnswerButton';
+import EndTestCard from '../UI/EndTestCard/EndTestCard';
+import AnswerModal from '../UI/AnswerModal/AnswerModal';
 
 function BasicAssessment() {
   // const [progress, setProgress] = React.useState(0);
@@ -61,7 +63,12 @@ function BasicAssessment() {
 
   // Подсчет очков и правильных ответов
   const [score, setScore] = useState(0);
-  const [incorrectAnswers, setIncorrectAnswers] = useState(0);
+
+  // Для модалки
+  const [open, setOpen] = useState(false);
+  const [correctAnswer, setCorrectAnswer] = useState('');
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
 
   // Проверка на правильный ответ
   const [checked, setChecked] = useState(false);
@@ -76,28 +83,27 @@ function BasicAssessment() {
   const nextQuestion = useCallback(() => {
     setCurrentQuestion(currentQuestion + 1);
     setChecked(false);
+    setCorrectAnswer('');
   }, [currentQuestion]);
 
-  //  Подсчет очков
-  // const handleCorrectAnswer = useCallback(
-  //   (event) => {
-  //     event.preventDefault();
-  //     console.log(event.target.dataset.data);
-  //     console.log(`score >>>>> ${score}`);
-  //     console.log(`incorect >>>>> ${incorrectAnswers}`);
-  //     if (event.target.dataset.check === 'true') {
-  //       setScore(score + 1);
-  //     }
-  //     setIncorrectAnswers(incorrectAnswers + 1);
-  //   },
-  //   [score, incorrectAnswers]
-  // );
+  // Подсчет очков
+  const handleCorrectAnswer = useCallback(
+    (event) => {
+      event.preventDefault();
+      if (event.target.dataset.answ === 'true') {
+        setScore(score + 1);
+      }
+    },
+    [score]
+  );
   console.log(questionList.length);
-
+  console.log(`STATE CORRECT ANSWER>>>>>>>>> ${correctAnswer}`);
   const check = () => {
     setChecked(true);
+    // eslint-disable-next-line no-use-before-define
+    setCorrectAnswer(answerToModal[0].answer);
   };
-
+  const questionsLength = questionList.length;
   // eslint-disable-next-line no-cond-assign
   if (questionList.length === 0) {
     return (
@@ -106,10 +112,26 @@ function BasicAssessment() {
       </Box>
     );
   }
-  console.log(score);
+  console.log(`Current>>>> ${currentQuestion}`);
+  console.log(`Question Length >>>>>> ${questionList.length}`);
+  if (currentQuestion === questionList.length) {
+    return (
+      <Box>
+        <EndTestCard questionLength={questionsLength} score={score} />
+      </Box>
+    );
+  }
+
+  const answerToModal = questionList[currentQuestion].answerList.filter(
+    (answer) => answer.isCorrect
+  );
 
   return (
     <Box className={style.bassicAssesment}>
+      <Button>
+        <Link to="/modules">Назад</Link>
+      </Button>
+      <Button onClick={handleOpen}>Не шарю узнать правильный ответ</Button>
       <Typography variant="h4">
         Question {currentQuestion + 1} of {questionList.length}
       </Typography>
@@ -120,20 +142,35 @@ function BasicAssessment() {
         </Typography>
       </Box>
       {questionList[currentQuestion].answerList.map((list) => (
-        <AnswerButton key={list.id} list={list} checked={checked} />
+        <AnswerButton
+          handleCorrectAnswer={handleCorrectAnswer}
+          key={list.id}
+          list={list}
+          checked={checked}
+        />
       ))}
       <Box mt={2}>
-        <Box mt={2}>
-          <Button mt={2} variant="contained" onClick={check}>
-            ЧЕКНУТЬ
-          </Button>
-        </Box>
-        <Box mt={2}>
-          <Button mt={2} onClick={nextQuestion} variant="contained" disabled>
-            Следующий вопрос
-          </Button>
-        </Box>
+        {!checked ? (
+          <Box mt={2}>
+            <Button mt={2} size="large" variant="contained" onClick={check}>
+              Ответить
+            </Button>
+          </Box>
+        ) : (
+          <Box />
+        )}
+
+        {checked ? (
+          <Box mt={2}>
+            <Button mt={2} score={score} size="large" onClick={nextQuestion} variant="contained">
+              Следующий вопрос
+            </Button>
+          </Box>
+        ) : (
+          <Box />
+        )}
       </Box>
+      <AnswerModal correctAnswer={correctAnswer} open={open} handleClose={handleClose} />
     </Box>
   );
 }

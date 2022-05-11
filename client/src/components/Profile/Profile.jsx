@@ -64,12 +64,21 @@ function Profile() {
 
   return (
     <Box sx={{ minWidth: '90vw', margin: '2vh 2vw', display: 'flex' }}>
-      <Paper sx={{ padding: 2, minWidth: '30vw', marginRight: 1 }}>
+      <Paper
+        sx={{
+          padding: 2,
+          minWidth: '30vw',
+          marginRight: 1,
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+        }}
+      >
         <CardMedia
           src={user.image}
           alt="name"
           title="name"
-          sx={{ maxWidth: '50vw', objectFit: 'fill', borderRadius: '5px' }}
+          sx={{ maxWidth: '30vw', objectFit: 'fill', borderRadius: '5px' }}
           component="img"
         />
         <CardContent
@@ -93,7 +102,7 @@ function Profile() {
         </CardContent>
       </Paper>
 
-      <Item>
+      <Paper>
         <Tabs
           sx={{ justifyContent: 'center' }}
           value={value}
@@ -135,7 +144,7 @@ function Profile() {
             ))}
           </Box>
         </TabPanel>
-      </Item>
+      </Paper>
     </Box>
   );
 }
