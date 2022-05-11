@@ -3,6 +3,8 @@ import { END_GAME, INIT_USER, LOGOUT_USER } from '../actionTypes/userAT';
 const userState = {
   user: { name: '', image: '' },
   message: '',
+  status: '',
+  isloaded: false,
   isAuthenticated: false,
   statistic: { progress: 0, theme: '' },
 };
@@ -10,7 +12,7 @@ const userState = {
 export function userReducer(state = userState, action) {
   switch (action.type) {
     case INIT_USER:
-      console.log(action.payload.status);
+      // console.log(action.payload);
       if (action.payload.status === 200) {
         return {
           ...state,
@@ -18,6 +20,7 @@ export function userReducer(state = userState, action) {
           status: action.payload.status,
           user: action.payload.user,
           isAuthenticated: true,
+          isloaded: true,
         };
       }
       return { ...state, message: action.payload.message, isAuthenticated: false };
@@ -26,7 +29,8 @@ export function userReducer(state = userState, action) {
       return { ...state, statistic: action.payload.statistic, user: action.payload.user };
 
     case LOGOUT_USER:
-      return { ...state, user: [], message: [], isAuthenticated: false };
+      console.log('123');
+      return { ...state, ...userState };
     default:
       return state;
   }

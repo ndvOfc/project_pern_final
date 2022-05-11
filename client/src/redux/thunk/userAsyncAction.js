@@ -58,9 +58,25 @@ export const fetchAuthPassportJs = () => {
 
 export const fetchLogout = () => {
   return (dispatch) => {
-    fetch('http://localhost:5001/api/logout')
+    fetch('http://localhost:5001/api/logout', {
+      method: 'get',
+      credentials: 'include',
+    })
       .then((res) => res.json())
-      .then((data) => dispatch(initUserAC(data)))
+      .then((data) => dispatch(logoutUserAC(data)))
       .catch((err) => dispatch(logoutUserAC(err.message)));
+  };
+};
+
+export const fetchAuth = () => {
+  return (dispatch) => {
+    fetch('http://localhost:5001/api/auth', {
+      method: 'get',
+      credentials: 'include',
+    })
+      .then((res) => res.json())
+      // .then((data) => console.log(data))
+      .then((data) => dispatch(initUserAC(data)))
+      .catch((err) => dispatch(err.message));
   };
 };

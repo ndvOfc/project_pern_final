@@ -11,7 +11,7 @@ import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchLogout } from '../../redux/thunk/userAsyncAction';
 
@@ -19,6 +19,7 @@ const pages = ['Products', 'Pricing', 'Blog'];
 
 function Nav() {
   const { user } = useSelector((state) => state.userReducer);
+  const navigate = useNavigate();
   // console.log(user.image);
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
@@ -40,6 +41,7 @@ function Nav() {
   };
   const functionLogout = () => {
     dispatch(fetchLogout());
+    navigate('/');
   };
 
   return (
