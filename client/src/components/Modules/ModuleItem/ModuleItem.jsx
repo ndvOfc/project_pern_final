@@ -1,5 +1,4 @@
 // eslint-disable-next-line import/no-import-module-exports
-// eslint-disable-next-line import/no-import-module-exports
 import { useNavigate } from 'react-router-dom';
 // import { modulesArr } from '../ModuleArrs';
 // eslint-disable-next-line import/no-import-module-exports

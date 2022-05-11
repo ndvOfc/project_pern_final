@@ -24,14 +24,14 @@ function Login() {
   const dispatch = useDispatch();
 
   const { message, status } = useSelector((state) => state.userReducer);
-  console.log(status);
+  // console.log(status);
   const { register, handleSubmit } = useForm({ shouldUseNativeValidation: true });
 
   function onSubmit(data) {
     dispatch(fetchLogin(data));
   }
   useEffect(() => {
-    if (status === 200) navigate('/');
+    if (status === 200) navigate('/modules/JavaScript');
   }, [status, navigate]);
 
   // testing passport js
@@ -51,7 +51,7 @@ function Login() {
         </Grid>
         <form onSubmit={handleSubmit(onSubmit)}>
           <TextField
-            {...register('email', { required: 'Пожалуйста введите emil' })}
+            {...register('email', { required: 'Пожалуйста введите email' })}
             label="Почта"
             placeholder="Введите почту"
             type="text"
