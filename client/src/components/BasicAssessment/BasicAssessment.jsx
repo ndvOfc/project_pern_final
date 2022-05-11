@@ -23,6 +23,7 @@ import style from './BasicAssessment.module.css';
 import { getQuestions } from '../../redux/thunk/assesmentAsyncAction';
 import { getTopics } from '../../redux/thunk/moduleAsyncAction';
 import AnswerButton from '../UI/AnswerButton/AnswerButton';
+import EndTestCard from '../UI/EndTestCard/EndTestCard';
 
 function BasicAssessment() {
   // const [progress, setProgress] = React.useState(0);
@@ -61,7 +62,6 @@ function BasicAssessment() {
 
   // Подсчет очков и правильных ответов
   const [score, setScore] = useState(0);
-  const [incorrectAnswers, setIncorrectAnswers] = useState(0);
 
   // Проверка на правильный ответ
   const [checked, setChecked] = useState(false);
@@ -78,26 +78,24 @@ function BasicAssessment() {
     setChecked(false);
   }, [currentQuestion]);
 
-  //  Подсчет очков
-  // const handleCorrectAnswer = useCallback(
-  //   (event) => {
-  //     event.preventDefault();
-  //     console.log(event.target.dataset.data);
-  //     console.log(`score >>>>> ${score}`);
-  //     console.log(`incorect >>>>> ${incorrectAnswers}`);
-  //     if (event.target.dataset.check === 'true') {
-  //       setScore(score + 1);
-  //     }
-  //     setIncorrectAnswers(incorrectAnswers + 1);
-  //   },
-  //   [score, incorrectAnswers]
-  // );
+  // Подсчет очков
+  const handleCorrectAnswer = useCallback(
+    (event) => {
+      event.preventDefault();
+      console.log(event.target.dataset.data);
+      console.log(`score >>>>> ${score}`);
+      if (event.target.dataset.answ === 'true') {
+        setScore(score + 1);
+      }
+    },
+    [score]
+  );
   console.log(questionList.length);
 
   const check = () => {
     setChecked(true);
   };
-
+  const questionsLength = questionList.length;
   // eslint-disable-next-line no-cond-assign
   if (questionList.length === 0) {
     return (
@@ -106,10 +104,22 @@ function BasicAssessment() {
       </Box>
     );
   }
+  console.log(`Current>>>> ${currentQuestion}`);
+  console.log(`Question Length >>>>>> ${questionList.length}`);
+  if (currentQuestion === questionList.length) {
+    return (
+      <Box>
+        <EndTestCard questionLength={questionsLength} score={score} />
+      </Box>
+    );
+  }
   console.log(score);
 
   return (
     <Box className={style.bassicAssesment}>
+      <Button>
+        <Link to="/modules">Назад</Link>
+      </Button>
       <Typography variant="h4">
         Question {currentQuestion + 1} of {questionList.length}
       </Typography>
@@ -120,19 +130,33 @@ function BasicAssessment() {
         </Typography>
       </Box>
       {questionList[currentQuestion].answerList.map((list) => (
-        <AnswerButton key={list.id} list={list} checked={checked} />
+        <AnswerButton
+          handleCorrectAnswer={handleCorrectAnswer}
+          key={list.id}
+          list={list}
+          checked={checked}
+        />
       ))}
       <Box mt={2}>
-        <Box mt={2}>
-          <Button mt={2} variant="contained" onClick={check}>
-            ЧЕКНУТЬ
-          </Button>
-        </Box>
-        <Box mt={2}>
-          <Button mt={2} onClick={nextQuestion} variant="outlined">
-            Следующий вопрос
-          </Button>
-        </Box>
+        {!checked ? (
+          <Box mt={2}>
+            <Button mt={2} size="large" variant="contained" onClick={check}>
+              Ответить
+            </Button>
+          </Box>
+        ) : (
+          <Box />
+        )}
+
+        {checked ? (
+          <Box mt={2}>
+            <Button mt={2} score={score} size="large" onClick={nextQuestion} variant="contained">
+              Следующий вопрос
+            </Button>
+          </Box>
+        ) : (
+          <Box />
+        )}
       </Box>
     </Box>
   );

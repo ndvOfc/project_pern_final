@@ -10,7 +10,6 @@ import Nav from '../Nav/Nav';
 import Profile from '../Profile/Profile';
 import BasicAssessment from '../BasicAssessment/BasicAssessment';
 import Private from '../Private/Private';
-import BasicAssessment2 from '../BasicAssessment/BasicAssessment2';
 import { fetchAuthPassportJs } from '../../redux/thunk/userAsyncAction';
 
 function App() {
@@ -71,7 +70,6 @@ function App() {
         <Route path="/modules/" element={<Navigate to="/modules/JavaScript" replace />} />
         <Route path="/modules/:moduleTopics" element={<Modules />} />
         <Route path="/modules/:moduleTopics/:topic" element={<BasicAssessment />} />
-        <Route path="/modules2/:moduleTopics/:topic" element={<BasicAssessment2 />} />
       </Routes>
     </BrowserRouter>
   );
