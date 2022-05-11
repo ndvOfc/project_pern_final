@@ -7,15 +7,15 @@ function CardAchivment({ el }) {
   return (
     <Box
       sx={{
-        padding: '30px 20px',
-        width: '50px',
-        height: '50px',
-        margin: '20px 20px',
-        border: 'dashed red',
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        maxWidth: '15vw',
+        margin: '4vw',
       }}
     >
       <CardMedia src={el.image} alt={el.name} title="Achivment" component="img" />
-      <Typography sx={{ fontSize: 10 }}>Прогресс: {el.progress()}</Typography>
+      <Typography sx={{ fontSize: '1em' }}>Прогресс: {el.progress()}</Typography>
     </Box>
   );
 }

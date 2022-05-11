@@ -9,6 +9,11 @@ router.post(
   userController.registration,
 );
 
+router.get(
+  '/auth',
+  userController.auth,
+);
+
 router.post(
   '/login',
   body('email').isEmail(),
