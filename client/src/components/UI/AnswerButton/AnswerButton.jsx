@@ -6,6 +6,7 @@ import style from '../../BasicAssessment/BasicAssessment.module.css';
 function AnswerButton({
   list,
   checked,
+    handleCorrectAnswer,
 }) {
 
 
@@ -13,18 +14,33 @@ function AnswerButton({
   // console.log('REF', ref.current.getAttribute('data-answ'));
 
   const [isCorrect, setIsCorrect] = useState();
+  const [selected, setSelected] = useState('')
   const [variant, setVariant] = useState('outlined');
 
   // Здесь пишем логику отрисовки кнопок
   const getColor = () => {
-    return isCorrect ? 'success' : 'error';
+    if (isCorrect && selected === 'selected') {
+      return 'success'
+    }
+    if (!isCorrect && selected === 'selected') {
+      return 'error'
+    }
+
+      return 'primary'
+
   };
 
+
+
   console.log('getColor',getColor())
-  const onClick = () => {
+  const onClick = (e) => {
+    setSelected('selected');
     setVariant('contained');
+    handleCorrectAnswer(e);
     setIsCorrect(JSON.parse(ref.current.getAttribute('data-answ')));
   };
+
+
 
   return (
     <Box mt={2}>
@@ -37,8 +53,9 @@ function AnswerButton({
         color={checked ? getColor() : 'primary'}
         variant={variant}
         data-answ={list.isCorrect}
+        data-selected={selected}
         mt={2}
-        // disabled={checked}
+        disabled={checked}
       >
         {list.answer}
       </Button>
