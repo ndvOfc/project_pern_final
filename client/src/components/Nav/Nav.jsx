@@ -9,7 +9,7 @@ import Container from '@mui/material/Container';
 import Avatar from '@mui/material/Avatar';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 // import { CardMedia } from '@mui/material';
 import DeveloperModeIcon from '@mui/icons-material/DeveloperMode';
@@ -18,6 +18,7 @@ import { getImages } from '../Profile/static';
 
 function Nav() {
   const { user } = useSelector((state) => state.userReducer);
+  const navigate = useNavigate();
   // console.log(user.image);
   const [logo] = getImages;
   console.log(logo);
@@ -34,6 +35,7 @@ function Nav() {
   };
   const functionLogout = () => {
     dispatch(fetchLogout());
+    navigate('/');
   };
 
   return (

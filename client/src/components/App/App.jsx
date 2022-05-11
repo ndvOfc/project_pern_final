@@ -10,66 +10,45 @@ import Nav from '../Nav/Nav';
 import Profile from '../Profile/Profile';
 import BasicAssessment from '../BasicAssessment/BasicAssessment';
 import Private from '../Private/Private';
-import { fetchAuthPassportJs } from '../../redux/thunk/userAsyncAction';
+import BasicAssessment2 from '../BasicAssessment/BasicAssessment2';
+import { fetchAuthPassportJs, fetchAuth } from '../../redux/thunk/userAsyncAction';
+import Loader from '../UI/Loader/Loader';
 
 function App() {
   const dispatch = useDispatch();
 
-  const { isAuthenticated } = useSelector((state) => state.userReducer);
-  const selector = useSelector((state) => state.userReducer);
-  console.log(selector);
+  const { isAuthenticated, isloaded } = useSelector((state) => state.userReducer);
   console.log(isAuthenticated);
 
   useEffect(() => {
+    dispatch(fetchAuth());
     dispatch(fetchAuthPassportJs());
   }, [dispatch]);
 
+  // if (!isloaded) return <Loader />; // посмотреть как реализовать
+
   return (
     <BrowserRouter>
-      <Nav />
+      {isAuthenticated && <Nav />}
       <Routes>
-        {/* {isAuthenticated ? (
+        <Route path="*" element={<Navigate to="/" />} />
+        {isAuthenticated ? (
           <>
+            <Route path="/" element={<Navigate to="/modules/JavaScript" replace />} />
             <Route path="/profile" element={<Profile />} />
             <Route path="/modules/" element={<Modules />} />
-            <Route path="/modules/" element={<Navigate to="/modules/JavaScript" replace />} />
+            <Route path="/login" element={<Navigate to="/modules/JavaScript" replace />} />
+            <Route path="/registration" element={<Navigate to="/modules/JavaScript" replace />} />
             <Route path="/modules/:moduleTopics" element={<Modules />} />
             <Route path="/modules/:moduleTopics/:topic" element={<BasicAssessment />} />
           </>
         ) : (
           <>
+            <Route path="/" element={<Navigate to="/registration" replace />} />
             <Route path="/login" element={<Login />} />
-            <Route path="/" element={<Registration />} />
+            <Route path="/registration" element={<Registration />} />
           </>
-        )} */}
-
-        {/* ВТОРАЯ ВЕРСИЯ  */}
-        {/* {!isAuthenticated && <Route path="/login" element={<Login />} />} */}
-        {/* {!isAuthenticated && <Route path="/" element={<Registration />} />} */}
-
-        {/*    <Route element={<Private auth={isAuthenticated} />}>
-          {/* <Nav /> */}
-        {/* <Route path="/profile" element={<Profile />} /> */}
-        {/* <Route path="/modules/" element={<Modules />} /> */}
-        {/* <Route path="/modules/" element={<Navigate to="/modules/JavaScript" replace />} /> */}
-        {/* <Route path="/modules/:moduleTopics" element={<Modules />} /> */}
-        {/* <Route path="/modules/:moduleTopics/:topic" element={<BasicAssessment />} /> */}
-        {/* </Route> */}
-
-        {/*  <Route element={<Private auth={isAuthenticated} />}>
-          <Route path="/" element={<Registration />} />
-          <Route path="/login" element={<Login />} />
-        </Route> */}
-
-        {/* ПЕРВАЯ ВЕРСИЯ */}
-        <Route path="/" element={isAuthenticated ? <Nav /> : <Registration />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/profile" element={<Profile />} />
-        {/* <Route path="/modules/" element={<Modules />} /> */}
-        {/* если багов не выявится то удалить строчку выше и оставить вариант с Navigate */}
-        <Route path="/modules/" element={<Navigate to="/modules/JavaScript" replace />} />
-        <Route path="/modules/:moduleTopics" element={<Modules />} />
-        <Route path="/modules/:moduleTopics/:topic" element={<BasicAssessment />} />
+        )}
       </Routes>
     </BrowserRouter>
   );
