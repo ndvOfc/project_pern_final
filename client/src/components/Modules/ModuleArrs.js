@@ -1,20 +1,27 @@
 export const modulesArr = [
   {
-    id: 2,
+    id: 1,
     module: 'javaScript',
     // img: 'https://itproger.com/img/news/1580823783.jpg',
     img: '/imagePNG/js.png',
   },
   {
-    id: 1,
-    module: 'node',
+    id: 2,
+    module: 'express',
     // img: 'https://res.cloudinary.com/practicaldev/image/fetch/s--e_rqeB7o--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_880/https://cdn-images-1.medium.com/max/2400/1*FPtQLT2Zk-baHficCz_mXQ.png',
-    img: 'https://assets.website-files.com/60f5b6738a95b57fe76faba5/61d3b1c9df44e117afe6b006_express-logo.png',
+    img: '/imagePNG/noddee.png',
   },
   {
     id: 3,
-    module: 'express',
-    img: 'https://res.cloudinary.com/practicaldev/image/fetch/s--e_rqeB7o--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_880/https://cdn-images-1.medium.com/max/2400/1*FPtQLT2Zk-baHficCz_mXQ.png',
+    module: 'node',
+    // img: 'https://www.internet-technologies.ru/wp-content/uploads/2020/10/54696-850648.png',
+    img: '/imagePNG/express.png',
+  },
+  {
+    id: 4,
+    module: 'node',
+    // img: 'https://www.internet-technologies.ru/wp-content/uploads/2020/10/54696-850648.png',
+    img: '/imagePNG/react.png',
   },
 ];
 

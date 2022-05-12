@@ -1,15 +1,16 @@
 .bassicAssesment {
     display: flex;
-    justify-content: center;
+    /*justify-content: center;*/
     align-items: center;
-    min-height: 100vh;
+    /*min-height: 100vh;*/
     flex-direction: column;
 }
 
 .btn {
-    width: 35rem;
-    height: 5rem;
-    font-size: 30px;
+    /*width: 35rem;*/
+    width: -webkit-fill-available;
+    min-height: 5rem;
+    /*font-size: 30px;*/
 }
 
 .btn .textInButton {

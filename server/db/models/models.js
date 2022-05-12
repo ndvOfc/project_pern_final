@@ -18,6 +18,7 @@ const Progress = sequelize.define('progress', {
 
 const Modules = sequelize.define('module', {
   id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
+  img: { type: DataTypes.STRING, allowNull: true },
   titleModules: { type: DataTypes.STRING },
 });
 
@@ -49,8 +50,21 @@ const JSfunctionAnswer = sequelize.define('JSfunctionAnswer', {
   isCorrect: { type: DataTypes.BOOLEAN },
 });
 
+<<<<<<< HEAD
 User.hasMany(Progress);
 Progress.belongsTo(User);
+=======
+const JSES6Question = sequelize.define('JSES6Question', {
+  id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
+  question: { type: DataTypes.STRING },
+});
+
+const JSES6Answer = sequelize.define('JSES6Answer', {
+  id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
+  answer: { type: DataTypes.STRING },
+  isCorrect: { type: DataTypes.BOOLEAN },
+});
+>>>>>>> 38385a59e713552816010ea8a149a02215d3ac72
 
 Modules.hasOne(JSmodule);
 JSmodule.belongsTo(Modules);
@@ -67,6 +81,9 @@ JSbasicAnswer.belongsTo(JSbasicQuestion);
 JSfunctionQuestion.hasMany(JSfunctionAnswer);
 JSfunctionAnswer.belongsTo(JSfunctionQuestion);
 
+JSES6Question.hasMany(JSES6Answer);
+JSES6Answer.belongsTo(JSES6Question);
+
 module.exports = {
   User,
   Progress,
@@ -76,4 +93,6 @@ module.exports = {
   JSbasicAnswer,
   JSfunctionQuestion,
   JSfunctionAnswer,
+  JSES6Question,
+  JSES6Answer,
 };

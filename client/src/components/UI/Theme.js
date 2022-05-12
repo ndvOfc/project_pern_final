@@ -32,17 +32,17 @@ export const theme = createTheme({
     tonalOffset: 0.1,
     contrastThreshold: 3,
   },
-  // components: {
-  //   MuiButton: {
-  //     styleOverrides: {
-  //       root: {
-  //         '&.Mui-disabled': {
-  //           backgroundColor: '#44B4A4',
-  //           opacity: 0.9,
-  //           // color: '#c0c0c0',
-  //         },
-  //       },
-  //     },
-  //   },
-  // },
+  components: {
+    MuiButton: {
+      styleOverrides: {
+        root: {
+          '&.MuiButton-outlined': {
+            // backgroundColor: 'rgba(68,180,164,0.49)',
+            // color: 'white',
+            border: '2px solid',
+          },
+        },
+      },
+    },
+  },
 });

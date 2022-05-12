@@ -50,8 +50,10 @@ function AnswerButton({
         className={style.btn}
         onClick={onClick}
         size="large"
+        // sx={{ minHeight: '6vh', fontSize: '2vw' }}
         color={checked ? getColor() : 'primary'}
         variant={variant}
+        // sx={{backgroundColor: '#44B4A4', color: 'white'}}
         data-answ={list.isCorrect}
         data-selected={selected}
         mt={2}
