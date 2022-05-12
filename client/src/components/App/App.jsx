@@ -10,7 +10,6 @@ import Nav from '../Nav/Nav';
 import Profile from '../Profile/Profile';
 import BasicAssessment from '../BasicAssessment/BasicAssessment';
 import Private from '../Private/Private';
-import BasicAssessment2 from '../BasicAssessment/BasicAssessment2';
 import { fetchAuthPassportJs, fetchAuth } from '../../redux/thunk/userAsyncAction';
 import Loader from '../UI/Loader/Loader';
 

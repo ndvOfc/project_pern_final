@@ -10,6 +10,12 @@ const User = sequelize.define('user', {
   image: { type: DataTypes.STRING, allowNull: true },
 });
 
+const Progress = sequelize.define('progress', {
+  id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
+  titleTopic: { type: DataTypes.STRING, allowNull: true },
+  score: { type: DataTypes.INTEGER, allowNull: true },
+});
+
 const Modules = sequelize.define('module', {
   id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
   titleModules: { type: DataTypes.STRING },
@@ -43,6 +49,9 @@ const JSfunctionAnswer = sequelize.define('JSfunctionAnswer', {
   isCorrect: { type: DataTypes.BOOLEAN },
 });
 
+User.hasMany(Progress);
+Progress.belongsTo(User);
+
 Modules.hasOne(JSmodule);
 JSmodule.belongsTo(Modules);
 
@@ -60,6 +69,7 @@ JSfunctionAnswer.belongsTo(JSfunctionQuestion);
 
 module.exports = {
   User,
+  Progress,
   Modules,
   JSmodule,
   JSbasicQuestion,
