@@ -16,7 +16,7 @@ router.get(
   passport.authenticate('google', {
     // по дефолту стояло без модулей
     // successRedirect: '/auth/login/success',
-    successRedirect: `${process.env.CLIENT_URL}/modules/JavaScript`,
+    successRedirect: `${process.env.CLIENT_URL}/modules/JS`,
     failureRedirect: '/login/failed',
   }),
 );
@@ -28,7 +28,7 @@ router.get(
   '/github/callback',
   passport.authenticate('github', {
     // по дефолту стояло без модулей
-    successRedirect: `${process.env.CLIENT_URL}/modules/JavaScript`,
+    successRedirect: `${process.env.CLIENT_URL}/modules/JS`,
     failureRedirect: '/login/failed',
   }),
 );

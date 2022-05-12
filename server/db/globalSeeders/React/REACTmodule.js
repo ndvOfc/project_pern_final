@@ -2,7 +2,7 @@
 // noinspection JSNonASCIINames,NonAsciiCharacters
 
 const reactModuleSeedObject = {
-  Basics: 'ReactbasicQuestions', Functions: 'JSfunctionQuestions', ES6: 'JSES6Questions', OOP: 'JSOOPQuestions',
+  Basics: 'REACTbasicQuestions', Hooks: 'REACThooksQuestions',
 };
 
 module.exports = reactModuleSeedObject;
