@@ -1,10 +1,24 @@
 const {
-  // User,
   Modules,
   JSmodule,
-  JSbasicQuestions,
+  JSbasicQuestion,
   JSbasicAnswer,
+  JSfunctionQuestion,
+  JSfunctionAnswer,
+  JSES6Question,
+  JSES6Answer,
 } = require('../db/models/models');
+
+const allModels = [Modules,
+  JSmodule,
+  JSbasicQuestion,
+  JSbasicAnswer,
+  JSfunctionQuestion,
+  JSfunctionAnswer,
+  JSES6Question,
+  JSES6Answer];
+
+const currentModel = (model, params) => model.filter((el) => el.name === params)[0];
 
 class ModuleController {
   async getModules(req, res) {
@@ -21,17 +35,19 @@ class ModuleController {
     const module = await JSmodule.findAll({
       raw: true,
       where: { moduleId: id },
-      include: [{ model: JSbasicQuestions, include: [{ model: JSbasicAnswer }] }],
+      include: [{ model: JSbasicQuestion, include: [{ model: JSbasicAnswer }] }],
     });
     return res.status(200).json(module);
   }
 
   async getOneModule(req, res) {
     const { moduleTopics } = req.params;
+
+    const param = `${moduleTopics}module`;
     const module = await Modules.findAll({
       raw: true,
       where: { titleModules: moduleTopics },
-      include: [{ model: JSmodule }],
+      include: [{ model: currentModel(allModels, param) }],
     });
     return res.status(200).json(module);
   }
