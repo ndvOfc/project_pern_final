@@ -34,7 +34,7 @@ function Modules() {
   }, [dispatch]);
   // console.log(modules[0].img, '<<<<<<<<<<<<<<<<<<');
   return (
-    <Container className={css.Container} maxWidth="sm">
+    <Container className={css.Container} maxWidth="md">
       <Box className={css.Box}>
         <Box className={css.Slider}>
           <Swiper
