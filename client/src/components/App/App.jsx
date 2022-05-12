@@ -10,10 +10,7 @@ import Nav from '../Nav/Nav';
 import Profile from '../Profile/Profile';
 import BasicAssessment from '../BasicAssessment/BasicAssessment';
 import Private from '../Private/Private';
-<<<<<<< HEAD
-=======
 // import BasicAssessment2 from '../BasicAssessment/BasicAssessment2';
->>>>>>> 38385a59e713552816010ea8a149a02215d3ac72
 import { fetchAuthPassportJs, fetchAuth } from '../../redux/thunk/userAsyncAction';
 import Loader from '../UI/Loader/Loader';
 

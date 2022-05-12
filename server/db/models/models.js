@@ -50,10 +50,6 @@ const JSfunctionAnswer = sequelize.define('JSfunctionAnswer', {
   isCorrect: { type: DataTypes.BOOLEAN },
 });
 
-<<<<<<< HEAD
-User.hasMany(Progress);
-Progress.belongsTo(User);
-=======
 const JSES6Question = sequelize.define('JSES6Question', {
   id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
   question: { type: DataTypes.STRING },
@@ -64,7 +60,6 @@ const JSES6Answer = sequelize.define('JSES6Answer', {
   answer: { type: DataTypes.STRING },
   isCorrect: { type: DataTypes.BOOLEAN },
 });
->>>>>>> 38385a59e713552816010ea8a149a02215d3ac72
 
 Modules.hasOne(JSmodule);
 JSmodule.belongsTo(Modules);
