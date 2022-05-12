@@ -1,6 +1,9 @@
 const {
   Modules,
   JSmodule,
+  EXPRESSmodule,
+  REACTmodule,
+  NODEmodule,
   JSbasicQuestion,
   JSbasicAnswer,
   JSfunctionQuestion,
@@ -11,6 +14,9 @@ const {
 
 const allModels = [Modules,
   JSmodule,
+  EXPRESSmodule,
+  REACTmodule,
+  NODEmodule,
   JSbasicQuestion,
   JSbasicAnswer,
   JSfunctionQuestion,

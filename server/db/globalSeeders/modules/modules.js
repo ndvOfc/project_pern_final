@@ -3,6 +3,6 @@
 
 const modulesSeedArray = [
 
-  'JS', 'Express', 'React', 'Node',
+  'JS', 'EXPRESS', 'REACT', 'NODE',
 ];
 module.exports = modulesSeedArray;
