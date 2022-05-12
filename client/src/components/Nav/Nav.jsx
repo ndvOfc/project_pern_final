@@ -41,7 +41,7 @@ function Nav() {
         <Toolbar disableGutters sx={{ display: 'flex', justifyContent: 'space-between' }}>
           <Box
             sx={{ display: 'flex', ml: 5, cursor: 'pointer' }}
-            onClick={() => navigate('/modules/JavaScript')}
+            onClick={() => navigate('/modules/JS')}
           >
             <Typography>P.E.R.N. Stacker</Typography>
             <DeveloperModeIcon />

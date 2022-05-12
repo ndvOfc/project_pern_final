@@ -18,9 +18,9 @@ export const getTopics = (moduleTopics) => {
         const arr = [];
         res.map((el) =>
           arr.push({
-            topicTitle: el['JSmodule.titleThemes'],
-            topicId: el['JSmodule.id'],
-            paramData: el['JSmodule.paramData'],
+            topicTitle: el[`${moduleTopics}module.titleThemes`],
+            topicId: el[`${moduleTopics}module.id`],
+            paramData: el[`${moduleTopics}module.paramData`],
           })
         );
         return arr;

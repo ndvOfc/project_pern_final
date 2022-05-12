@@ -10,6 +10,12 @@ const User = sequelize.define('user', {
   image: { type: DataTypes.STRING, allowNull: true },
 });
 
+const Progress = sequelize.define('progress', {
+  id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
+  titleTopic: { type: DataTypes.STRING, allowNull: true },
+  score: { type: DataTypes.INTEGER, allowNull: true },
+});
+
 const Modules = sequelize.define('module', {
   id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
   img: { type: DataTypes.STRING, allowNull: true },
@@ -17,6 +23,24 @@ const Modules = sequelize.define('module', {
 });
 
 const JSmodule = sequelize.define('JSmodule', {
+  id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
+  titleThemes: { type: DataTypes.STRING },
+  paramData: { type: DataTypes.STRING },
+});
+
+const EXPRESSmodule = sequelize.define('EXPRESSmodule', {
+  id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
+  titleThemes: { type: DataTypes.STRING },
+  paramData: { type: DataTypes.STRING },
+});
+
+const REACTmodule = sequelize.define('REACTmodule', {
+  id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
+  titleThemes: { type: DataTypes.STRING },
+  paramData: { type: DataTypes.STRING },
+});
+
+const NODEmodule = sequelize.define('NODEmodule', {
   id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
   titleThemes: { type: DataTypes.STRING },
   paramData: { type: DataTypes.STRING },
@@ -55,8 +79,20 @@ const JSES6Answer = sequelize.define('JSES6Answer', {
   isCorrect: { type: DataTypes.BOOLEAN },
 });
 
+User.hasMany(Progress);
+Progress.belongsTo(User);
+
 Modules.hasOne(JSmodule);
 JSmodule.belongsTo(Modules);
+
+Modules.hasOne(EXPRESSmodule);
+EXPRESSmodule.belongsTo(Modules);
+
+Modules.hasOne(REACTmodule);
+REACTmodule.belongsTo(Modules);
+
+Modules.hasOne(NODEmodule);
+NODEmodule.belongsTo(Modules);
 
 JSmodule.hasOne(JSbasicQuestion);
 JSbasicQuestion.belongsTo(JSmodule);
@@ -75,8 +111,12 @@ JSES6Answer.belongsTo(JSES6Question);
 
 module.exports = {
   User,
+  Progress,
   Modules,
   JSmodule,
+  EXPRESSmodule,
+  REACTmodule,
+  NODEmodule,
   JSbasicQuestion,
   JSbasicAnswer,
   JSfunctionQuestion,

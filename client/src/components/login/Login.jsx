@@ -32,7 +32,7 @@ function Login() {
     dispatch(fetchLogin(data));
   }
   useEffect(() => {
-    if (status === 200) navigate('/modules/JavaScript');
+    if (status === 200) navigate('/modules/JS');
   }, [status, navigate]);
 
   // testing passport js

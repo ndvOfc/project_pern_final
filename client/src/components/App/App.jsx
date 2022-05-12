@@ -10,7 +10,6 @@ import Nav from '../Nav/Nav';
 import Profile from '../Profile/Profile';
 import BasicAssessment from '../BasicAssessment/BasicAssessment';
 import Private from '../Private/Private';
-// import BasicAssessment2 from '../BasicAssessment/BasicAssessment2';
 import { fetchAuthPassportJs, fetchAuth } from '../../redux/thunk/userAsyncAction';
 import Loader from '../UI/Loader/Loader';
 
@@ -34,12 +33,12 @@ function App() {
         <Route path="*" element={<Navigate to="/" />} />
         {isAuthenticated ? (
           <>
-            <Route path="/" element={<Navigate to="/modules/JavaScript" replace />} />
+            <Route path="/" element={<Navigate to="/modules/JS" replace />} />
             <Route path="/profile" element={<Profile />} />
             {/* <Route path="/modules" element={<Modules />} /> */}
-            <Route path="/modules" element={<Navigate to="/modules/JavaScript" replace />} />
-            <Route path="/login" element={<Navigate to="/modules/JavaScript" replace />} />
-            <Route path="/registration" element={<Navigate to="/modules/JavaScript" replace />} />
+            <Route path="/modules" element={<Navigate to="/modules/JS" replace />} />
+            <Route path="/login" element={<Navigate to="/modules/JS" replace />} />
+            <Route path="/registration" element={<Navigate to="/modules/JS" replace />} />
             <Route path="/modules/:moduleTopics" element={<Modules />} />
             <Route path="/modules/:moduleTopics/:topic" element={<BasicAssessment />} />
           </>
