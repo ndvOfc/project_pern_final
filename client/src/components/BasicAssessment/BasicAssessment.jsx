@@ -21,6 +21,7 @@ import { Link, useNavigate, useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { v4 } from 'uuid';
 import QuestionAnswerIcon from '@mui/icons-material/QuestionAnswer';
+import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
 import style from './BasicAssessment.module.css';
 import { getQuestions } from '../../redux/thunk/assesmentAsyncAction';
 import { getTopics } from '../../redux/thunk/moduleAsyncAction';
@@ -131,73 +132,117 @@ function BasicAssessment() {
   );
 
   return (
-    <Box className={style.bassicAssesment}>
-      {/* мой вариант */}
-      <Button variant="contained" sx={{ margin: 1 }} onClick={() => navigate(-1)}>
-        {/* дена вариант */}
-        {/* <Link to="/modules">Назад</Link> */}
-        Назад
-      </Button>
-      <Paper
-        elevation={3}
-        sx={{
-          background: '#FAE392FF',
-          padding: 3,
-          mb: 1,
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-        }}
-      >
-        {/* Дена */}
-        {/* <Button onClick={handleOpen}>Не шарю узнать правильный ответ</Button> */}
-        {/* мое */}
-        <Button variant="contained" color="dark" sx={{ marginBottom: 2 }} onClick={handleOpen}>
-          правильный ответ <QuestionAnswerIcon />
-        </Button>
-        <Typography variant="h4">
-          Question {currentQuestion + 1} of {questionList.length}
-        </Typography>
-        <Box mt={3} mb={2}>
-          <Typography variant="h6">
-            {' '}
-            {Parser(`${questionList[currentQuestion].question}`)}{' '}
+    <Container maxWidth="md">
+      <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+        {/* мой вариант */}
+        {/* <Button variant="contained" sx={{ margin: 1 }} onClick={() => navigate(-1)}> */}
+        {/*  /!* дена вариант *!/ */}
+        {/*  /!* <Link to="/modules">Назад</Link> *!/ */}
+        {/*  Назад */}
+        {/* </Button> */}
+        <Paper
+          elevation={3}
+          sx={{
+            minWidth: '40vw',
+            background: '#FAE392FF',
+            padding: 3,
+            mt: 2,
+            mb: 2,
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+            borderRadius: '20px',
+          }}
+        >
+          {/* Дена */}
+          {/* <Button onClick={handleOpen}>Не шарю узнать правильный ответ</Button> */}
+          {/* мое */}
+          <Box
+            sx={{
+              display: 'flex',
+              justifyContent: 'space-between',
+              alignItems: 'center',
+              width: '100%',
+            }}
+          >
+            <Button
+              sx={{ mb: 2, padding: 2, borderRadius: '50%' }}
+              variant="contained"
+              color="dark"
+              onClick={() => navigate(-1)}
+            >
+              {/* дена вариант */}
+              {/* <Link to="/modules">Назад</Link> */}
+              <ArrowBackIosNewIcon />
+            </Button>
+            <Button
+              sx={{ mb: 2, padding: 2, borderRadius: '50%' }}
+              variant="contained"
+              color="dark"
+              onClick={handleOpen}
+            >
+              <QuestionAnswerIcon />
+            </Button>
+          </Box>
+          <Typography variant="h4">
+            Question {currentQuestion + 1} of {questionList.length}
           </Typography>
-        </Box>
-      </Paper>
-      <Paper elevation={3} sx={{ padding: 4 }}>
-        {questionList[currentQuestion].answerList.map((list) => (
-          <AnswerButton
-            handleCorrectAnswer={handleCorrectAnswer}
-            key={list.id}
-            list={list}
-            checked={checked}
-          />
-        ))}
-      </Paper>
-      <Box mt={2}>
-        {!checked ? (
-          <Box mt={2}>
-            <Button mt={2} size="large" variant="contained" onClick={check}>
-              Ответить
-            </Button>
+          <Box mt={3} mb={2}>
+            <Typography variant="h6">
+              {' '}
+              {Parser(`${questionList[currentQuestion].question}`)}{' '}
+            </Typography>
           </Box>
-        ) : (
-          <Box />
-        )}
+        </Paper>
+        <Paper
+          elevation={3}
+          sx={{ padding: 4, minWidth: '60vw', backgroundColor: '#eee', borderRadius: '20px' }}
+        >
+          {questionList[currentQuestion].answerList.map((list) => (
+            <AnswerButton
+              handleCorrectAnswer={handleCorrectAnswer}
+              key={list.id}
+              list={list}
+              checked={checked}
+            />
+          ))}
+          <Box mt={2} sx={{ display: 'flex', justifyContent: 'center' }}>
+            {!checked ? (
+              <Box mt={2}>
+                <Button
+                  mt={2}
+                  sx={{ minWidth: '30vw', height: '4vh' }}
+                  variant="contained"
+                  onClick={check}
+                >
+                  Ответить
+                </Button>
+              </Box>
+            ) : (
+              <Box />
+            )}
 
-        {checked ? (
-          <Box mt={2}>
-            <Button mt={2} score={score} size="large" onClick={nextQuestion} variant="contained">
-              Следующий вопрос
-            </Button>
+            {checked ? (
+              <Box mt={2}>
+                <Button
+                  mt={2}
+                  score={score}
+                  sx={{ minWidth: '30vw', height: '4vh' }}
+                  onClick={nextQuestion}
+                  variant="contained"
+                >
+                  Следующий вопрос
+                </Button>
+              </Box>
+            ) : (
+              <Box />
+            )}
           </Box>
-        ) : (
-          <Box />
-        )}
+        </Paper>
+
+        <AnswerModal correctAnswer={correctAnswer} open={open} handleClose={handleClose} />
       </Box>
-      <AnswerModal correctAnswer={correctAnswer} open={open} handleClose={handleClose} />
-    </Box>
+    </Container>
   );
 }
 

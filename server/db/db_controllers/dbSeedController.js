@@ -6,18 +6,24 @@
 require('dotenv').config();
 const modulesSeedArray = require('../globalSeeders/modules/modules');
 const jsModuleSeedObject = require('../globalSeeders/JS/JSmodule');
+const expressModuleSeedObject = require('../globalSeeders/Express/EXPRESSmodule');
+const reactModuleSeedObject = require('../globalSeeders/React/REACTmodule');
+const nodeModuleSeedObject = require('../globalSeeders/Node/NODEmodule');
 const jsBasicQuestionsArray = require('../globalSeeders/JS/JSbasic/questions');
 const jsBasicAnswersObject = require('../globalSeeders/JS/JSbasic/answers');
 const jsFunctionQuestionsArray = require('../globalSeeders/JS/JSfunction/questions');
 const jsFunctionAnswersObject = require('../globalSeeders/JS/JSfunction/answers');
 const jsES6Questions = require('../globalSeeders/JS/ES6/questions');
-const jsES6Answers = require('../globalSeeders/JS/ES6/answers')
+const jsES6Answers = require('../globalSeeders/JS/ES6/answers');
 const sequelize = require('../db');
 
 const {
   User,
   Modules,
   JSmodule,
+  EXPRESSmodule,
+  REACTmodule,
+  NODEmodule,
   JSbasicQuestion,
   JSbasicAnswer,
   JSfunctionQuestion,
@@ -30,9 +36,11 @@ const {
 module.exports = {
   // seed modules & JS module
   seedModules: async () => {
-    for (const i in modulesSeedArray) {
+    for (const i of modulesSeedArray) {
       await Modules.create({
-        titleModules: modulesSeedArray[i],
+        titleModules: i.titleModules,
+        img: i.image,
+        // titleModules: modulesSeedArray[i], старый код. поменял на forof
 
       });
     }
@@ -42,6 +50,30 @@ module.exports = {
         titleThemes: key,
         paramData: jsModuleSeedObject[key],
         moduleId: 1,
+      });
+    }
+
+    for (const key in expressModuleSeedObject) {
+      await EXPRESSmodule.create({
+        titleThemes: key,
+        paramData: expressModuleSeedObject[key],
+        moduleId: 2,
+      });
+    }
+
+    for (const key in reactModuleSeedObject) {
+      await REACTmodule.create({
+        titleThemes: key,
+        paramData: reactModuleSeedObject[key],
+        moduleId: 3,
+      });
+    }
+
+    for (const key in nodeModuleSeedObject) {
+      await NODEmodule.create({
+        titleThemes: key,
+        paramData: nodeModuleSeedObject[key],
+        moduleId: 4,
       });
     }
   },
