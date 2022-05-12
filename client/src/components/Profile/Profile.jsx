@@ -1,23 +1,10 @@
 /* eslint-disable react/jsx-props-no-spreading */
 /* eslint-disable react/require-default-props */
 /* eslint-disable no-unused-vars */
-import {
-  Box,
-  CardMedia,
-  Grid,
-  Paper,
-  Card,
-  CardContent,
-  IconButton,
-  CardActions,
-  Typography,
-  Tab,
-  Tabs,
-} from '@mui/material';
+import { Box, CardMedia, Paper, CardContent, Typography, Tab, Tabs } from '@mui/material';
 import { styled } from '@mui/material/styles';
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import LogoutIcon from '@mui/icons-material/Logout';
 import { useSelector } from 'react-redux';
 import style from './Profile.module.css';
 import { staticProfile, getAchivment } from './static';
@@ -36,7 +23,7 @@ function TabPanel(props) {
       {...other}
     >
       {value === index && (
-        <Box sx={{ p: 3 }}>
+        <Box>
           <Typography>{children}</Typography>
         </Box>
       )}
@@ -76,81 +63,88 @@ function Profile() {
   };
 
   return (
-    <Box sx={{ minWidth: '90vw', margin: '20px 8px' }}>
-      <Grid container spacing={1}>
-        <Grid item xs={4}>
-          <Item>
-            <CardMedia
-              src={user.image}
-              alt="name"
-              title="name"
-              sx={{ maxWidth: '40vw', objectFit: 'fill' }}
-              component="img"
-            />
-            <CardContent sx={{ textAlign: 'left', display: 'flex', flexDirection: 'column' }}>
-              <Paper elevation={4} className={style.profile_text}>
-                Имя:{user.name}
-              </Paper>
-              <Paper elevation={4} className={style.profile_text}>
-                email:{user.email}
-              </Paper>
-              <Paper elevation={4} className={style.profile_text}>
-                Прогресс:{user.progress}
-              </Paper>
-            </CardContent>
-            <CardActions>
-              <IconButton>
-                <LogoutIcon />
-              </IconButton>
-            </CardActions>
-          </Item>
-        </Grid>
-        <Grid item xs={12}>
-          <Item>
-            <Tabs
-              sx={{ justifyContent: 'center' }}
-              value={value}
-              onChange={handleChange}
-              aria-label="basic tabs example"
-            >
-              <Tab label="Статистика" {...a11yProps(0)} />
-              <Tab label="Достижения" {...a11yProps(1)} />
-              <Tab label="Унижения" {...a11yProps(2)} />
-            </Tabs>
-            <TabPanel value={value} index={0}>
-              <Box
-                sx={{
-                  display: 'flex',
-                  flexWrap: 'wrap',
-                  margin: 'auto',
-                  width: 'auto',
-                  justifyContent: 'center',
-                }}
-                centered
-              >
-                {stat.map((el) => {
-                  return <CardAchivment key={el.name} el={el} />;
-                })}
-              </Box>
-            </TabPanel>
-            <TabPanel value={value} index={1}>
-              <Box
-                sx={{
-                  display: 'flex',
-                  flexWrap: 'wrap',
-                  margin: 'auto',
-                  width: 'auto',
-                  justifyContent: 'center',
-                }}
-              >
-                {getAchivment.map((el) => (
-                  <CardAchiv key={el.name} value={el} />
-                ))}
-              </Box>
-            </TabPanel>
-          </Item>
-        </Grid>
-      </Grid>
+    <Box sx={{ minWidth: '90vw', margin: '2vh 2vw', display: 'flex' }}>
+      <Paper
+        sx={{
+          padding: 2,
+          minWidth: '30vw',
+          marginRight: 1,
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+        }}
+      >
+        <CardMedia
+          src={user.image}
+          alt="name"
+          title="name"
+          sx={{ maxWidth: '30vw', objectFit: 'fill', borderRadius: '5px' }}
+          component="img"
+        />
+        <CardContent
+          sx={{
+            textAlign: 'left',
+            display: 'flex',
+            flexDirection: 'column',
+            justifyContent: 'center',
+            alignItems: 'center',
+          }}
+        >
+          <Paper elevation={4} className={style.profile_text} sx={{ padding: 1, minWidth: '30vw' }}>
+            Имя: {user.name}
+          </Paper>
+          <Paper elevation={4} className={style.profile_text} sx={{ padding: 1, minWidth: '30vw' }}>
+            email: {user.email}
+          </Paper>
+          <Paper elevation={4} className={style.profile_text} sx={{ padding: 1, minWidth: '30vw' }}>
+            Прогресс: {user.progress}
+          </Paper>
+        </CardContent>
+      </Paper>
+
+      <Paper>
+        <Tabs
+          sx={{ justifyContent: 'center' }}
+          value={value}
+          onChange={handleChange}
+          aria-label="basic tabs example"
+        >
+          <Tab label="Статистика" {...a11yProps(0)} />
+          <Tab label="Достижения" {...a11yProps(1)} />
+          <Tab label="Унижения" {...a11yProps(2)} />
+        </Tabs>
+        <TabPanel value={value} index={0}>
+          <Box
+            sx={{
+              display: 'flex',
+              flexWrap: 'wrap',
+              margin: 'auto',
+              width: 'auto',
+              justifyContent: 'center',
+            }}
+            centered
+          >
+            {stat.map((el) => {
+              return <CardAchivment key={el.name} el={el} />;
+            })}
+          </Box>
+        </TabPanel>
+        <TabPanel value={value} index={1}>
+          <Box
+            sx={{
+              display: 'flex',
+              flexWrap: 'wrap',
+              margin: 'auto',
+              width: 'auto',
+              justifyContent: 'center',
+            }}
+          >
+            {getAchivment.map((el) => (
+              <CardAchiv key={el.name} value={el} />
+            ))}
+          </Box>
+        </TabPanel>
+      </Paper>
     </Box>
   );
 }

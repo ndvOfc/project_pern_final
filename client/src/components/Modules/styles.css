@@ -6,7 +6,7 @@
 .swiper-slide {
     text-align: center;
     font-size: 18px;
-    background: #fff;
+    /*background-color: red;*/
     border-radius: 9px;
 
     /* Center slide text vertically */
@@ -25,15 +25,17 @@
 }
 
 .swiper-slide img {
+    /*background-color: rgba(0, 0, 0, 0%);*/
+    background-color: #fff;
     display: block;
-    width: 100%;
-    height: 15vh;
-    object-fit: fill;
-    border-radius: 5px;
+    /*min-width: 20vw;*/
+    /*min-height: 15vh;*/
+    /*object-fit: cover;*/
+    /*border-radius: 5px;*/
 }
 
 .swiper {
-    width: 50vw;
-    height: 100%;
+    /*width: 70vw;*/
+    /*height: 100%;*/
     margin: 2vw auto;
 }
