@@ -1,7 +1,7 @@
 /* eslint-disable no-restricted-syntax,guard-for-in */
 // noinspection JSNonASCIINames,NonAsciiCharacters
 
-const ReactbasicQuestions = [
+const REACTbasicQuestions = [
   'Что такое Node JS ?',
   'Какая функция позволяет отображать содержимое страницы React на HTML-странице?',
   'React отслеживает, какие элементы были изменены, добавлены или удалены из списка с помощью:',
@@ -10,7 +10,7 @@ const ReactbasicQuestions = [
   'Какой самый маленький строительный блок ReactJS?',
   'Ref используется на ссылки на элемент/компонент, возвращаемый:',
 ];
-module.exports = ReactbasicQuestions;
+module.exports = REACTbasicQuestions;
 
 
 среда выполнения кода на JavaScript, которая позволяет транслировать вызовы на языке JavaScript в машинный код

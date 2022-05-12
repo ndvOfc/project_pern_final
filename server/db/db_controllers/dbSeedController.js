@@ -15,6 +15,10 @@ const jsFunctionQuestionsArray = require('../globalSeeders/JS/JSfunction/questio
 const jsFunctionAnswersObject = require('../globalSeeders/JS/JSfunction/answers');
 const jsES6Questions = require('../globalSeeders/JS/ES6/questions');
 const jsES6Answers = require('../globalSeeders/JS/ES6/answers');
+const REACTbasicAnswers = require('../globalSeeders/React/ReactBasic/answers');
+const REACTbasicQuestions = require('../globalSeeders/React/ReactBasic/questions');
+const EXPRESSbasicAnswers = require('../globalSeeders/Express/ExpressBasic/answers');
+const EXPRESSbasicQuestions = require('../globalSeeders/Express/ExpressBasic/questions');
 const sequelize = require('../db');
 
 const {
@@ -30,17 +34,21 @@ const {
   JSfunctionAnswer,
   JSES6Question,
   JSES6Answer,
+  ReactbasicAnswer,
+  ReactbasicQuestion,
+  ExpressbasicAnswer,
+  ExpressbasicQuestion,
 
 } = require('../models/models');
 
 module.exports = {
   // seed modules & JS module
   seedModules: async () => {
-    for (const i of modulesSeedArray) {
+    for (const i in modulesSeedArray) {
       await Modules.create({
-        titleModules: i.titleModules,
-        img: i.image,
-        // titleModules: modulesSeedArray[i], старый код. поменял на forof
+        titleModules: modulesSeedArray[i].titleModules,
+        img: modulesSeedArray[i].image,
+        // titleModules: modulesSeedArray[i], старый код.
 
       });
     }
@@ -125,6 +133,40 @@ module.exports = {
         answer: key,
         isCorrect: jsES6Answers[key][1],
         JSES6QuestionId: jsES6Answers[key][0],
+      });
+    }
+  },
+
+  seedJSReact: async () => {
+    for (const key in ReactbasicQuestions) {
+      await ReactbasicQuestion.create({
+        question: ReactbasicQuestions[key],
+        JSmoduleId: 1,
+      });
+    }
+
+    for (const key in ReactbasicAnswers) {
+      await ReactbasicAnswer.create({
+        answer: key,
+        isCorrect: ReactbasicAnswers[key][0],
+        ReactbasicQuestionId: ReactbasicAnswers[key][1],
+      });
+    }
+  },
+
+  seedJSExpress: async () => {
+    for (const key in EXPRESSbasicQuestions) {
+      await ExpressbasicQuestion.create({
+        question: EXPRESSbasicQuestions[key],
+        JSmoduleId: 1,
+      });
+    }
+
+    for (const key in EXPRESSbasicAnswers) {
+      await ExpressbasicAnswer.create({
+        answer: key,
+        isCorrect: EXPRESSbasicAnswers[key][0],
+        ExpressbasicQuestionId: EXPRESSbasicAnswers[key][1],
       });
     }
   },
