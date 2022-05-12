@@ -2,7 +2,6 @@
 // noinspection JSNonASCIINames,NonAsciiCharacters
 
 const modulesSeedArray = [
-  'JavaScript', 'Express', 'React',
-
+  'JavaScript', 'Express', 'React', 'Node',
 ];
 module.exports = modulesSeedArray;
