@@ -2,7 +2,7 @@
 // noinspection JSNonASCIINames,NonAsciiCharacters
 
 const expressModuleSeedObject = {
-  Basics: 'ReactbasicQuestions', Functions: 'JSfunctionQuestions', ES6: 'JSES6Questions', OOP: 'JSOOPQuestions',
+  Basics: 'ExpressbasicQuestions',
 };
 
 module.exports = expressModuleSeedObject;
