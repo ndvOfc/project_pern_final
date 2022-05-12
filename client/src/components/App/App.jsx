@@ -36,7 +36,8 @@ function App() {
           <>
             <Route path="/" element={<Navigate to="/modules/JavaScript" replace />} />
             <Route path="/profile" element={<Profile />} />
-            <Route path="/modules/" element={<Modules />} />
+            {/* <Route path="/modules" element={<Modules />} /> */}
+            <Route path="/modules" element={<Navigate to="/modules/JavaScript" replace />} />
             <Route path="/login" element={<Navigate to="/modules/JavaScript" replace />} />
             <Route path="/registration" element={<Navigate to="/modules/JavaScript" replace />} />
             <Route path="/modules/:moduleTopics" element={<Modules />} />

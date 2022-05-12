@@ -5,13 +5,13 @@ import React, { useEffect, useRef, useState } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Container, Box } from '@mui/material';
 import { useDispatch, useSelector } from 'react-redux';
-import { Navigation } from 'swiper';
-// import { FaBeer } from 'react-icons/fa';
+import { Navigation, Pagination } from 'swiper';
+
 import ModuleItem from './ModuleItem/ModuleItem';
 import TopicsItem from './TopicsItem/TopicsItem';
 import { getModules, getTopics } from '../../redux/thunk/moduleAsyncAction';
 // import Loader from '../UI/Loader/Loader';
-import { modulesArr } from './ModuleArrs';
+// import { modulesArr } from './ModuleArrs';
 import css from './Modules.module.css';
 // Import Swiper styles
 // eslint-disable-next-line import/no-unresolved
@@ -32,30 +32,33 @@ function Modules() {
     dispatch(getModules());
     dispatch(getTopics('JavaScript'));
   }, [dispatch]);
-
+  // console.log(modules[0].img, '<<<<<<<<<<<<<<<<<<');
   return (
     <Container className={css.Container} maxWidth="sm">
       <Box className={css.Box}>
         <Box className={css.Slider}>
           <Swiper
-            slidesPerView={2}
+            slidesPerView={3}
             spaceBetween={30}
-            slidesPerGroup={2}
+            slidesPerGroup={3}
             loop={false}
             loopFillGroupWithBlank={true}
             navigation={true}
-            modules={[Navigation]}
+            modules={[Navigation, Pagination]}
+            pagination={{
+              clickable: true,
+            }}
             className="mySwiper"
           >
             {modules.length &&
-              modules.map((module, index) => (
+              modules.map((module) => (
                 <SwiperSlide key={module.id}>
                   <ModuleItem
                     className={css.ModuleItem}
                     key={module.id}
                     titleModules={module.titleModules}
                     // временное решение пока нет картирки в бд
-                    img={modulesArr[index].img}
+                    img={module.img}
                   />
                 </SwiperSlide>
               ))}

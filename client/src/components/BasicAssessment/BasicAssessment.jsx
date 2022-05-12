@@ -11,14 +11,16 @@ import {
   FormGroup,
   LinearProgress,
   ListItemText,
+  Paper,
   Stack,
   TextField,
   Typography,
 } from '@mui/material';
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
-import { Link, useParams } from 'react-router-dom';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { v4 } from 'uuid';
+import QuestionAnswerIcon from '@mui/icons-material/QuestionAnswer';
 import style from './BasicAssessment.module.css';
 import { getQuestions } from '../../redux/thunk/assesmentAsyncAction';
 import { getTopics } from '../../redux/thunk/moduleAsyncAction';
@@ -61,6 +63,8 @@ function BasicAssessment() {
   const { questionList } = useSelector((state) => state.questionsReducer);
   const [currentQuestion, setCurrentQuestion] = useState(0);
 
+  // для фикса стилей линка. Ден - если все норм, удали коммент
+  const navigate = useNavigate();
   // Подсчет очков и правильных ответов
   const [score, setScore] = useState(0);
 
@@ -128,27 +132,49 @@ function BasicAssessment() {
 
   return (
     <Box className={style.bassicAssesment}>
-      <Button>
-        <Link to="/modules">Назад</Link>
+      {/* мой вариант */}
+      <Button variant="contained" sx={{ margin: 1 }} onClick={() => navigate(-1)}>
+        {/* дена вариант */}
+        {/* <Link to="/modules">Назад</Link> */}
+        Назад
       </Button>
-      <Button onClick={handleOpen}>Не шарю узнать правильный ответ</Button>
-      <Typography variant="h4">
-        Question {currentQuestion + 1} of {questionList.length}
-      </Typography>
-      <Box mt={3} mb={2}>
-        <Typography variant="h6">
-          {' '}
-          {Parser(`${questionList[currentQuestion].question}`)}{' '}
+      <Paper
+        elevation={3}
+        sx={{
+          background: '#FAE392FF',
+          padding: 3,
+          mb: 1,
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+        }}
+      >
+        {/* Дена */}
+        {/* <Button onClick={handleOpen}>Не шарю узнать правильный ответ</Button> */}
+        {/* мое */}
+        <Button variant="contained" color="dark" sx={{ marginBottom: 2 }} onClick={handleOpen}>
+          правильный ответ <QuestionAnswerIcon />
+        </Button>
+        <Typography variant="h4">
+          Question {currentQuestion + 1} of {questionList.length}
         </Typography>
-      </Box>
-      {questionList[currentQuestion].answerList.map((list) => (
-        <AnswerButton
-          handleCorrectAnswer={handleCorrectAnswer}
-          key={list.id}
-          list={list}
-          checked={checked}
-        />
-      ))}
+        <Box mt={3} mb={2}>
+          <Typography variant="h6">
+            {' '}
+            {Parser(`${questionList[currentQuestion].question}`)}{' '}
+          </Typography>
+        </Box>
+      </Paper>
+      <Paper elevation={3} sx={{ padding: 4 }}>
+        {questionList[currentQuestion].answerList.map((list) => (
+          <AnswerButton
+            handleCorrectAnswer={handleCorrectAnswer}
+            key={list.id}
+            list={list}
+            checked={checked}
+          />
+        ))}
+      </Paper>
       <Box mt={2}>
         {!checked ? (
           <Box mt={2}>
