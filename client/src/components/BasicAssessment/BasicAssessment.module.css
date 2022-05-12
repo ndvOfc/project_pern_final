@@ -9,8 +9,8 @@
 .btn {
     /*width: 35rem;*/
     width: -webkit-fill-available;
-    height: 5rem;
-    font-size: 30px;
+    min-height: 5rem;
+    /*font-size: 30px;*/
 }
 
 .btn .textInButton {

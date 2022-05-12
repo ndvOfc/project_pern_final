@@ -7,6 +7,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node app.js",
     "dev": "nodemon app.js --ignore ./sessions",
+    "bc": "npm rm bcrypt && npm i bcrypt",
     "db-sync": "node db/db_controllers/dbController.js syncDb",
     "db-sync-f": "node db/db_controllers/dbController.js syncDbForce",
     "db-seed": "node db/db_controllers/dbSeedController.js seedDb",
