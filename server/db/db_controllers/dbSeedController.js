@@ -5,6 +5,7 @@
 
 require('dotenv').config();
 const modulesSeedArray = require('../globalSeeders/modules/modules');
+const moduleSeedArrayImg = require('../globalSeeders/modules/imgModules');
 const jsModuleSeedObject = require('../globalSeeders/JS/JSmodule');
 const expressModuleSeedObject = require('../globalSeeders/Express/EXPRESSmodule');
 const reactModuleSeedObject = require('../globalSeeders/React/REACTmodule');
@@ -36,14 +37,22 @@ const {
 module.exports = {
   // seed modules & JS module
   seedModules: async () => {
-    for (const i of modulesSeedArray) {
+    for (const i in modulesSeedArray) {
       await Modules.create({
-        titleModules: i.titleModules,
-        img: i.image,
-        // titleModules: modulesSeedArray[i], старый код. поменял на forof
+        // titleModules: i.titleModules,
+        img: moduleSeedArrayImg[i],
+        titleModules: modulesSeedArray[i],
 
       });
     }
+
+    // for (const key in moduleSeedArrayImg) {
+    //   await Modules.update(
+    //     console.log('>>>>>>>>>>>>>> ', key),
+    //     { img: moduleSeedArrayImg[key] },
+    //     { where: { id: key + 1 } },
+    //   );
+    // }
 
     for (const key in jsModuleSeedObject) {
       await JSmodule.create({
