@@ -20,6 +20,7 @@ import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 import { Link, useNavigate, useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { v4 } from 'uuid';
+import QuestionAnswerIcon from '@mui/icons-material/QuestionAnswer';
 import style from './BasicAssessment.module.css';
 import { getQuestions } from '../../redux/thunk/assesmentAsyncAction';
 import { getTopics } from '../../redux/thunk/moduleAsyncAction';
@@ -131,7 +132,9 @@ function BasicAssessment() {
 
   return (
     <Box className={style.bassicAssesment}>
+      {/* мой вариант */}
       <Button variant="contained" sx={{ margin: 1 }} onClick={() => navigate(-1)}>
+        {/* дена вариант */}
         {/* <Link to="/modules">Назад</Link> */}
         Назад
       </Button>
@@ -146,8 +149,12 @@ function BasicAssessment() {
           alignItems: 'center',
         }}
       >
-        <Button onClick={handleOpen}>Не шарю узнать правильный ответ</Button>
-
+        {/* Дена */}
+        {/* <Button onClick={handleOpen}>Не шарю узнать правильный ответ</Button> */}
+        {/* мое */}
+        <Button variant="contained" color="dark" sx={{ marginBottom: 2 }} onClick={handleOpen}>
+          правильный ответ <QuestionAnswerIcon />
+        </Button>
         <Typography variant="h4">
           Question {currentQuestion + 1} of {questionList.length}
         </Typography>
