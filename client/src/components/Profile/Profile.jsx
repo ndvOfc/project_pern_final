@@ -44,14 +44,6 @@ function a11yProps(index) {
 }
 
 function Profile() {
-  const Item = styled(Paper)(({ theme }) => ({
-    backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
-    ...theme.typography.body2,
-    padding: theme.spacing(),
-    textAlign: 'center',
-    color: theme.palette.text.secondary,
-    minHeight: '20vh',
-  }));
   const { user } = useSelector((state) => state.userReducer); // начинаем отсуюда
   console.log(user);
   const [stat, setStat] = useState(staticProfile);
@@ -63,43 +55,57 @@ function Profile() {
   };
 
   return (
-    <Box sx={{ minWidth: '90vw', margin: '2vh 2vw', display: 'flex' }}>
+    <Box sx={{ minWidth: '90vw', margin: '2vh 2vw', display: 'flex', flexDirection: 'column' }}>
       <Paper
         sx={{
           padding: 2,
-          minWidth: '30vw',
+          // minWidth: '30vw',
           marginRight: 1,
           display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
+          alignItems: 'flex-start',
+          mb: 1,
         }}
       >
         <CardMedia
           src={user.image}
           alt="name"
           title="name"
-          sx={{ maxWidth: '30vw', objectFit: 'fill', borderRadius: '5px' }}
+          // sx={{ minWidth: '30vw', objectFit: 'fill', borderRadius: '5px' }}
+          sx={{ maxWidth: '30vw', borderRadius: '5px' }}
           component="img"
         />
-        <CardContent
+        <Box
           sx={{
             textAlign: 'left',
             display: 'flex',
             flexDirection: 'column',
-            justifyContent: 'center',
-            alignItems: 'center',
+            justifyContent: 'start',
+            alignItems: 'start',
+            minWidth: '40vw',
           }}
         >
-          <Paper elevation={4} className={style.profile_text} sx={{ padding: 1, minWidth: '30vw' }}>
-            Имя: {user.name}
-          </Paper>
-          <Paper elevation={4} className={style.profile_text} sx={{ padding: 1, minWidth: '30vw' }}>
-            email: {user.email}
-          </Paper>
-          <Paper elevation={4} className={style.profile_text} sx={{ padding: 1, minWidth: '30vw' }}>
+          <Typography
+            elevation={4}
+            className={style.profile_text}
+            sx={{ paddingLeft: 1, width: '100%', fontSize: '5vw' }}
+          >
+            {user.name}
+          </Typography>
+          <Typography
+            elevation={4}
+            className={style.profile_text}
+            sx={{ paddingLeft: 1, width: '100%', fontSize: '4vw' }}
+          >
+            {user.email}
+          </Typography>
+          <Typography
+            elevation={4}
+            className={style.profile_text}
+            sx={{ paddingLeft: 1, width: '100%', fontSize: '4vw' }}
+          >
             Прогресс: {user.progress}
-          </Paper>
-        </CardContent>
+          </Typography>
+        </Box>
       </Paper>
 
       <Paper>
@@ -111,22 +117,23 @@ function Profile() {
         >
           <Tab label="Статистика" {...a11yProps(0)} />
           <Tab label="Достижения" {...a11yProps(1)} />
-          <Tab label="Унижения" {...a11yProps(2)} />
         </Tabs>
         <TabPanel value={value} index={0}>
-          <Box
-            sx={{
-              display: 'flex',
-              flexWrap: 'wrap',
-              margin: 'auto',
-              width: 'auto',
-              justifyContent: 'center',
-            }}
-            centered
-          >
-            {stat.map((el) => {
-              return <CardAchivment key={el.name} el={el} />;
-            })}
+          <Box>
+            <Box
+              sx={{
+                display: 'flex',
+                flexWrap: 'wrap',
+                marginLeft: '2rem',
+                // width: 'auto',
+                justifyContent: 'start',
+              }}
+              centered
+            >
+              {stat.map((el) => {
+                return <CardAchivment key={el.name} el={el} />;
+              })}
+            </Box>
           </Box>
         </TabPanel>
         <TabPanel value={value} index={1}>
