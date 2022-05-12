@@ -30,9 +30,11 @@ const {
 module.exports = {
   // seed modules & JS module
   seedModules: async () => {
-    for (const i in modulesSeedArray) {
+    for (const i of modulesSeedArray) {
       await Modules.create({
-        titleModules: modulesSeedArray[i],
+        titleModules: i.titleModules,
+        img: i.image,
+        // titleModules: modulesSeedArray[i], старый код. поменял на forof
 
       });
     }

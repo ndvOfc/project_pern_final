@@ -1,12 +1,20 @@
 /* eslint-disable no-restricted-syntax,guard-for-in */
 // noinspection JSNonASCIINames,NonAsciiCharacters
 
-const modulesSeedArray = [
-<<<<<<< HEAD
-  'JavaScript', 'Express', 'React', 'Node',
-=======
+
+/* const modulesSeedArray = [
+  {}
   'JavaScript', 'React', 'Node', 'Express',
 
->>>>>>> 38385a59e713552816010ea8a149a02215d3ac72
+];
+module.exports = modulesSeedArray; */
+
+// заменил на массив объектов
+const modulesSeedArray = [
+  { titleModules: 'JavaScript', image: '/imagePNG/js.png' },
+  { titleModules: 'React', image: '/imagePNG/react-2.png' },
+  { titleModules: 'Node', image: '/imagePNG/node-jaga.png' },
+  { titleModules: 'Express', image: '/imagePNG/express_node.png' },
+
 ];
 module.exports = modulesSeedArray;
