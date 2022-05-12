@@ -14,6 +14,10 @@ module.exports = ReactbasicQuestions;
 
 
 Как сделать перенаправление на определенный URL?
-res.locate
-res.redirect
-res.link
+res.locate()
+res.redirect()
+res.links()
+
+Что делает функция res.type(type)?
+Изменяет заголовок HTTP Content-Type на тип MIME
+

@@ -90,7 +90,7 @@ VARIABLES_ENV = production PORT=3000 $ [runtime] [program_name]
 
 
 
-Как проверит какая версия Node.js установлена? 
+Как проверить какая версия Node.js установлена? 
 
 node -v true
 npm node -v
