@@ -5,7 +5,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Container, Box } from '@mui/material';
 import { useDispatch, useSelector } from 'react-redux';
-import { Navigation } from 'swiper';
+import { Navigation, Pagination } from 'swiper';
 
 import ModuleItem from './ModuleItem/ModuleItem';
 import TopicsItem from './TopicsItem/TopicsItem';
@@ -44,7 +44,10 @@ function Modules() {
             loop={false}
             loopFillGroupWithBlank={true}
             navigation={true}
-            modules={[Navigation]}
+            modules={[Navigation, Pagination]}
+            pagination={{
+              clickable: true,
+            }}
             className="mySwiper"
           >
             {modules.length &&
