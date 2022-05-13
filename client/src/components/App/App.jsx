@@ -13,6 +13,7 @@ import Private from '../Private/Private';
 import { fetchAuthPassportJs, fetchAuth } from '../../redux/thunk/userAsyncAction';
 import Loader from '../UI/Loader/Loader';
 import Interview from '../Interview/Interview';
+// import EndTestCard from '../UI/EndTestCard/EndTestCard';
 
 function App() {
   const dispatch = useDispatch();
@@ -36,7 +37,6 @@ function App() {
           <>
             <Route path="/" element={<Navigate to="/modules/JS" replace />} />
             <Route path="/profile" element={<Profile />} />
-            {/* <Route path="/modules" element={<Modules />} /> */}
             <Route path="/modules" element={<Navigate to="/modules/JS" replace />} />
             <Route path="/login" element={<Navigate to="/modules/JS" replace />} />
             <Route path="/registration" element={<Navigate to="/modules/JS" replace />} />

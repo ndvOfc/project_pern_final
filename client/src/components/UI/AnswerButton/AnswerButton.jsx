@@ -1,46 +1,36 @@
-/* eslint-disable */
+/* eslint-disable react/prop-types,no-unused-vars */
 import React, { useCallback, useRef, useState } from 'react';
 import { Box, Button, Typography } from '@mui/material';
 import style from '../../BasicAssessment/BasicAssessment.module.css';
 
-function AnswerButton({
-  list,
-  checked,
-    handleCorrectAnswer,
-}) {
-
-
+function AnswerButton({ list, checked, handleCorrectAnswer, setAnyAnswered }) {
   const ref = useRef();
   // console.log('REF', ref.current.getAttribute('data-answ'));
 
   const [isCorrect, setIsCorrect] = useState();
-  const [selected, setSelected] = useState('')
+  const [selected, setSelected] = useState('');
   const [variant, setVariant] = useState('outlined');
 
   // Здесь пишем логику отрисовки кнопок
   const getColor = () => {
     if (isCorrect && selected === 'selected') {
-      return 'success'
+      return 'success';
     }
     if (!isCorrect && selected === 'selected') {
-      return 'error'
+      return 'error';
     }
 
-      return 'primary'
-
+    return 'primary';
   };
 
-
-
-  console.log('getColor',getColor())
+  // console.log('getColor', getColor());
   const onClick = (e) => {
     setSelected('selected');
-    setVariant('contained');
+    setAnyAnswered((prev) => !prev);
+    setVariant((prev) => (prev === 'outlined' ? 'contained' : 'outlined'));
     handleCorrectAnswer(e);
     setIsCorrect(JSON.parse(ref.current.getAttribute('data-answ')));
   };
-
-
 
   return (
     <Box mt={2}>

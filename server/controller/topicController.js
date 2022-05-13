@@ -1,6 +1,8 @@
-/* eslint-disable no-restricted-syntax,guard-for-in */
+/* eslint-disable no-restricted-syntax,guard-for-in,no-inner-declarations,max-len,class-methods-use-this,consistent-return */
 // eslint-disable-next-line no-empty-pattern
 const {
+  User,
+  Progress,
 } = require('../db/models/models');
 
 const sequelize = require('../db/db');
@@ -41,6 +43,33 @@ class TopicController {
       });
 
       res.json(questionList);
+    } catch (e) {
+      console.log(e);
+    }
+  }
+
+  async postResults(req, res) {
+    try {
+      const { score, topic, userId } = req.body;
+
+      const findProgress = await Progress.findOne({ where: { userId, titleTopic: topic } });
+
+      if (!findProgress) {
+        await Progress.create({ titleTopic: topic, score, userId });
+      } else if (findProgress.score < score) {
+        await Progress.update({ titleTopic: topic, score, userId }, { where: { userId, titleTopic: topic } });
+      }
+
+      const data = await Progress.findAll({ where: { userId } });
+      // eslint-disable-next-line no-return-assign
+      const fullProgress = data.reduce((acc, el) => acc + el.score, 0);
+
+      const prevScore = await User.findByPk(userId);
+      const totalScore = prevScore.progress + fullProgress;
+
+      await User.update({ progress: totalScore }, { where: { id: userId } });
+
+      return res.json({ score, topic, userId });
     } catch (e) {
       console.log(e);
     }

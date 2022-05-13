@@ -4,5 +4,4 @@
 const modulesSeedArray = [
   'JS', 'EXPRESS', 'REACT', 'NODE',
 ];
-
 module.exports = modulesSeedArray;
