@@ -7,11 +7,9 @@ import { Grid, Paper, Button, TextField, Typography, Link, Box, Container } from
 import { useForm } from 'react-hook-form';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import { purple } from '@mui/material/colors';
 import GoogleIcon from '@mui/icons-material/Google';
 import GitHubIcon from '@mui/icons-material/GitHub';
 import { fetchLogin } from '../../redux/thunk/userAsyncAction';
-import GoogleButton from '../UI/SocialButtons/GoogleButton';
 import VerticalLinearStepper from '../UI/Stepper/Stepper';
 
 // import FormControlLabel from '@material-ui/core/FormControlLabel';
@@ -35,9 +33,7 @@ function Login() {
     if (status === 200) navigate('/modules/JS');
   }, [status, navigate]);
 
-  // testing passport js
   const toGoogle = () => {
-    // после это должно быть в санке наверное - пока тут
     window.open('http://localhost:5001/auth/google', '_self');
   };
   const toGitHub = () => {
@@ -46,16 +42,24 @@ function Login() {
 
   return (
     <Container maxWidth="md">
-      <Box sx={{ display: 'flex', alignItems: 'start', marginTop: '3vh' }}>
+      <Box
+        sx={{
+          display: 'flex',
+          flexWrap: 'wrap-reverse',
+          alignItems: 'start',
+          justifyContent: 'center',
+          marginTop: '3vh',
+        }}
+      >
         {/* STEPPER */}
-        <Paper elevation={10} sx={{ maxWidth: '25rem', padding: '1rem' }}>
+        <Paper elevation={10} sx={{ width: '300px', padding: '1rem', margin: '7px' }}>
           <VerticalLinearStepper />
         </Paper>
         {/* LOGIN */}
         <Paper
           elevation={10}
           // style={paperStyle}
-          sx={{ padding: '10px', marginLeft: '3vw' }}
+          sx={{ padding: '3vh 3vw', marginLeft: '3vw', width: '300px', margin: '7px' }}
         >
           <Box sx={{ textAlign: 'center' }}>
             <h2>Войти</h2>

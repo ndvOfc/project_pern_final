@@ -37,7 +37,7 @@ function Nav() {
 
   return (
     <AppBar position="static">
-      <Container maxWidth="xl">
+      <Container maxWidth="md">
         <Toolbar disableGutters sx={{ display: 'flex', justifyContent: 'space-between' }}>
           <Box
             sx={{ display: 'flex', ml: 5, cursor: 'pointer' }}
@@ -71,7 +71,14 @@ function Nav() {
             >
               <MenuItem>
                 <Typography textAlign="center">
-                  <Typography onClick={() => navigate('/modules')}>На главную</Typography>
+                  <Typography onClick={() => navigate('/modules')}>Главная</Typography>
+                </Typography>
+              </MenuItem>
+              <MenuItem>
+                <Typography textAlign="center">
+                  <Typography onClick={() => navigate('/interview')}>
+                    Подготовка к собесам
+                  </Typography>
                 </Typography>
               </MenuItem>
               <MenuItem>

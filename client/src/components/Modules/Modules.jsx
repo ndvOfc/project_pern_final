@@ -65,7 +65,6 @@ function Modules() {
           </Swiper>
         </Box>
       </Box>
-
       <TopicsItem />
     </Container>
   );
