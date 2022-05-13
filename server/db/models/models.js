@@ -79,6 +79,28 @@ const JSES6Answer = sequelize.define('JSES6Answer', {
   isCorrect: { type: DataTypes.BOOLEAN },
 });
 
+const REACTbasicQuestion = sequelize.define('REACTbasicQuestion', {
+  id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
+  question: { type: DataTypes.STRING },
+});
+
+const REACTbasicAnswer = sequelize.define('REACTbasicAnswer', {
+  id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
+  answer: { type: DataTypes.STRING },
+  isCorrect: { type: DataTypes.BOOLEAN },
+});
+
+const EXPRESSbasicQuestion = sequelize.define('EXPRESSbasicQuestion', {
+  id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
+  question: { type: DataTypes.STRING },
+});
+
+const EXPRESSbasicAnswer = sequelize.define('EXPRESSbasicAnswer', {
+  id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
+  answer: { type: DataTypes.STRING },
+  isCorrect: { type: DataTypes.BOOLEAN },
+});
+
 User.hasMany(Progress);
 Progress.belongsTo(User);
 
@@ -123,4 +145,8 @@ module.exports = {
   JSfunctionAnswer,
   JSES6Question,
   JSES6Answer,
+  REACTbasicQuestion,
+  REACTbasicAnswer,
+  EXPRESSbasicQuestion,
+  EXPRESSbasicAnswer,
 };
