@@ -63,13 +63,11 @@ class TopicController {
       const data = await Progress.findAll({ where: { userId } });
       // eslint-disable-next-line no-return-assign
       const fullProgress = data.reduce((acc, el) => acc + el.score, 0);
-      console.log(fullProgress);
 
       const prevScore = await User.findByPk(userId);
       const totalScore = prevScore.progress + fullProgress;
 
       await User.update({ progress: totalScore }, { where: { id: userId } });
-      // await upsert({ titleTopic: topic, score, userId }, { userId });
 
       return res.json({ score, topic, userId });
     } catch (e) {

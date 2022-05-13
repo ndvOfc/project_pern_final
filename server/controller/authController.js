@@ -1,7 +1,9 @@
-const { User } = require('../db/models/models');
+/* eslint-disable max-len */
+const { User, Progress } = require('../db/models/models');
 
 class AuthController {
   async authSuccess(req, res) {
+    console.log('INFO >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> ', req.user);
     if (req.user) {
       if (req.user.emails) {
         const userDto = await User.findOne({ where: { email: req.user.emails[0].value } });
