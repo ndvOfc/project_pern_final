@@ -31,7 +31,7 @@ function App() {
     <BrowserRouter>
       {isAuthenticated && <Nav />}
       <Routes>
-        {/* <Route path="*" element={<Navigate to="/" />} /> */}
+        <Route path="*" element={<Navigate to="/" />} />
         {isAuthenticated ? (
           <>
             <Route path="/" element={<Navigate to="/modules/JS" replace />} />
