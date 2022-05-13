@@ -2,7 +2,6 @@
 /* eslint-disable react/require-default-props */
 /* eslint-disable no-unused-vars */
 import { Box, CardMedia, Paper, CardContent, Typography, Tab, Tabs } from '@mui/material';
-import { styled } from '@mui/material/styles';
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { useSelector } from 'react-redux';

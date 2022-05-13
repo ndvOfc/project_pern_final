@@ -10,21 +10,24 @@ import Typography from '@mui/material/Typography';
 
 const steps = [
   {
-    label: 'Select campaign settings',
-    description: `For each ad campaign that you create, you can control how much
-              you're willing to spend on clicks and conversions, which networks
-              and geographical locations you want your ads to show on, and more.`,
+    label: 'О НАС',
+    description: `P.E.R.N. Stacker - это проект трех разработчиков - энтузиастов. Эти ребята взяли
+    на себя казалось бы непосильную задачу - помочь начинающим разработчикам понять, готовы ли они преодолеть
+    все преграды на пути к первому оферу.`,
   },
   {
-    label: 'Create an ad group',
-    description: 'An ad group contains one or more ads which target a shared set of keywords.',
+    label: 'Стек технологий "PERN"',
+    description: `Это один из самых востребованых стеков, который включает в себя: 
+     Postgres - реляционная база данных.
+     Express - это минималистичный и гибкий веб-фреймворк для приложений Node.js.
+     React - библиотека для отрисовки пользовательских интерфейсов.
+     Node - это платформа с открытым исходным кодом для работы с языком JavaScript, построенная на движке Chrome V8.
+      Она позволяет писать серверный код для веб-приложений и динамических веб-страниц.`,
   },
   {
-    label: 'Create an ad',
-    description: `Try out different ad text to see what brings in the most customers,
-              and learn how to enhance your ads using features like ad extensions.
-              If you run into any problems with your ads, find out how to tell if
-              they're running and how to resolve approval issues.`,
+    label: 'Что ты получишь?',
+    description: `Пройдя наши чек листы, ты закроешь раз и навсегда все свои сомнения по поводу своей готовности в
+    заветной работы программистом.`,
   },
 ];
 
@@ -58,10 +61,10 @@ export default function VerticalLinearStepper() {
               <Box sx={{ mb: 2 }}>
                 <div>
                   <Button variant="contained" onClick={handleNext} sx={{ mt: 1, mr: 1 }}>
-                    {index === steps.length - 1 ? 'Finish' : 'Continue'}
+                    {index === steps.length - 1 ? 'Финиш' : 'Далее'}
                   </Button>
                   <Button disabled={index === 0} onClick={handleBack} sx={{ mt: 1, mr: 1 }}>
-                    Back
+                    Назад
                   </Button>
                 </div>
               </Box>
@@ -71,9 +74,9 @@ export default function VerticalLinearStepper() {
       </Stepper>
       {activeStep === steps.length && (
         <Paper square elevation={0} sx={{ p: 3 }}>
-          <Typography>All steps completed - you&apos;re finished</Typography>
-          <Button onClick={handleReset} sx={{ mt: 1, mr: 1 }}>
-            Reset
+          <Typography>На этом все - скорее заходи в профиль!</Typography>
+          <Button variant="contained" onClick={handleReset} sx={{ mt: 1, mr: 1 }}>
+            Заново?
           </Button>
         </Paper>
       )}

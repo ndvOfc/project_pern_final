@@ -3,7 +3,7 @@
 /* eslint-disable class-methods-use-this */
 const bcrypt = require('bcrypt');
 const { validationResult } = require('express-validator');
-const { User } = require('../db/models/models');
+const { User, Progress } = require('../db/models/models');
 
 class UserController {
   async registration(req, res) {
@@ -48,7 +48,7 @@ class UserController {
       const isPassword = await bcrypt.compare(password, candidate.password);
       if (isPassword && candidate) {
         req.session.user = candidate;
-        // console.log(req.session);
+        console.log('CANDIDATE >>>>>>>>>>>>>>>>>>>>>>>>>> ', candidate);
         return res.status(200).json({ message: 'Вы успешно авторизовались', status: 200, user: candidate });
       }
       return res.status(401).json({ message: 'Неправильный пароль', status: 401 });
@@ -60,7 +60,6 @@ class UserController {
   async auth(req, res) {
     try {
       if (req.session.user) {
-        console.log(req.session, 'SESSION AUTH');
         return res.status(200).json({ user: req.session.user, status: 200 });
       } return res.status(404).json({ user: req.session.user, status: '' });
     } catch (e) {

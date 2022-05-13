@@ -1,3 +1,4 @@
+/* eslint-disable class-methods-use-this */
 // eslint-disable-next-line import/no-unresolved
 const {
   Modules,
