@@ -1,3 +1,4 @@
+// eslint-disable-next-line import/no-unresolved
 const {
   Modules,
   JSmodule,
@@ -50,11 +51,13 @@ class ModuleController {
     const { moduleTopics } = req.params;
 
     const param = `${moduleTopics}module`;
+    console.log('>>>>>>>>>>>>>>> ', param);
     const module = await Modules.findAll({
       raw: true,
       where: { titleModules: moduleTopics },
       include: [{ model: currentModel(allModels, param) }],
     });
+    // console.log(' >>>>>>>>>>>>>>>>>>  ', module);
     return res.status(200).json(module);
   }
 }

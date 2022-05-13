@@ -10,8 +10,8 @@ function CardAchivment({ el }) {
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
-        maxWidth: '15vw',
-        margin: '4vw',
+        maxWidth: '3rem',
+        margin: '5vw',
       }}
     >
       <CardMedia src={el.image} alt={el.name} title="Achivment" component="img" />

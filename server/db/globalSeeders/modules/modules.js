@@ -2,10 +2,6 @@
 // noinspection JSNonASCIINames,NonAsciiCharacters
 
 const modulesSeedArray = [
-  { titleModules: 'JAVASCRIPT', image: '/imagePNG/js.png' },
-  { titleModules: 'REACT', image: '/imagePNG/react.png' },
-  { titleModules: 'NODE', image: '/imagePNG/node-jaga.png' },
-  { titleModules: 'EXPRESS', image: '/imagePNG/express_node.png' },
-
+  'JS', 'EXPRESS', 'REACT', 'NODE',
 ];
 module.exports = modulesSeedArray;
