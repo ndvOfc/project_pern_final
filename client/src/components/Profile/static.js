@@ -35,24 +35,24 @@ export const staticProfile = [
       return `${((this.passTask / this.allTask) * 100).toFixed()}%`;
     },
   },
-  // {
-  //   name: 'CSS',
-  //   image: '/imagePNG/css-3.png',
-  //   passTask: 15,
-  //   allTask: 60,
-  //   progress: function prog() {
-  //     return `${((this.passTask / this.allTask) * 100).toFixed()}%`;
-  //   },
-  // },
-  // {
-  //   name: 'HTML',
-  //   image: '/imagePNG/html-5.png',
-  //   passTask: 15,
-  //   allTask: 70,
-  //   progress: function prog() {
-  //     return `${((this.passTask / this.allTask) * 100).toFixed()}%`;
-  //   },
-  // },
+  {
+    name: 'CSS',
+    image: '/imagePNG/css-3.png',
+    passTask: 15,
+    allTask: 60,
+    progress: function prog() {
+      return `${((this.passTask / this.allTask) * 100).toFixed()}%`;
+    },
+  },
+  {
+    name: 'HTML',
+    image: '/imagePNG/html-5.png',
+    passTask: 15,
+    allTask: 70,
+    progress: function prog() {
+      return `${((this.passTask / this.allTask) * 100).toFixed()}%`;
+    },
+  },
 ];
 
 // картинки не отображаются почему ?
@@ -71,8 +71,8 @@ export const getAchivment = [
   },
 ];
 
-/* export const getProfile =[
-
-] */
-
-// аватар профиля
+export const getAchivmentFun = (progress) => {
+  if (progress < 10) return getAchivment.slice(0, 1);
+  if (progress < 20) return getAchivment.slice(0, 2);
+  return getAchivment;
+};
