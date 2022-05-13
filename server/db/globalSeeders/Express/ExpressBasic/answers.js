@@ -3,7 +3,7 @@
 /* eslint-disable no-restricted-syntax,guard-for-in,quote-props */
 // noinspection JSNonASCIINames,NonAsciiCharacters
 
-const ExpressbasicAnswers = {
+const EXPRESSbasicAnswers = {
   'res.locate()': [false, 1],
   'res.redirect()': [true, 1],
   'res.links()': [false, 1],
@@ -21,4 +21,4 @@ const ExpressbasicAnswers = {
 
 };
 
-module.exports = ExpressbasicAnswers;
+module.exports = EXPRESSbasicAnswers;

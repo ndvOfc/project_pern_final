@@ -34,10 +34,10 @@ const {
   JSfunctionAnswer,
   JSES6Question,
   JSES6Answer,
-  ReactbasicAnswer,
-  ReactbasicQuestion,
-  ExpressbasicAnswer,
-  ExpressbasicQuestion,
+  REACTbasicQuestion,
+  REACTbasicAnswer,
+  EXPRESSbasicAnswer,
+  EXPRESSbasicQuestion,
 
 } = require('../models/models');
 
@@ -137,33 +137,33 @@ module.exports = {
     }
   },
 
-  seedJSReact: async () => {
-    for (const key in ReactbasicQuestions) {
-      await ReactbasicQuestion.create({
-        question: ReactbasicQuestions[key],
-        JSmoduleId: 1,
+  seedReact: async () => {
+    for (const key in REACTbasicQuestions) {
+      await REACTbasicQuestion.create({
+        question: REACTbasicQuestions[key],
+        REACTmoduleId: 1,
       });
     }
 
-    for (const key in ReactbasicAnswers) {
-      await ReactbasicAnswer.create({
+    for (const key in REACTbasicAnswers) {
+      await REACTbasicAnswer.create({
         answer: key,
-        isCorrect: ReactbasicAnswers[key][0],
-        ReactbasicQuestionId: ReactbasicAnswers[key][1],
+        isCorrect: REACTbasicAnswers[key][0],
+        ReactbasicQuestionId: REACTbasicAnswers[key][1],
       });
     }
   },
 
-  seedJSExpress: async () => {
+  seedExpress: async () => {
     for (const key in EXPRESSbasicQuestions) {
-      await ExpressbasicQuestion.create({
+      await EXPRESSbasicQuestion.create({
         question: EXPRESSbasicQuestions[key],
-        JSmoduleId: 1,
+        EXPRESSmoduleId: 1,
       });
     }
 
     for (const key in EXPRESSbasicAnswers) {
-      await ExpressbasicAnswer.create({
+      await EXPRESSbasicAnswer.create({
         answer: key,
         isCorrect: EXPRESSbasicAnswers[key][0],
         ExpressbasicQuestionId: EXPRESSbasicAnswers[key][1],
@@ -183,6 +183,8 @@ module.exports = {
     await this.seedJSBasic();
     await this.seedJSFunction();
     await this.seedJSES6();
+    await this.seedExpress();
+    await this.seedReact();
   },
 };
 // !necessary for running functions separately
