@@ -62,8 +62,9 @@ function BasicAssessment() {
   const dispatch = useDispatch();
   const { moduleTopics, topic } = params;
   const { questionList } = useSelector((state) => state.questionsReducer);
+  const { user } = useSelector((state) => state.userReducer);
   const [currentQuestion, setCurrentQuestion] = useState(0);
-
+  console.log('USERDATA>>>>>>>>>>>>>>>>>>>>>', user);
   // для фикса стилей линка. Ден - если все норм, удали коммент
   const navigate = useNavigate();
   // Подсчет очков и правильных ответов
@@ -72,6 +73,8 @@ function BasicAssessment() {
   // Для модалки
   const [open, setOpen] = useState(false);
   const [correctAnswer, setCorrectAnswer] = useState('');
+  const [anyAnswered, setAnyAnswered] = useState(false);
+
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 
@@ -89,6 +92,7 @@ function BasicAssessment() {
     setCurrentQuestion(currentQuestion + 1);
     setChecked(false);
     setCorrectAnswer('');
+    setAnyAnswered(false);
   }, [currentQuestion]);
 
   // Подсчет очков
@@ -101,7 +105,8 @@ function BasicAssessment() {
     },
     [score]
   );
-  console.log(questionList.length);
+
+  console.log(score);
   console.log(`STATE CORRECT ANSWER>>>>>>>>> ${correctAnswer}`);
   const check = () => {
     setChecked(true);
@@ -117,12 +122,13 @@ function BasicAssessment() {
       </Box>
     );
   }
-  console.log(`Current>>>> ${currentQuestion}`);
-  console.log(`Question Length >>>>>> ${questionList.length}`);
+  console.log(anyAnswered);
+  // console.log(`Current>>>> ${currentQuestion}`);
+  // console.log(`Question Length >>>>>> ${questionList.length}`);
   if (currentQuestion === questionList.length) {
     return (
       <Box>
-        <EndTestCard questionLength={questionsLength} score={score} />
+        <EndTestCard userData={user} topic={topic} questionLength={questionsLength} score={score} />
       </Box>
     );
   }
@@ -201,42 +207,51 @@ function BasicAssessment() {
           {questionList[currentQuestion].answerList.map((list) => (
             <AnswerButton
               handleCorrectAnswer={handleCorrectAnswer}
+              setAnyAnswered={setAnyAnswered}
               key={list.id}
               list={list}
               checked={checked}
             />
           ))}
           <Box mt={2} sx={{ display: 'flex', justifyContent: 'center' }}>
-            {!checked ? (
-              <Box mt={2}>
-                <Button
-                  mt={2}
-                  sx={{ minWidth: '30vw', height: '4vh' }}
-                  variant="contained"
-                  onClick={check}
-                >
-                  Ответить
-                </Button>
-              </Box>
-            ) : (
-              <Box />
-            )}
+            <Box>
+              {!anyAnswered ? (
+                <Box />
+              ) : (
+                <Box>
+                  {!checked ? (
+                    <Box mt={2}>
+                      <Button
+                        mt={2}
+                        sx={{ minWidth: '30vw', height: '4vh' }}
+                        variant="contained"
+                        onClick={check}
+                      >
+                        Ответить
+                      </Button>
+                    </Box>
+                  ) : (
+                    <Box />
+                  )}
 
-            {checked ? (
-              <Box mt={2}>
-                <Button
-                  mt={2}
-                  score={score}
-                  sx={{ minWidth: '30vw', height: '4vh' }}
-                  onClick={nextQuestion}
-                  variant="contained"
-                >
-                  Следующий вопрос
-                </Button>
-              </Box>
-            ) : (
-              <Box />
-            )}
+                  {checked ? (
+                    <Box mt={2}>
+                      <Button
+                        mt={2}
+                        score={score}
+                        sx={{ minWidth: '30vw', height: '4vh' }}
+                        onClick={nextQuestion}
+                        variant="contained"
+                      >
+                        Следующий вопрос
+                      </Button>
+                    </Box>
+                  ) : (
+                    <Box />
+                  )}
+                </Box>
+              )}
+            </Box>
           </Box>
         </Paper>
 

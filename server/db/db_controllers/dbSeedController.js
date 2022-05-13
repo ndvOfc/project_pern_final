@@ -150,7 +150,7 @@ module.exports = {
       await REACTbasicAnswer.create({
         answer: key,
         isCorrect: REACTbasicAnswers[key][0],
-        ReactbasicQuestionId: REACTbasicAnswers[key][1],
+        REACTbasicQuestionId: REACTbasicAnswers[key][1],
       });
     }
   },
@@ -167,7 +167,7 @@ module.exports = {
       await EXPRESSbasicAnswer.create({
         answer: key,
         isCorrect: EXPRESSbasicAnswers[key][0],
-        ExpressbasicQuestionId: EXPRESSbasicAnswers[key][1],
+        EXPRESSbasicQuestionId: EXPRESSbasicAnswers[key][1],
       });
     }
   },
