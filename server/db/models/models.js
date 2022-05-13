@@ -131,6 +131,12 @@ JSfunctionAnswer.belongsTo(JSfunctionQuestion);
 JSES6Question.hasMany(JSES6Answer);
 JSES6Answer.belongsTo(JSES6Question);
 
+REACTbasicQuestion.hasMany(REACTbasicAnswer);
+REACTbasicAnswer.belongsTo(REACTbasicQuestion);
+
+EXPRESSbasicQuestion.hasMany(EXPRESSbasicAnswer);
+EXPRESSbasicAnswer.belongsTo(EXPRESSbasicQuestion);
+
 module.exports = {
   User,
   Progress,

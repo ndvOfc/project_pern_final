@@ -62,8 +62,9 @@ function BasicAssessment() {
   const dispatch = useDispatch();
   const { moduleTopics, topic } = params;
   const { questionList } = useSelector((state) => state.questionsReducer);
+  const { user } = useSelector((state) => state.userReducer);
   const [currentQuestion, setCurrentQuestion] = useState(0);
-
+  console.log('USERDATA>>>>>>>>>>>>>>>>>>>>>', user);
   // для фикса стилей линка. Ден - если все норм, удали коммент
   const navigate = useNavigate();
   // Подсчет очков и правильных ответов
@@ -127,7 +128,7 @@ function BasicAssessment() {
   if (currentQuestion === questionList.length) {
     return (
       <Box>
-        <EndTestCard questionLength={questionsLength} score={score} />
+        <EndTestCard userData={user} topic={topic} questionLength={questionsLength} score={score} />
       </Box>
     );
   }

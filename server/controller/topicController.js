@@ -45,6 +45,16 @@ class TopicController {
       console.log(e);
     }
   }
+
+  async postResults(req, res) {
+    try {
+      const results = req.body;
+      console.log('RESULTS FROM REQ BODY >>>>>>>>>>>>>>>>>>>>  ', results);
+      return res.json(results);
+    } catch (e) {
+      console.log(e);
+    }
+  }
 }
 
 module.exports = new TopicController();
