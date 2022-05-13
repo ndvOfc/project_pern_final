@@ -71,7 +71,14 @@ function Nav() {
             >
               <MenuItem>
                 <Typography textAlign="center">
-                  <Typography onClick={() => navigate('/modules')}>На главную</Typography>
+                  <Typography onClick={() => navigate('/modules')}>Главная</Typography>
+                </Typography>
+              </MenuItem>
+              <MenuItem>
+                <Typography textAlign="center">
+                  <Typography onClick={() => navigate('/interview')}>
+                    Подготовка к собесам
+                  </Typography>
                 </Typography>
               </MenuItem>
               <MenuItem>
