@@ -22,6 +22,7 @@ import 'swiper/css/pagination';
 // eslint-disable-next-line import/no-unresolved
 import 'swiper/css/navigation';
 import './styles.css';
+import Interview from '../Interview/Interview';
 
 function Modules() {
   const dispatch = useDispatch();
@@ -65,8 +66,10 @@ function Modules() {
           </Swiper>
         </Box>
       </Box>
-
       <TopicsItem />
+      <Box>
+        <Interview />
+      </Box>
     </Container>
   );
 }

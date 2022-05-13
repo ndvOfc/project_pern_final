@@ -12,6 +12,7 @@ import BasicAssessment from '../BasicAssessment/BasicAssessment';
 import Private from '../Private/Private';
 import { fetchAuthPassportJs, fetchAuth } from '../../redux/thunk/userAsyncAction';
 import Loader from '../UI/Loader/Loader';
+import Interview from '../Interview/Interview';
 
 function App() {
   const dispatch = useDispatch();
@@ -30,7 +31,7 @@ function App() {
     <BrowserRouter>
       {isAuthenticated && <Nav />}
       <Routes>
-        <Route path="*" element={<Navigate to="/" />} />
+        {/* <Route path="*" element={<Navigate to="/" />} /> */}
         {isAuthenticated ? (
           <>
             <Route path="/" element={<Navigate to="/modules/JS" replace />} />
@@ -41,6 +42,8 @@ function App() {
             <Route path="/registration" element={<Navigate to="/modules/JS" replace />} />
             <Route path="/modules/:moduleTopics" element={<Modules />} />
             <Route path="/modules/:moduleTopics/:topic" element={<BasicAssessment />} />
+            {/* interview test */}
+            <Route path="/interview" element={<Interview />} />
           </>
         ) : (
           <>

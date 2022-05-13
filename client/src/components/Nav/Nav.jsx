@@ -37,7 +37,7 @@ function Nav() {
 
   return (
     <AppBar position="static">
-      <Container maxWidth="xl">
+      <Container maxWidth="md">
         <Toolbar disableGutters sx={{ display: 'flex', justifyContent: 'space-between' }}>
           <Box
             sx={{ display: 'flex', ml: 5, cursor: 'pointer' }}
