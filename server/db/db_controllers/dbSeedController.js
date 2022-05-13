@@ -20,6 +20,8 @@ const REACTbasicAnswers = require('../globalSeeders/React/ReactBasic/answers');
 const REACTbasicQuestions = require('../globalSeeders/React/ReactBasic/questions');
 const EXPRESSbasicAnswers = require('../globalSeeders/Express/ExpressBasic/answers');
 const EXPRESSbasicQuestions = require('../globalSeeders/Express/ExpressBasic/questions');
+const NODEbasicQuestions = require('../globalSeeders/Node/NodeBasic/questions');
+const NODEbasicAnswers = require('../globalSeeders/Node/NodeBasic/answers');
 const sequelize = require('../db');
 
 const {
@@ -39,6 +41,8 @@ const {
   REACTbasicAnswer,
   EXPRESSbasicAnswer,
   EXPRESSbasicQuestion,
+  NODEbasicQuestion,
+  NODEbasicAnswer,
 
 } = require('../models/models');
 
@@ -172,6 +176,23 @@ module.exports = {
     }
   },
 
+  seedNode: async () => {
+    for (const key in NODEbasicQuestions) {
+      await NODEbasicQuestion.create({
+        question: NODEbasicQuestions[key],
+        NODEmoduleId: 1,
+      });
+    }
+
+    for (const key in NODEbasicAnswers) {
+      await NODEbasicAnswer.create({
+        answer: key,
+        isCorrect: NODEbasicAnswers[key][0],
+        NODEbasicQuestionId: NODEbasicAnswers[key][1],
+      });
+    }
+  },
+
   test: async () => {
     console.log('FOR TESTING');
     for (const key in jsModuleSeedObject) {
@@ -186,6 +207,7 @@ module.exports = {
     await this.seedJSES6();
     await this.seedExpress();
     await this.seedReact();
+    await this.seedNode();
   },
 };
 // !necessary for running functions separately

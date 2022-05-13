@@ -45,7 +45,8 @@ function a11yProps(index) {
 
 function Profile() {
   const { user } = useSelector((state) => state.userReducer); // начинаем отсуюда
-  console.log(user);
+  const { modules } = useSelector((state) => state.modulesReducer);
+  console.log(modules);
   const [stat, setStat] = useState(staticProfile);
   // const [  , setStat] = useState(getAchivment);
   const [value, setValue] = React.useState(0);
@@ -130,8 +131,8 @@ function Profile() {
               }}
               centered
             >
-              {stat.map((el) => {
-                return <CardAchivment key={el.name} el={el} />;
+              {modules.map((el) => {
+                return <CardAchivment key={el.titleModules} el={el} />;
               })}
             </Box>
           </Box>

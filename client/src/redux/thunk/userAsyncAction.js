@@ -4,6 +4,7 @@ export const fetchRegistration = (body) => {
   return (dispatch) => {
     fetch('http://localhost:5001/api/registration', {
       method: 'post',
+      credentials: 'include',
       headers: {
         Accept: 'application/json',
         'Content-Type': 'application/json',
