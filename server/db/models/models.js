@@ -101,6 +101,17 @@ const EXPRESSbasicAnswer = sequelize.define('EXPRESSbasicAnswer', {
   isCorrect: { type: DataTypes.BOOLEAN },
 });
 
+const NODEbasicQuestion = sequelize.define('NODEbasicQuestion', {
+  id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
+  question: { type: DataTypes.STRING },
+});
+
+const NODEbasicAnswer = sequelize.define('NODEbasicAnswer', {
+  id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
+  answer: { type: DataTypes.STRING },
+  isCorrect: { type: DataTypes.BOOLEAN },
+});
+
 User.hasMany(Progress);
 Progress.belongsTo(User);
 
@@ -137,6 +148,9 @@ REACTbasicAnswer.belongsTo(REACTbasicQuestion);
 EXPRESSbasicQuestion.hasMany(EXPRESSbasicAnswer);
 EXPRESSbasicAnswer.belongsTo(EXPRESSbasicQuestion);
 
+NODEbasicQuestion.hasMany(NODEbasicAnswer);
+NODEbasicAnswer.belongsTo(NODEbasicQuestion);
+
 module.exports = {
   User,
   Progress,
@@ -155,4 +169,6 @@ module.exports = {
   REACTbasicAnswer,
   EXPRESSbasicQuestion,
   EXPRESSbasicAnswer,
+  NODEbasicQuestion,
+  NODEbasicAnswer,
 };

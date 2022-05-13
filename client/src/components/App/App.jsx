@@ -19,7 +19,7 @@ function App() {
   const dispatch = useDispatch();
 
   const { isAuthenticated, isloaded } = useSelector((state) => state.userReducer);
-  console.log(isAuthenticated);
+  // console.log(isAuthenticated);
 
   useEffect(() => {
     dispatch(fetchAuth());

@@ -6,7 +6,7 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { useSelector } from 'react-redux';
 import style from './Profile.module.css';
-import { staticProfile, getAchivment } from './static';
+import { staticProfile, getAchivment, getAchivmentFun } from './static';
 import CardAchivment from '../CardAchivment/CardAchivment';
 import CardAchiv from '../CardAchiv/CardAchiv';
 
@@ -43,12 +43,13 @@ function a11yProps(index) {
 }
 
 function Profile() {
-  const { user } = useSelector((state) => state.userReducer); // начинаем отсуюда
-  console.log(user);
+  const { user } = useSelector((state) => state.userReducer);
+  const { modules } = useSelector((state) => state.modulesReducer);
+  // console.log(modules);
   const [stat, setStat] = useState(staticProfile);
   // const [  , setStat] = useState(getAchivment);
   const [value, setValue] = React.useState(0);
-
+  const achi = 1;
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
@@ -129,26 +130,42 @@ function Profile() {
               }}
               centered
             >
-              {stat.map((el) => {
-                return <CardAchivment key={el.name} el={el} />;
+              {modules.map((el) => {
+                return <CardAchivment key={el.titleModules} el={el} />;
               })}
             </Box>
           </Box>
         </TabPanel>
         <TabPanel value={value} index={1}>
-          <Box
-            sx={{
-              display: 'flex',
-              flexWrap: 'wrap',
-              margin: 'auto',
-              width: 'auto',
-              justifyContent: 'center',
-            }}
-          >
-            {getAchivment.map((el) => (
-              <CardAchiv key={el.name} value={el} />
-            ))}
-          </Box>
+          {user.progress ? (
+            <Box
+              sx={{
+                display: 'flex',
+                flexWrap: 'wrap',
+                margin: 'auto',
+                width: 'auto',
+                justifyContent: 'center',
+              }}
+            >
+              {getAchivmentFun(user.progress).map((el) => (
+                <CardAchiv key={el.name} value={el} />
+              ))}
+            </Box>
+          ) : (
+            <Box
+              sx={{
+                display: 'flex',
+                flexWrap: 'wrap',
+                margin: 'auto',
+                width: 'auto',
+                justifyContent: 'center',
+              }}
+            >
+              {' '}
+              У вас нет достижений
+            </Box>
+          )}
+          {/* </Box> */}
         </TabPanel>
       </Paper>
     </Box>

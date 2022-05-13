@@ -52,7 +52,7 @@ class ModuleController {
     const { moduleTopics } = req.params;
 
     const param = `${moduleTopics}module`;
-    console.log('>>>>>>>>>>>>>>> ', param);
+    // console.log('>>>>>>>>>>>>>>> ', param);
     const module = await Modules.findAll({
       raw: true,
       where: { titleModules: moduleTopics },

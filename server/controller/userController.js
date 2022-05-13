@@ -25,8 +25,8 @@ class UserController {
 
       const user = await User.create({ name, email, password: hashPassword });
       // console.log('new user ', user);
-      req.session.user = user.email; // <--- обговорить логику, быть может редирект на главную а не логин?
-      return res.status(200).json({ message: 'Пользователь успешно зарегистрирован', status: 200 });
+      req.session.user = user; // <--- обговорить логику, быть может редирект на главную а не логин?
+      return res.status(200).json({ message: 'Пользователь успешно зарегистрирован', status: 200, user });
     } catch (e) {
       return res.status(404).json({ message: e, status: 404 });
     }

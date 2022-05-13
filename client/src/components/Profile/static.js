@@ -71,8 +71,8 @@ export const getAchivment = [
   },
 ];
 
-/* export const getProfile =[
-
-] */
-
-// аватар профиля
+export const getAchivmentFun = (progress) => {
+  if (progress < 10) return getAchivment.slice(0, 1);
+  if (progress < 20) return getAchivment.slice(0, 2);
+  return getAchivment;
+};
