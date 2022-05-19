@@ -1,31 +1,24 @@
-# PERN
+# PERN Stacker
 
-# Release 1 
-Create DataBase 
+# Авторизация через Google/Github 
+![auth](https://user-images.githubusercontent.com/32188309/169217480-39a3ae95-3c41-4233-8359-7543f555144d.gif)
 
-statistic = [{}]
-user = [ {id:1, name: vitlic, email: vitalic@mail.ru, progress: static:[] }]
+# Главная страница
+![main-page](https://user-images.githubusercontent.com/32188309/169218962-f5b32425-9489-4df1-894b-2ad038e161dc.gif)
 
-# Release 2 
-Create Server
+# Тесты
+![test-page](https://user-images.githubusercontent.com/32188309/169219953-6ed18508-9da5-44e9-90fb-e4045ec93e54.gif)
 
-# Realese 3
-Create FrontEnd
+# Раздел с информацией касаемых карьеры и интересных стеков
+![info](https://user-images.githubusercontent.com/32188309/169221767-ab4dc69c-e697-4afa-b305-4503f83dc416.gif)
 
-- Форма Регистрации 
-- Форма Логина
-
-Навигация Меню 
-
-Профиль пользователя 
-
+# Адаптация под разные мониторы
+![mobile](https://user-images.githubusercontent.com/32188309/169222767-002e3f37-48e2-4131-9547-45da45b28b4a.gif)
 
 
 # Realese Idea after MVP:
-
 Выбор тем должен выглядеть как дорожная карта , с подсветкой при выделении и отображением статистики пройденого материала пользователем 
 
-Возможность регистрироваться через Git 
 
 
 
